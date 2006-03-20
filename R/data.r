@@ -37,6 +37,8 @@ dd_clean_plot <- function(dd, n=1) {
     ), 
     dd$plots[[n]][c("type","projection", "params")]
   )
+  plot$xscale <- expand_range(range(plot$points$x), 0.1)
+  plot$yscale <- expand_range(range(plot$points$y), 0.1)
   class(plot) <- c(plot$type, dd_plot_class(plot$projection), "ddplot")
   plot
 }

@@ -20,21 +20,17 @@ plot.dd <- function(x, y=1, ...) {
   box(col="grey")
 }
 
-
 # Panel grob
 # Construct grob for single panel.
 # 
 # @arguments describe display object
 # @arguments plot 
 # @arguments axis location, x and y position
-#X ash <- system.file("examples", "test-ash.r", package="DescribeDisplay")
-#X ash[[1]]$drawlines = TRUE
-#X grid.newpage(); grid.draw(panelGrob(ash))
 panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   points <- panel$points
   edges <- panel$edges
   
-  axesVp <- viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
+  axesVp <- viewport(xscale=c(-1,1), yscale=c(1,-1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
   grobs <- list(
     rectGrob(gp=gpar(col="grey")),
     pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char")),
@@ -46,9 +42,8 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   if (length(panel$params$label) == 1)
     grobs <- append(grobs, list(textGrob(nulldefault(panel$params$label, ""), 0.5, 0.01, just = c("centre", "bottom"))))
 
-  if (panel$drawlines) {
-    grobs <- append(grobs, segmentsGrob(0, points$y, points$x, points$y), , gp=gpar(col=points$col))
-    
+  if (!is.null(panel$drawlines) && panel$drawlines) {
+    grobs <- append(grobs, list(segmentsGrob(points$x, 0, points$x, points$y, default.units="native",  gp=gpar(col=points$col))))
   }
 
   if (!is.null(edges))  
@@ -57,8 +52,8 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   gTree(
     children = do.call(gList, grobs), 
     vp = dataViewport(
-      xscale = expand_range(range(points$x), 0.1),
-      yscale = expand_range(range(points$y), 0.1)
+      xscale = panel$xscale,
+      yscale = panel$yscale
     ),
     childrenvp = axesVp
   )
@@ -85,10 +80,22 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 # set \code{draw = FALSE} and then \code{\link[grid]{grid.draw}} the 
 # resulting grob yourself.
 # 
+# This function reads a number of options directly out of the 
+# descripedisplay datastructure.  See the examples for ways to use
+# these.
+# 
 # @arguments dd object to plot
 # @arguments (unused)
 # @arguments draw plot, or just return grob
 # @value frame grob containing all panels, note that this does not contain the title or border
+#X ash <- dd_load(system.file("examples", "test-ash.r", package="DescribeDisplay"))
+#X plot(ash)
+#X ash$plots[[1]]$drawlines <- TRUE
+#X
+#X texture <- dd_load(system.file("examples", "1d-texture.r", package="DescribeDisplay"))
+#X plot(texture)
+#X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
+#X plot(texture)
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
   d <- x$dim
   layout <- grid.layout(nrow=d[1], ncol=d[2])
