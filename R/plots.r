@@ -1,5 +1,3 @@
-library(grid)
-
 # Plot describe display output.
 # This uses base graphics and is rather limited in terms of layout.
 # 
@@ -28,11 +26,15 @@ plot.dd <- function(x, y=1, ...) {
 # 
 # @arguments describe display object
 # @arguments plot 
-panelGrob <- function(panel) {
+# @arguments axis location, x and y position
+#X ash <- system.file("examples", "test-ash.r", package="DescribeDisplay")
+#X ash[[1]]$drawlines = TRUE
+#X grid.newpage(); grid.draw(panelGrob(ash))
+panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   points <- panel$points
   edges <- panel$edges
   
-  axesVp <- viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=0.1, y=0.1)
+  axesVp <- viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
   grobs <- list(
     rectGrob(gp=gpar(col="grey")),
     pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char")),
@@ -44,14 +46,19 @@ panelGrob <- function(panel) {
   if (length(panel$params$label) == 1)
     grobs <- append(grobs, list(textGrob(nulldefault(panel$params$label, ""), 0.5, 0.01, just = c("centre", "bottom"))))
 
+  if (panel$drawlines) {
+    grobs <- append(grobs, segmentsGrob(0, points$y, points$x, points$y), , gp=gpar(col=points$col))
+    
+  }
+
   if (!is.null(edges))  
     grobs <- append(grobs, list(segmentsGrob(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
   
   gTree(
     children = do.call(gList, grobs), 
     vp = dataViewport(
-      xscale = expand_range(range(points$x), 0.05),
-      yscale = expand_range(range(points$y), 0.05)
+      xscale = expand_range(range(points$x), 0.1),
+      yscale = expand_range(range(points$y), 0.1)
     ),
     childrenvp = axesVp
   )
@@ -62,10 +69,12 @@ panelGrob <- function(panel) {
 # 
 # This is mainly used for bug testing so that you can pull out a single 
 # panel quickly and easily.
-plot.dd_plot <- function(x, ...) {
+# 
+# @arguments object to plot
+# @arguments axis location, x and y position
+plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
   grid.newpage()
-  grid.draw(panelGrob(x))
-  
+  grid.draw(panelGrob(x, axislocation=axislocation))  
 }
 
 # Draw dd plot
@@ -80,13 +89,13 @@ plot.dd_plot <- function(x, ...) {
 # @arguments (unused)
 # @arguments draw plot, or just return grob
 # @value frame grob containing all panels, note that this does not contain the title or border
-plot.dd <- function(x, ..., draw = TRUE) {
+plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
   d <- x$dim
   layout <- grid.layout(nrow=d[1], ncol=d[2])
   panels <- frameGrob(layout = layout)
   
   for(i in 1:x$nplot) {
-    panels <- placeGrob(panels, panelGrob(x$plots[[i]]), col = (i - 1) %/% d[1] + 1
+    panels <- placeGrob(panels, panelGrob(x$plots[[i]], axislocation=axislocation), col = (i - 1) %/% d[1] + 1
     , row = (i - 1) %% d[1] + 1)
   }
 

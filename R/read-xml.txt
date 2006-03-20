@@ -2,15 +2,12 @@
 ## Returns a list of functions giving access to the variables of a  GGobi XML file
 ## Formal argument x can be the name of a a xml GGobi file
 ## or an object of class XMLDocument.
-readGGobiXML <- function(x ## The name of a GGobi XML file or of a  
-XMLDocument of R workspace
+readGGobiXML <- function(x ## The name of a GGobi XML file or of a  XMLDocument of R workspace
                          ) {
 
   ## Check the class of x
-  if ( !identical(class(x)[1], "character") && !identical(class(x) 
-[1], "XMLDocument"))
-    stop(paste(deparse(substitute(x)), "is neither a character nor  
-an XMLDocument."))
+  if ( !identical(class(x)[1], "character") && !identical(class(x)[1], "XMLDocument"))
+    stop(paste(deparse(substitute(x)), "is neither a character nor an XMLDocument."))
 
   ## load library XML if its not already done
   require(XML)
@@ -26,10 +23,7 @@ an XMLDocument."))
   XMLDocument <- function() x
 
   ## Define variable theGGobiDataNames
-  theGGobiDataNames <- as.character(xmlSApply(x$doc$children 
-[["ggobidata"]],
-                                              xmlName)
-                                    )
+  theGGobiDataNames <- as.character(xmlSApply(x$doc$children[["ggobidata"]],xmlName))
 
   ## Define function nbDataSets returning the number of data sets
   nbDataSets <- function()
@@ -39,28 +33,23 @@ an XMLDocument."))
   ## Define function index2set making a correspondance between an
   ## index running from 1 and the total number of data sets and
   ## the actual set index in the ggobidata tree
-  matchRange <- seq(along = theGGobiDataNames)[theGGobiDataNames ==  
-"data"]
+  matchRange <- seq(along = theGGobiDataNames)[theGGobiDataNames ==  "data"]
   index2set <- function(i) matchRange[i]
 
-  ## Define function dataSetNames returning the value of the name  
-attribute of the data sets
+  ## Define function dataSetNames returning the value of the name  attribute of the data sets
   dataSetNames <- function() {
     as.character(sapply(1:nbDataSets(),
-                        function(i) xmlAttrs(x$doc$children 
-[["ggobidata"]][[index2set(i)]])["name"]
+                        function(i) xmlAttrs(x$doc$children[["ggobidata"]][[index2set(i)]])["name"]
                         )
                  )
   }
 
   ## Define function setName2Index
   ## This function allows to go from a data set name to its index
-  setName2Index <- function(setName) return( index2set((1:nbDataSets 
-())[setName == dataSetNames()]) )
+  setName2Index <- function(setName) return( index2set((1:nbDataSets())[setName == dataSetNames()]) )
 
   ## Define function dataSetElements
-  ## This function returns the names of the elements of a specific  
-data set
+  ## This function returns the names of the elements of a specific  data set
   dataSetElements <- function(setIndex) {
     setIndex <- setName2Index(setIndex)
     elementSize <- xmlSize(x$doc$children[["ggobidata"]][[setIndex]])
@@ -70,8 +59,7 @@ data set
                  )
   }
 
-  ## Define function dataSetDescription returning the content of  
-the description of a given
+  ## Define function dataSetDescription returning the content of  the description of a given
   ## data set
   dataSetDescription <- function(dataSet = 1) {
     if (!identical(class(dataSet)[1], "character") &&
@@ -97,8 +85,7 @@ dataSetNames()[dataSet]
     invisible(result)
   }
 
-  ## Define function nbVariables returning the  number of variables  
-of a given data set
+  ## Define function nbVariables returning the  number of variables  of a given data set
   nbVariables <- function(dataSet = 1) {
     if (!identical(class(dataSet)[1], "character") &&
         !identical(class(dataSet)[1], "integer") &&
@@ -114,8 +101,7 @@ dataSetNames()[dataSet]
 [["variables"]])
   }
 
-  ## Define function variableNames returning the variable names of  
-a given data set
+  ## Define function variableNames returning the variable names of  a given data set
   variableNames <- function(dataSet = 1) {
     if (!identical(class(dataSet)[1], "character") &&
         !identical(class(dataSet)[1], "integer") &&
@@ -139,8 +125,7 @@ dataSetNames()[dataSet]
     }
   }
 
-  ## Define function variableAttrNames returning the value of the  
-attribute name of the variables
+  ## Define function variableAttrNames returning the value of the  attribute name of the variables
   ## of a specific data set
   variableAttrNames <- function(dataSet = 1) {
     if (!identical(class(dataSet)[1], "character") &&
@@ -166,8 +151,7 @@ dataSetNames()[dataSet]
     }
   }
 
-  ## Define function recordAttributes returning the value of the  
-record(s)
+  ## Define function recordAttributes returning the value of the  record(s)
   ## of a specific data set
   recordAttributes <- function(dataSet = 1) {
     if (!identical(class(dataSet)[1], "character") &&
@@ -186,10 +170,8 @@ dataSetNames()[dataSet]
            )
   }
 
-  ## Define function rangeRealVar returning the range of a real  
-variable
-  ## of a specific data set. The range is here obtained from the  
-values
+  ## Define function rangeRealVar returning the range of a real  variable
+  ## of a specific data set. The range is here obtained from the  values
   ## of attributes min and max of the variable if they are available.
   ## The first formal argument defines the data set and the second
   ## the names (ie, value of the name attribute) of the variable
@@ -243,10 +225,8 @@ the variables of",
   }
 
 
-  ## Define function nlevelsCatVar returning the number of levels a  
-categorical variable
-  ## from a data set specified by the first formal argument and  
-whose name is specified by
+  ## Define function nlevelsCatVar returning the number of levels a categorical variable
+  ## from a data set specified by the first formal argument and  whose name is specified by
   ## the second formal argument
   nlevelsCatVar <- function(dataSet = 1, varNameAttr) {
 
@@ -257,8 +237,7 @@ whose name is specified by
       stop("Formal argument should be an integer a numeric or a  
 character.")
 
-    if (!identical(class(dataSet)[1], "character")) dataSet <-  
-dataSetNames()[dataSet]
+    if (!identical(class(dataSet)[1], "character")) dataSet <-  dataSetNames()[dataSet]
 
     thisNbVar <- nbVariables(dataSet)
     if (thisNbVar > 0) {
@@ -279,10 +258,8 @@ the variables of",
              )
 
       ## Get the index of the chosen variable
-      chosenIndex <- (1:thisNbVar)[varNameAttr == variableAttrNames 
-(dataSet)]
-      ## Check that the chosen variable is indeed categorical (ie,  
-a factor)
+      chosenIndex <- (1:thisNbVar)[varNameAttr == variableAttrNames(dataSet)]
+      ## Check that the chosen variable is indeed categorical (ie, a factor)
       if ( variableNames(dataSet)[chosenIndex] !=  
 "categoricalvariable" )
         stop(paste(deparse(substitute(varNameAttr)),
@@ -300,10 +277,8 @@ a factor)
 
   }
 
-  ## Define function levelsCatVar returning the levels a  
-categorical variable
-  ## from a data set specified by the first formal argument and  
-whose name is specified by
+  ## Define function levelsCatVar returning the levels a  categorical variable
+  ## from a data set specified by the first formal argument and  whose name is specified by
   ## the second formal argument
   levelsCatVar <- function(dataSet = 1, varNameAttr) {
 
