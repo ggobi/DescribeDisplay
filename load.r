@@ -1,5 +1,5 @@
-library(grid)
-sapply(dir("R", "\\.r$",full=TRUE), source)
+library(DescribeDisplay)
+sapply(dir("~/ggobi/DescribeDisplay/R", "\\.r$",full=TRUE), source)
 
 #if (!exists("tests")) {
 #  paths <- dir("inst/examples", "\\.[rR]$", full=T)

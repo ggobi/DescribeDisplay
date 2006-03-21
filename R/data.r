@@ -9,6 +9,9 @@
 # 
 # @arguments file path
 # @value object of class dd
+# @keyword  manip
+# a <- dd_load(system.file("examples", "test-edges.r"))
+# b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
   dd <- source(path)$value
   class(dd) <- c("dd", dd_plot_class(dd$type))
@@ -28,6 +31,7 @@ dd_load <- function(path) {
 # 
 # @arguments dd object
 # @arguments plot number
+# @keyword internal 
 dd_clean_plot <- function(dd, n=1) {
   names(dd$plots[[n]]) <- gsub("plot", "", names(dd$plots[[n]]))
   plot <- c(
@@ -51,6 +55,7 @@ dd_clean_plot <- function(dd, n=1) {
 # @arguments list of values from describe display 
 # @arguments plot number, defaults to first plot
 # @value data frame suitable for plotting
+# @keyword internal 
 dd_points <- function(dd, n=1) {
   df <- as.data.frame(dd$plots[[n]]$points)
   
@@ -68,6 +73,7 @@ dd_points <- function(dd, n=1) {
 # @arguments list of values from describe display 
 # @arguments plot number, defaults to first plot
 # @value data frame suitable for plotting
+# @keyword internal 
 dd_edges <- function(dd, n=1) {
   if (is.null(dd$plots[[n]]$edges)) return()
   df <- do.call(rbind, lapply(dd$plots[[n]]$edges, as.data.frame))
@@ -92,6 +98,7 @@ dd_edges <- function(dd, n=1) {
 # 
 # @arguments list of values from describe display 
 # @arguments plot number, defaults to first plot
+# @keyword internal 
 dd_plot_class <- function(projection) {
   gsub("\\s+", "", tolower(projection))
 }
@@ -101,6 +108,7 @@ dd_plot_class <- function(projection) {
 # 
 # @arguments list of values from describe display 
 # @arguments plot number, defaults to first plot
+# @keyword internal 
 dd_defaults <- function(dd, n=1) {
   list(
     main = dd$title,
@@ -115,6 +123,7 @@ dd_defaults <- function(dd, n=1) {
 # 
 # @arguments list of values from describe display 
 # @arguments plot number, defaults to first plot
+# @keyword internal 
 dd_tour_axes <- function(plot) {
   if (is.null(plot$params$F)) return()
   if (plot$projection == "1D Tour") return()

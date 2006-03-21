@@ -6,6 +6,7 @@
 # 
 # @arguments describe display object
 # @arguments plot 
+# @keyword hplot 
 plot.dd <- function(x, y=1, ...) {
   dd <- x; n <- 1
   arguments <- defaults(list(...), c(dd_points(dd, n), dd_defaults(dd, n)))
@@ -26,6 +27,7 @@ plot.dd <- function(x, y=1, ...) {
 # @arguments describe display object
 # @arguments plot 
 # @arguments axis location, x and y position
+# @keyword internal 
 panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   points <- panel$points
   edges <- panel$edges
@@ -67,6 +69,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
 # 
 # @arguments object to plot
 # @arguments axis location, x and y position
+# @keyword hplot
 plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
   grid.newpage()
   grid.draw(panelGrob(x, axislocation=axislocation))  
@@ -96,6 +99,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 #X plot(texture)
 #X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #X plot(texture)
+# @keyword internal 
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
   d <- x$dim
   layout <- grid.layout(nrow=d[1], ncol=d[2])
@@ -125,6 +129,7 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
 # 
 # @arguments describe display object
 # @arguments plot 
+# @keyword internal 
 axesGrob <- function(panel) {
   axes <- dd_tour_axes(panel)
   if (is.null(axes)) return()
