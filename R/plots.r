@@ -32,7 +32,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   points <- panel$points
   edges <- panel$edges
   
-  axesVp <- viewport(xscale=c(-1,1), yscale=c(1,-1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
+  axesVp <- viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
   grobs <- list(
     rectGrob(gp=gpar(col="grey")),
     pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char")),
