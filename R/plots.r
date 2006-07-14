@@ -14,8 +14,7 @@ plot.dd <- function(x, y=1, ...) {
   do.call(plot, arguments)
   edges <- dd_edges(dd,n)
   if (!is.null(edges)) {
-    segments(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, lwd=edges$lwd, col=edges$col)
-    
+    segments(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, lwd=edges$lwd, col=edges$col) 
   }
   
   box(col="grey")
@@ -32,20 +31,26 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
   points <- panel$points
   edges <- panel$edges
   
-  axesVp <- viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
+  axesVp <- axesViewport(panel, axislocation)
   grobs <- list(
-    rectGrob(gp=gpar(col="grey")),
-    pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char")),
+    rectGrob(gp=gpar(col="grey"))
+	)
+	
+	if (is.null(panel$drawpoints) || panel$drawpoints) {
+		grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char"))))
+	}
+	
+  grobs <- append(grobs,  list(
     textGrob(nulldefault(panel$params$xlab, ""), 0.99, 0.01, just = c("right","bottom")),
     textGrob(nulldefault(panel$params$ylab, ""), 0.01, 0.99, just = c("left", "top")),
     axesGrob(panel)
-  )
+  ))
 
   if (length(panel$params$label) == 1)
     grobs <- append(grobs, list(textGrob(nulldefault(panel$params$label, ""), 0.5, 0.01, just = c("centre", "bottom"))))
 
   if (!is.null(panel$drawlines) && panel$drawlines) {
-    grobs <- append(grobs, list(segmentsGrob(points$x, 0, points$x, points$y, default.units="native",  gp=gpar(col=points$col))))
+    grobs <- append(grobs, list(segmentsGrob(points$x, min(panel$yscale), points$x, points$y, default.units="native",  gp=gpar(col=points$col))))
   }
 
   if (!is.null(edges))  
@@ -55,7 +60,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1)) {
     children = do.call(gList, grobs), 
     vp = dataViewport(
       xscale = panel$xscale,
-      yscale = panel$yscale
+      yscale = panel$yscale,
     ),
     childrenvp = axesVp
   )
@@ -94,6 +99,9 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 #X ash <- dd_load(system.file("examples", "test-ash.r", package="DescribeDisplay"))
 #X plot(ash)
 #X ash$plots[[1]]$drawlines <- TRUE
+#X plot(ash)
+#X ash$plots[[1]]$drawpoints <- FALSE
+#X plot(ash)
 #X
 #X texture <- dd_load(system.file("examples", "1d-texture.r", package="DescribeDisplay"))
 #X plot(texture)
@@ -102,16 +110,18 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 # @keyword internal 
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
   d <- x$dim
-  layout <- grid.layout(nrow=d[1], ncol=d[2])
+  layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)
   
   for(i in 1:x$nplot) {
-    panels <- placeGrob(panels, panelGrob(x$plots[[i]], axislocation=axislocation), col = (i - 1) %/% d[1] + 1
-    , row = (i - 1) %% d[1] + 1)
+    panels <- placeGrob(panels, 
+			panelGrob(x$plots[[i]], axislocation=axislocation), 
+			col = (i - 1) %/% d[1] + 1, row = (i - 1) %% d[1] + 1
+		)
   }
 
   pg <- frameGrob(grid.layout(nrow=2, ncol=1))
-  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.5)), row=1, height=unit(2,"lines"))
+  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
   pg <- packGrob(pg, panels, row=2)
 
   if (draw) {
@@ -121,7 +131,6 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
   }
   
   invisible(panels)
-  
 }
 
 # Axes grob
@@ -134,9 +143,42 @@ axesGrob <- function(panel) {
   axes <- dd_tour_axes(panel)
   if (is.null(axes)) return()
 
-  gTree(children=gList(
-    circleGrob(0, 0, 1, default.units="native", gp=gpar(fill="transparent", col="black")),
-    segmentsGrob(0,0, axes$x, axes$y, default.units="native"),
-    textGrob(axes$label, 1.1 * cos(axes$theta), 1.1 * sin(axes$theta), default.units="native", gp=gpar(fontsize=10))
-  ), vp=vpPath("axes"))  
+	if (!is.null(axes$y)) { # 2d tour 
+		bigaxes <- subset(axes, r > 0.3)
+	  gTree(children=gList(
+	    circleGrob(0, 0, 1, default.units="native", gp=gpar(fill="transparent", col="black")),
+	    segmentsGrob(0,0, axes$x, axes$y, default.units="native"),
+	    textGrob(bigaxes$label, 1.1 * cos(bigaxes$theta), 1.1 * sin(bigaxes$theta), default.units="native", gp=gpar(fontsize=10))
+	  ), vp=vpPath("axes"))  
+	} else { # 1d tour 
+		n <- nrow(axes)
+
+		gTree(children=gList(
+			rectGrob(gp=gpar(col="grey50")),
+			linesGrob(x=unit(c(0,0), "native"), y = unit(c(0,1), "npc")),
+			segmentsGrob(-1, 1:n , 1, 1:n, default="native", gp=gpar(lty=3)),
+			segmentsGrob(0, 1:n , axes$x, 1:n, default="native", gp=gpar(col="grey30", lwd=2)),
+			textGrob(-1:1, -1:1, -0.3, default="native", just=c("centre", "top"), gp=gpar(cex=0.9)),
+			textGrob(axes$label, 1.1, 1:n, default="native", just=c("left", "centre"))
+			
+		), vp=vpPath("axes"))
+	}
+}
+
+# Axes viewport
+# Construct viewport for axes.
+# 
+# @arguments describe display object
+# @arguments plot 
+# @keyword internal 
+axesViewport <- function(panel, axislocation) {
+  axes <- dd_tour_axes(panel)
+  if (is.null(axes)) return()
+
+	if (!is.null(axes$y)) { # 2d tour 
+		viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2])
+	} else { # 1d tour 
+		n <- nrow(axes)
+		viewport(xscale=c(-1,1), yscale=c(0, n + 1), name="axes", width=0.1, height=unit(n+1, "lines"), x=axislocation[1], y=axislocation[2], gp = gpar(col="grey50"))
+	}
 }

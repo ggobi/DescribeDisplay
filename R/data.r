@@ -14,7 +14,7 @@
 # b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
   dd <- source(path)$value
-  class(dd) <- c("dd", dd_plot_class(dd$type))
+  class(dd) <- c(dd_plot_class(dd$type), "dd")
   dd$colormap$foreground <- sapply(dd$colormap$foregroundColors, 
     function(x) do.call(rgb, as.list(x))
   )
@@ -58,13 +58,14 @@ dd_clean_plot <- function(dd, n=1) {
 # @keyword internal 
 dd_points <- function(dd, n=1) {
   df <- as.data.frame(dd$plots[[n]]$points)
-  
+  df$hidden <- df$hidden != 0
+
   # Remap point aesthetics to R appropriate values
-  df$col <- dd$colormap$foreground[df$color + 1]
+  df$col <- ifelse(df$hidden, "grey50", dd$colormap$foreground[df$color + 1])
   df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
   df$cex <- (df$glyphsize + 1)/2
   rownames(df) <- df$index
-  df[!df$hidden, c("x","y", "col","pch", "cex")] # Return only visible points
+  df[order(!df$hidden), c("x","y", "col","pch", "cex")] # Return only visible points
 }
 
 # Describe display edge data
@@ -125,20 +126,30 @@ dd_defaults <- function(dd, n=1) {
 # @arguments plot number, defaults to first plot
 # @keyword internal 
 dd_tour_axes <- function(plot) {
-  if (is.null(plot$params$F)) return()
-  if (plot$projection == "1D Tour") return()
-  
-  proj <- matrix(plot$params$F, ncol=2, byrow=F)
-  colnames(proj) <- c("x","y")
-  lbls <- plot$params$labels
-  
-  ranges <- do.call(rbind,  plot$params$ranges)
-  df <- data.frame(proj, label=lbls, range=ranges)
-  
-  df$r <- with(df, sqrt(x^2 + y^2))
-  df$theta <- atan2(df$y, df$x)
-  
-  df
+	if (is.null(plot$params$F)) return()
+
+
+	if (plot$projection == "1D Tour") {
+		proj <- matrix(plot$params$F, ncol=1)
+		colnames(proj) <- "x"
+	} else {
+		proj <- matrix(plot$params$F, ncol=2, byrow=F)
+		colnames(proj) <- c("x","y")
+	}
+
+	lbls <- plot$params$labels
+
+	ranges <- do.call(rbind,  plot$params$ranges)
+	df <- data.frame(proj, label=lbls, range=ranges)
+
+	if (plot$projection == "2D Tour") {
+		df$r <- with(df, sqrt(x^2 + y^2))
+		df$theta <- atan2(df$y, df$x)
+	} else {
+		df <- df[nrow(df):1, ]
+	}
+	
+	df
 }
 
 # Print dd object
