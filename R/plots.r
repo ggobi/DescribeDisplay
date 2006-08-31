@@ -95,6 +95,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 # @arguments dd object to plot
 # @arguments (unused)
 # @arguments draw plot, or just return grob
+# @arguments size of plot as a proportion of the total display area (set to 1 for printed out)
 # @value frame grob containing all panels, note that this does not contain the title or border
 #X ash <- dd_load(system.file("examples", "test-ash.r", package="DescribeDisplay"))
 #X plot(ash)
@@ -108,7 +109,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 #X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #X plot(texture)
 # @keyword internal 
-plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
+plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9) {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)
@@ -120,13 +121,17 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1)) {
 		)
   }
 
-  pg <- frameGrob(grid.layout(nrow=2, ncol=1))
-  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
-  pg <- packGrob(pg, panels, row=2)
+	if (nchar(x$title) != 0) {
+	  pg <- frameGrob(grid.layout(nrow=2, ncol=1))
+	  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
+	  pg <- packGrob(pg, panels, row=2)		
+	} else {
+		pg <- panels
+	}
 
   if (draw) {
     grid.newpage()
-    pushViewport(viewport(w = 0.9, h = 0.9))
+    pushViewport(viewport(w = size, h = size))
     grid.draw(pg)
   }
   

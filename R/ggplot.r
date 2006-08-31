@@ -15,6 +15,10 @@ ggplot.ddplot <- function(data, ...) {
   p <- pscontinuous(p, "x", range=data$xscale)
   p <- pscontinuous(p, "y", range=data$yscale)
 
+	p$xlabel <- data$params$xlab
+	p$ylabel <- data$params$ylab
+	
+
   ggpoint(p)
 }
 ggplot.dd <- function(data, ...) { 
