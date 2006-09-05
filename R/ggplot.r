@@ -2,13 +2,14 @@
 # Create a nice looking plot complete with axes using ggplot.
 # 
 # @arguments plot to display
-# @arguments other (currently) unused arguments
+# @arguments grob function to use for drawing
+# @arguments other arguments passed to the grob function
 # @keyword hplot
 # @alias ggplot.dd
 #X xy <- dd_load(system.file("examples", "test-xyplot.r", package="DescribeDisplay"))
 #X ggplot(xy$plots[[1]])
-ggplot.ddplot <- function(data, ...) {	
-  p <- ggplot(data$points, aesthetics=list(x=x, y=y, colour=col, shape=pch, size=cex*1.5))
+ggplot.ddplot <- function(data, plot=ggpoint, ...) {	
+  p <- ggplot(data$points, aesthetics=list(x=x, y=y))
   p <- scmanual(p, "colour")
   p <- scmanual(p, "size")
   p <- scmanual(p, "shape")
@@ -18,8 +19,8 @@ ggplot.ddplot <- function(data, ...) {
 	p$xlabel <- data$params$xlab
 	p$ylabel <- data$params$ylab
 	
-
-  ggpoint(p)
+	
+  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
 }
 ggplot.dd <- function(data, ...) { 
 	panel <- data$plots[[1]]

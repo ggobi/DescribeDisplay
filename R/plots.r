@@ -95,6 +95,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1)) {
 # @arguments dd object to plot
 # @arguments (unused)
 # @arguments draw plot, or just return grob
+# @arguments location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
 # @arguments size of plot as a proportion of the total display area (set to 1 for printed out)
 # @value frame grob containing all panels, note that this does not contain the title or border
 #X ash <- dd_load(system.file("examples", "test-ash.r", package="DescribeDisplay"))
