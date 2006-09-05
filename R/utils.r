@@ -10,7 +10,7 @@ nulldefault <- function(x, default) {
 }
 
 
-addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top")) {
+addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill=NA, col="black") {
 	brush <- data.frame(x=x, y=y, width=width, height=height)
-	ggrect(plot, data=brush, aes=list(x=x, y=y, width=width, height=height), justification=just)
+	ggrect(plot, data=brush, aes=list(x=x, y=y, width=width, height=height), justification=just, fill=fill, colour=col)
 }
