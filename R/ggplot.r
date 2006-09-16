@@ -17,8 +17,7 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
   p <- pscontinuous(p, "y", range=data$yscale)
 
 	p$xlabel <- data$params$xlab
-	p$ylabel <- data$params$ylab
-	
+	p$ylabel <- data$params$ylab	
 	
   plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
 }
@@ -54,9 +53,12 @@ ggplot.parcoords <- function(data, ...) {
 	df <- compact_pcp(data)
 	p <- ggpcp(df, vars = setdiff(names(df), c("cex","pch","col", "id")), scale="range")
 	
+	if (data$showPoints) {
+	  p <- ggpoint(p, aesthetics=list(colour=col, shape=pch, line_type=pch, size=cex*1.5), ...)
+	}
 	
-	p <- ggpoint(p, aesthetics=list(colour=col, shape=pch, line_type=pch, size=cex*1.5))
-	p <- ggline(p, aesthetics=list(colour=col, line_type=pch, shape=pch, size=cex*1.5))
+	p <- ggline(p, aesthetics=list(colour=col, line_type=pch, shape=pch, size=cex*1.5), ...)
+
   p <- scmanual(p, "colour")
   p <- scmanual(p, "size")
   p <- scmanual(p, "line_type")
