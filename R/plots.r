@@ -153,7 +153,7 @@ axesGrob <- function(panel, gp=gpar(col="grey50")) {
 
 	if (!is.null(axes$y)) { # 2d tour 
 		bigaxes <- subset(axes, r > 0.3)
-		browser()
+		#browser()
 		
 	  gTree(children=gList(
 	    circleGrob(0, 0, 1, default.units="native", gp=gpar(fill="transparent", col="black")),
