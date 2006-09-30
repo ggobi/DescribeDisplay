@@ -13,6 +13,9 @@
 # a <- dd_load(system.file("examples", "test-edges.r"))
 # b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
+  opt <- options(warn=-1)
+  on.exit(options(opt))
+  
   dd <- source(path)$value
   class(dd) <- c(dd_plot_class(dd$type), "dd")
   dd$colormap$foreground <- sapply(dd$colormap$foregroundColors, 
@@ -37,7 +40,7 @@ dd_clean_plot <- function(dd, n=1) {
   plot <- c(
     list(
       points = dd_points(dd, n),
-      edges = dd_edges(dd, n),
+      edges = dd_edges(dd, n)
     ), 
     dd$plots[[n]][c("type","projection", "params")]
   )
@@ -64,8 +67,10 @@ dd_points <- function(dd, n=1) {
   df$col <- ifelse(df$hidden, "grey50", dd$colormap$foreground[df$color + 1])
   df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
   df$cex <- (df$glyphsize + 1)/2.5
-  rownames(df) <- df$index
-  df[order(!df$hidden), c("x","y", "col","pch", "cex")] # Return only visible points
+
+  rownames(df) <- nulldefault(df$index, 1:nrow(df))
+  
+  df[order(!df$hidden), intersect(names(df), c("x","y", "col","pch", "cex"))] # Return only visible points
 }
 
 # Describe display edge data

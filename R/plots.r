@@ -16,7 +16,7 @@ plot.dd <- function(x, y=1, ...) {
   if (!is.null(edges)) {
     segments(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, lwd=edges$lwd, col=edges$col) 
   }
-  
+    
   box(col="grey")
 }
 
@@ -40,7 +40,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="grey
   if (!is.null(edges))  
     grobs <- append(grobs, list(segmentsGrob(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
 	
-	if (is.null(panel$drawpoints) || panel$drawpoints) {
+	if (is.null(panel$showPoints) || panel$showPoints) {
 		grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char"))))
 	}
 	
@@ -104,7 +104,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="gr
 #X plot(ash)
 #X ash$plots[[1]]$drawlines <- TRUE
 #X plot(ash)
-#X ash$plots[[1]]$drawpoints <- FALSE
+#X ash$plots[[1]]$showPoints <- FALSE
 #X plot(ash)
 #X
 #X texture <- dd_load(system.file("examples", "1d-texture.r", package="DescribeDisplay"))
