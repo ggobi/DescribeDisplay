@@ -20,7 +20,7 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 	p$ylabel <- data$params$ylab	
 
 	ggopt(axis.colour = "black")
-  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
+  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*2))
 }
 
 ggplot.dd <- function(data, ...) { 
