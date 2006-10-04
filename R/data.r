@@ -53,8 +53,6 @@ dd_clean_plot <- function(dd, n=1) {
   plot
 }
 
-
-
 # Describe display points data
 # Retrieves the describe display points data for the given plot number.
 # 

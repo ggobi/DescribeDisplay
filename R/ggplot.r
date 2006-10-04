@@ -69,8 +69,8 @@ ggplot.parcoords <- function(data, ...) {
   p <- scmanual(p, "shape")
 	
 	p$title <- data$title
-	p$xlabel <- ""
-	p$ylabel <- ""
+	p$xlabel <- NULL
+	p$ylabel <- NULL
 	
 	p
 }
