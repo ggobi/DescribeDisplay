@@ -25,3 +25,17 @@ fixup <- function(path) {
   x <- dget(path)
   dput(x, file=path)
 }
+
+
+# Remove hidden points
+# Will remove all hidden points from the plot.
+#
+# @argument ddplot object
+removehiddens <- function(d) {
+	d$plots <- lapply(d$plots, function(dd) {
+		dd$points <- dd$points[!dd$points$hidden, ]
+		dd
+	})
+	
+	d
+}
