@@ -19,7 +19,7 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 	p$xlabel <- data$params$xlab
 	p$ylabel <- data$params$ylab	
 
-	ggopt(axis.colour = oldcol)
+	ggopt(axis.colour = "black")
   plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
 }
 
