@@ -126,7 +126,7 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 		)
   }
 
-	if (nchar(x$title) != 0) {
+	if (!is.null(x$title) && nchar(x$title) != 0) {
 	  pg <- frameGrob(grid.layout(nrow=2, ncol=1))
 	  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
 	  pg <- packGrob(pg, panels, row=2)
