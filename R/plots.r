@@ -29,7 +29,7 @@ plot.dd <- function(x, y=1, ...) {
 # @arguments plot 
 # @arguments axis location, x and y position
 # @keyword internal 
-panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="grey50")) {
+panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black")) {
   points <- panel$points
   edges <- panel$edges
   
@@ -79,7 +79,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="grey
 # @arguments object to plot
 # @arguments axis location, x and y position
 # @keyword hplot
-plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="grey50")) {
+plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black")) {
   grid.newpage()
   grid.draw(panelGrob(x, axislocation=axislocation), axis.gp=axisgp)  
 }
@@ -114,7 +114,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="gr
 #X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #X plot(texture)
 # @keyword internal 
-plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="grey50")) {
+plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black")) {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)
@@ -149,27 +149,27 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 # @arguments describe display object
 # @arguments plot 
 # @keyword internal 
-axesGrob <- function(panel, gp=gpar(col="grey50")) {
+axesGrob <- function(panel, gp=gpar(col="black")) {
   axes <- dd_tour_axes(panel)
   if (is.null(axes)) return()
 
 	if (!is.null(axes$y)) { # 2d tour 
 		bigaxes <- subset(axes, r > 0.3)
-		#browser()
 		
 	  gTree(children=gList(
 	    circleGrob(0, 0, 1, default.units="native", gp=gpar(fill="transparent", col="black")),
 	    segmentsGrob(0,0, axes$x, axes$y, default.units="native"),
 	    textGrob(bigaxes$label, 1.1 * cos(bigaxes$theta), 1.1 * sin(bigaxes$theta), default.units="native")
 	  ), name="axis", vp=vpPath("axes"), gp=gp)  
-	} else { # 1d tour 
+
+	} else { # 1d tour  
 		n <- nrow(axes)
 
 		gTree(children=gList(
-			rectGrob(gp=gpar(col="grey50")),
+			rectGrob(),
 			linesGrob(x=unit(c(0,0), "native"), y = unit(c(0,1), "npc")),
 			segmentsGrob(-1, 1:n , 1, 1:n, default="native", gp=gpar(lty=3)),
-			segmentsGrob(0, 1:n , axes$x, 1:n, default="native", gp=gpar(col="grey30", lwd=2)),
+			segmentsGrob(0, 1:n , axes$x, 1:n, default="native", gp=gpar(lwd=2)),
 			textGrob(-1:1, -1:1, -0.3, default="native", just=c("centre", "top"), gp=gpar(cex=0.9)),
 			textGrob(axes$label, 1.1, 1:n, default="native", just=c("left", "centre"))
 			

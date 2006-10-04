@@ -18,8 +18,12 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 
 	p$xlabel <- data$params$xlab
 	p$ylabel <- data$params$ylab	
-	
-  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
+
+	oldcol <- ggopt(axis.colour = "black")$axis.colour
+  p <- plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
+	ggopt(axis.colour = oldcol)
+
+	p
 }
 ggplot.dd <- function(data, ...) { 
 	panel <- data$plots[[1]]
