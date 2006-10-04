@@ -66,7 +66,7 @@ dd_points <- function(dd, n=1) {
   # Remap point aesthetics to R appropriate values
   df$col <- ifelse(df$hidden, "grey50", dd$colormap$foreground[df$color + 1])
   df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
-  df$cex <- (df$glyphsize + 1)/2.5
+  df$cex <- (df$glyphsize + 1)/5
 
   rownames(df) <- nulldefault(df$index, 1:nrow(df))
   
