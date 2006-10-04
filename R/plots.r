@@ -56,7 +56,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
     grobs <- append(grobs, list(textGrob(nulldefault(panel$params$label, ""), 0.5, 0.01, just = c("centre", "bottom"))))
 
   if (!is.null(panel$drawlines) && panel$drawlines) {
-    grobs <- append(grobs, list(segmentsGrob(points$x, 0, points$x, points$y, default.units="native",  gp=gpar(col=points$col))))
+    grobs <- append(grobs, list(segmentsGrob(points$x, panel$baseline, points$x, points$y, default.units="native",  gp=gpar(col=points$col))))
   }
 
   
