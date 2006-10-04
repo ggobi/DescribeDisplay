@@ -6,7 +6,7 @@
 \description{
 Convenient method to draw a single panel.
 }
-\usage{plot.dd_plot(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="grey50"))}
+\usage{plot.dd_plot(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black"))}
 \arguments{
 \item{x}{object to plot}
 \item{...}{axis location, x and y position}

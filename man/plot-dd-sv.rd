@@ -6,7 +6,7 @@
 \description{
 Draw a complete describe display.
 }
-\usage{plot.dd(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="grey50"))}
+\usage{plot.dd(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"))}
 \arguments{
 \item{x}{dd object to plot}
 \item{...}{(unused)}

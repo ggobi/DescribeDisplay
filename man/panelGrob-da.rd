@@ -6,7 +6,7 @@
 \description{
 Construct grob for single panel.
 }
-\usage{panelGrob(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="grey50"))}
+\usage{panelGrob(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"))}
 \arguments{
 \item{panel}{describe display object}
 \item{axislocation}{plot}
