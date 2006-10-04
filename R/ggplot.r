@@ -19,12 +19,10 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 	p$xlabel <- data$params$xlab
 	p$ylabel <- data$params$ylab	
 
-	oldcol <- ggopt(axis.colour = "black")$axis.colour
-  p <- plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
 	ggopt(axis.colour = oldcol)
-
-	p
+  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*1.5))
 }
+
 ggplot.dd <- function(data, ...) { 
 	panel <- data$plots[[1]]
 	p <- ggplot(panel, ...)
@@ -72,5 +70,6 @@ ggplot.parcoords <- function(data, ...) {
 	p$xlabel <- NULL
 	p$ylabel <- NULL
 	
+	ggopt(axis.colour = "black")
 	p
 }
