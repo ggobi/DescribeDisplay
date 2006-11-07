@@ -47,19 +47,22 @@ dd_clean_plot <- function(dd, n=1) {
 
 	plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
 
-  plot$xscale <- expand_range(range(plot$points$x), 0.1)
-  plot$yscale <- expand_range(range(plot$points$y), 0.1)
+  plot$xscale <- dd$plots[[n]]$tformLims[1:2]#expand_range(range(plot$points$x), 0.1)
+  plot$yscale <- dd$plots[[n]]$tformLims[3:4]#expand_range(range(plot$points$y), 0.1)
+  if (diff(plot$yscale) == 0 ) plot$yscale <- expand_range(range(plot$points$y), 0.1)
 
-  labels <- as.data.frame(dd$plots[[n]]$stickylabels)
-  labels <- cbind(plot$points[labels$index, c("x", "y")], label = labels$label)
-  rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
-  tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
-  labels$left <- ifelse(rl, "left", "right")
-  labels$top <-  ifelse(tb, "bottom", "top")
-  
-  labels$x <- labels$x + (-1 + 2 * rl) * 0.005 * diff(plot$xscale)
-  labels$y <- labels$y + (-1 + 2 * tb) * 0.005 * diff(plot$yscale)
-  plot$labels <- labels
+  if (!is.null(dd$plots[[n]]$stickylabels)) {
+    labels <- as.data.frame(dd$plots[[n]]$stickylabels)
+    labels <- cbind(plot$points[labels$index, c("x", "y")], label = labels$label)
+    rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
+    tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
+    labels$left <- ifelse(rl, "left", "right")
+    labels$top <-  ifelse(tb, "bottom", "top")
+
+    labels$x <- labels$x + (-1 + 2 * rl) * 0.005 * diff(plot$xscale)
+    labels$y <- labels$y + (-1 + 2 * tb) * 0.005 * diff(plot$yscale)
+    plot$labels <- labels    
+  }
 
   class(plot) <- c(plot$type, dd_plot_class(plot$projection), "ddplot")
 
