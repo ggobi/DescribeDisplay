@@ -46,6 +46,14 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
 		grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char"))))
 	}
 	
+	if (!is.null(panel$labels)) {
+	  labels <- panel$labels
+	  
+	  grobs <- append(grobs,  list(
+	    textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",just = c(labels$left, labels$top))
+	  ))
+	}
+	
   grobs <- append(grobs,  list(
     textGrob(nulldefault(panel$params$xlab, ""), 0.99, 0.01, just = c("right","bottom")),
     textGrob(nulldefault(panel$params$ylab, ""), 0.01, 0.99, just = c("left", "top")),

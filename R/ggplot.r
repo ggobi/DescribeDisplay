@@ -19,8 +19,13 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 	p$xlabel <- data$params$xlab
 	p$ylabel <- data$params$ylab	
 
+
 	ggopt(axis.colour = "black")
-  plot(p, ..., aes=list(colour=col, shape=pch, size=cex*2))
+  p <- plot(p, ..., aes=list(colour=col, shape=pch, size=cex*2))
+  if (!is.null(data$labels))
+    p <- ggtext(p, data=data$labels, aes=list(label=label), justification=c(data$labels$left, data$labels$top))
+    
+  p
 }
 
 ggplot.dd <- function(data, ...) { 
