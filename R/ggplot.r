@@ -22,6 +22,11 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
 
 	ggopt(axis.colour = "black")
   p <- plot(p, ..., aes=list(colour=col, shape=pch, size=cex*2))
+
+  # edges <- panel$edges
+  # if (!is.null(edges))  
+  #   p <- ggpath(data=edges, aes=list(x=src.x, y=src.y, dest.x, dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
+
   if (!is.null(data$labels))
     p <- ggtext(p, data=data$labels, aes=list(label=label), justification=c(data$labels$left, data$labels$top))
     
@@ -61,7 +66,7 @@ ggplot.parcoords <- function(data, ...) {
 	p <- ggpcp(df, vars = setdiff(names(df), c("cex","pch","col", "id")), scale="range")
 	
 	if (data$showPoints) {
-	  p <- ggpoint(p, aesthetics=list(colour=col, shape=pch, line_type=pch, size=cex*1.5), ...)
+	  p <- ggpoint(p, aesthetics=list(colour=col, shape=pch, size=cex*1.5), ...)
 	}
 	
 	p <- ggline(p, aesthetics=list(colour=col, line_type=pch, shape=pch, size=cex*1.5), ...)

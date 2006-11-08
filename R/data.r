@@ -63,14 +63,14 @@ dd_clean_plot <- function(dd, n=1) {
 
   if (!is.null(dd$plots[[n]]$stickylabels)) {
     labels <- as.data.frame(dd$plots[[n]]$stickylabels)
-    labels <- cbind(plot$points[labels$index, c("x", "y")], label = labels$label)
+    labels <- cbind(plot$points[labels$index+1, c("x", "y")], label = labels$label)
     rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
     tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
     labels$left <- ifelse(rl, "left", "right")
-    labels$top <-  ifelse(tb, "bottom", "top")
-
-    labels$x <- labels$x + (-1 + 2 * rl) * 0.005 * diff(plot$xscale)
-    labels$y <- labels$y + (-1 + 2 * tb) * 0.005 * diff(plot$yscale)
+    labels$top <-  "center"#ifelse(tb, "bottom", "top")
+    
+    labels$x <- labels$x + (-1 + 2 * rl) * 0.01 * diff(plot$xscale)
+    #labels$y <- labels$y + (-1 + 2 * tb) * 0.01 * diff(plot$yscale)
     plot$labels <- labels    
   }
 
