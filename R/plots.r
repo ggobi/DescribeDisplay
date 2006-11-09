@@ -29,7 +29,7 @@ plot.dd <- function(x, y=1, ...) {
 # @arguments plot 
 # @arguments axis location, x and y position
 # @keyword internal 
-panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey80") {
+panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey90") {
   points <- panel$points
   edges <- panel$edges
   
@@ -87,7 +87,7 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
 # @arguments object to plot
 # @arguments axis location, x and y position
 # @keyword hplot
-plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black"), background.color = "grey80") {
+plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black"), background.color = "grey90") {
   grid.newpage()
   grid.draw(panelGrob(x, axislocation=axislocation, axisgp=axisgp, background.color=background.color))  
 }
@@ -122,7 +122,7 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="bl
 #X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #X plot(texture)
 # @keyword internal 
-plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey80") {
+plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)

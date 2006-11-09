@@ -49,7 +49,7 @@ dd_clean_plot <- function(dd, n=1) {
   
     
   if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
-    plot$xscale <- expand_range(range(c(plot$points$x,plot$points$y)), 0.1)
+    plot$xscale <- expand_range(range(plot$points$x), 0.1)
     plot$yscale <- expand_range(range(plot$points$y), 0.1)
   } else if (sum(dd$plots[[n]]$tformLims[1:2]) == 0 ) {
     plot$xscale <- range(dd$plots[[n]]$planarLims[1:2])
