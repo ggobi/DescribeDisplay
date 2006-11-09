@@ -47,18 +47,18 @@ dd_clean_plot <- function(dd, n=1) {
 
 	plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
   
-  if (sum(dd$plots[[n]]$tformLims[1:2]) == 0 ) {
+    
+  if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
+    plot$xscale <- expand_range(range(c(plot$points$x,plot$points$y)), 0.1)
+    plot$yscale <- expand_range(range(plot$points$y), 0.1)
+  } else if (sum(dd$plots[[n]]$tformLims[1:2]) == 0 ) {
     plot$xscale <- range(dd$plots[[n]]$planarLims[1:2])
     plot$yscale <- range(dd$plots[[n]]$planarLims[3:4])
-    
-  } else if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
-    plot$xscale <- expand_range(range(plot$points$x), 0.1)
-    plot$yscale <- expand_range(range(plot$points$y), 0.1)
+
+    if (diff(plot$yscale) == 0 ) plot$yscale <- expand_range(range(plot$points$y), 0.1)
   } else {
     plot$xscale <- dd$plots[[n]]$tformLims[1:2]
     plot$yscale <- dd$plots[[n]]$tformLims[3:4]
-                                               
-    if (diff(plot$yscale) == 0 ) plot$yscale <- expand_range(range(plot$points$y), 0.1)
   }
 
   if (!is.null(dd$plots[[n]]$stickylabels)) {

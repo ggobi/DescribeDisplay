@@ -29,13 +29,13 @@ plot.dd <- function(x, y=1, ...) {
 # @arguments plot 
 # @arguments axis location, x and y position
 # @keyword internal 
-panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black")) {
+panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey80") {
   points <- panel$points
   edges <- panel$edges
   
   axesVp <- axesViewport(panel, axislocation)
   grobs <- list(
-    rectGrob(gp=gpar(col="grey"))
+    rectGrob(gp=gpar(col="grey", fill=background.color))
 	)
 
 
@@ -87,9 +87,9 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
 # @arguments object to plot
 # @arguments axis location, x and y position
 # @keyword hplot
-plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black")) {
+plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="black"), background.color = "grey80") {
   grid.newpage()
-  grid.draw(panelGrob(x, axislocation=axislocation), axis.gp=axisgp)  
+  grid.draw(panelGrob(x, axislocation=axislocation, axisgp=axisgp, background.color=background.color))  
 }
 
 # Draw dd plot
@@ -122,14 +122,14 @@ plot.dd_plot <- function(x, ..., axislocation = c(0.1, 0.1), axisgp=gpar(col="bl
 #X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #X plot(texture)
 # @keyword internal 
-plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black")) {
+plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey80") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)
   
   for(i in 1:x$nplot) {
     panels <- placeGrob(panels, 
-			panelGrob(x$plots[[i]], axislocation=axislocation, axis.gp=axisgp), 
+			panelGrob(x$plots[[i]], axislocation=axislocation, axis.gp=axisgp, background.color=background.color), 
 			col = (i - 1) %/% d[1] + 1, row = (i - 1) %% d[1] + 1
 		)
   }
