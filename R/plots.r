@@ -48,9 +48,8 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
 	
 	if (!is.null(panel$labels)) {
 	  labels <- panel$labels
-	  
 	  grobs <- append(grobs,  list(
-	    textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",just = c(labels$left, labels$top))
+	    textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",just=c(labels$left[1], labels$top[1]))
 	  ))
 	}
 	

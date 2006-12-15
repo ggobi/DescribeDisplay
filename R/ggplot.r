@@ -28,7 +28,7 @@ ggplot.ddplot <- function(data, plot=ggpoint, ...) {
   #   p <- ggpath(data=edges, aes=list(x=src.x, y=src.y, dest.x, dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
 
   if (!is.null(data$labels))
-    p <- ggtext(p, data=data$labels, aes=list(label=label), justification=c(data$labels$left, data$labels$top))
+    p <- ggtext(p, data=data$labels, aes=list(label=label), justification=c(data$labels$left[1], data$labels$top[1]))
     
   p
 }

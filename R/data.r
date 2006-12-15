@@ -47,7 +47,6 @@ dd_clean_plot <- function(dd, n=1) {
 
 	plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
   
-    
   if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
     plot$xscale <- expand_range(range(plot$points$x), 0.1)
     plot$yscale <- expand_range(range(plot$points$y), 0.1)
@@ -62,7 +61,7 @@ dd_clean_plot <- function(dd, n=1) {
   }
 
   if (!is.null(dd$plots[[n]]$stickylabels)) {
-    labels <- as.data.frame(dd$plots[[n]]$stickylabels)
+    labels <- do.call(rbind, lapply(dd$plots[[n]]$stickylabels, as.data.frame))
     labels <- cbind(plot$points[labels$index+1, c("x", "y")], label = labels$label)
     rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
     tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
