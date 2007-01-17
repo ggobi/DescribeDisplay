@@ -65,8 +65,8 @@ dd_clean_plot <- function(dd, n=1) {
     labels <- cbind(plot$points[labels$index+1, c("x", "y")], label = labels$label)
     rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
     tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
-    labels$left <- ifelse(rl, "left", "right")
-    labels$top <-  "center"#ifelse(tb, "bottom", "top")
+    labels$left <- ifelse(rl, 0, 1)
+    labels$top <-  1 #ifelse(tb, 0, 1)
     
     labels$x <- labels$x + (-1 + 2 * rl) * 0.01 * diff(plot$xscale)
     #labels$y <- labels$y + (-1 + 2 * tb) * 0.01 * diff(plot$yscale)
