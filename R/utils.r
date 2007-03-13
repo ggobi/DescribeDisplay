@@ -31,6 +31,7 @@ fixup <- function(path) {
 # Will remove all hidden points from the plot.
 #
 # @argument ddplot object
+# @keyword manip
 removehiddens <- function(d) {
 	d$plots <- lapply(d$plots, function(dd) {
 		dd$points <- dd$points[!dd$points$hidden, ]

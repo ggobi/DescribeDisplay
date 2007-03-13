@@ -1,6 +1,6 @@
 Package: DescribeDisplay
-Version: 0.1.2
-Date:    2006-07-09
+Version: 0.1.3
+Date:    2007-03-13
 Title:   R interface to DescribeDisplay (GGobi plugin)
 Author:  Hadley Wickham <hadley@iastate.edu>, Di Cook <dicook@iastate.edu>, Andreas Buja <buja@wharton.upenn.edu>
 Depends: R (>= 2.2.0), grid, reshape (>= 0.7.1), ggplot
