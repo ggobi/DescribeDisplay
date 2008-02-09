@@ -6,42 +6,43 @@
 # @arguments other arguments passed to the grob function
 # @keyword hplot
 # @alias ggplot.dd
-#X xy <- dd_load(system.file("examples", "test-xyplot.r", package="DescribeDisplay"))
-#X ggplot(xy$plots[[1]])
-ggplot.ddplot <- function(data, plot=ggpoint, ...) {	
-  p <- ggplot(data$points, aesthetics=list(x=x, y=y))
-  p <- scmanual(p, "colour")
-  p <- scmanual(p, "size")
-  p <- scmanual(p, "shape")
-  p <- pscontinuous(p, "x", range=data$xscale)
-  p <- pscontinuous(p, "y", range=data$yscale)
-
-	p$xlabel <- data$params$xlab
-	p$ylabel <- data$params$ylab	
-
+#X points <- dd_load(system.file("examples", "test-xyplot.r", package="DescribeDisplay"))
+#X ggplot(points)
+#X edges <- dd_load(system.file("examples", "test-edges.r", package="DescribeDisplay"))
+#X ggplot(edges)
+ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
+  p <- ggplot(data$points, aes(x=x, y=y,shape=pch, size=cex * 6, colour=col)) +
+    scale_colour_identity() + 
+    scale_size_identity() + 
+    scale_shape_identity() + 
+    scale_linetype_identity() +
+    scale_x_continuous(data$params$xlab, limits = data$xscale) + 
+    scale_y_continuous(data$params$ylab, limits = data$yscale) + 
+    geom_point()
 
 	ggopt(axis.colour = "black")
-  p <- plot(p, ..., aes=list(colour=col, shape=pch, size=cex*2))
+	
+	axes <- dd_tour_axes(data)
+	if (!is.null(axes)) {
+	  vars <- names(axes)
+	  names(vars) <- vars
+    p <- p + geom_axis(data=axes, location = axis.location, do.call(aes_string, as.list(vars)))
+	}
 
-  # edges <- panel$edges
-  # if (!is.null(edges))  
-  #   p <- ggpath(data=edges, aes=list(x=src.x, y=src.y, dest.x, dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
-
+  edges <- data$edges
+  if (!is.null(edges))  
+    p <- p + geom_segment(aes(x = src.x, y = src.y, xend = dest.x, yend = dest.y, linetype=lty, shape=NULL, size=lwd), data=edges)
+    
+  
   if (!is.null(data$labels))
-    p <- ggtext(p, data=data$labels, aes=list(label=label), justification=c(data$labels$left[1], data$labels$top[1]))
+    p <- p + geom_text(aes(label = label), data=data$labels, justification=c(data$labels$left[1], data$labels$top[1]))
     
   p
 }
 
 ggplot.dd <- function(data, ...) { 
 	panel <- data$plots[[1]]
-	p <- ggplot(panel, ...)
-	
-	p$title <- data$title
-	p$xlabel <- panel$params$xlab
-	p$ylabel <- panel$params$ylab
-	
-	p
+	ggplot(panel, ...) + opts(title = data$title)
 }
 
 # Compact pcp data
@@ -62,24 +63,20 @@ compact_pcp <- function(data) {
 # @arguments other (currently) unused arguments
 # @keyword hplot 
 ggplot.parcoords <- function(data, ...) { 
-	df <- compact_pcp(data)
-	p <- ggpcp(df, vars = setdiff(names(df), c("cex","pch","col", "id")), scale="range")
-	
+	df <- as.data.frame(compact_pcp(data))
+	p <- ggpcp(df, vars = setdiff(names(df), c("cex","pch","col", "id")), scale="range") +
+    scale_colour_identity() + 
+    scale_size_identity() + 
+    scale_shape_identity() + 
+    scale_linetype_identity() + 
+    opts(title = data$title)
+   
 	if (data$showPoints) {
-	  p <- ggpoint(p, aesthetics=list(colour=col, shape=pch, size=cex*1.5), ...)
+	  p <- p + geom_point(aes(colour=col, shape=pch, size=cex * 4.5), ...)
 	}
 	
-	p <- ggline(p, aesthetics=list(colour=col, line_type=pch, shape=pch, size=cex*1.5), ...)
+	p <- p + geom_line(aes(colour=col, size=cex * 2, order=as.numeric(col)), ...)
 
-  p <- scmanual(p, "colour")
-  p <- scmanual(p, "size")
-  p <- scmanual(p, "line_type")
-  p <- scmanual(p, "shape")
-	
-	p$title <- data$title
-	p$xlabel <- NULL
-	p$ylabel <- NULL
-	
 	ggopt(axis.colour = "black")
 	p
 }

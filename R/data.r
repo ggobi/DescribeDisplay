@@ -88,10 +88,11 @@ dd_clean_plot <- function(dd, n=1) {
 dd_points <- function(dd, n=1) {
   df <- as.data.frame(dd$plots[[n]]$points)
   df$hidden <- df$hidden != 0
+  cmap <- dd$colormap$foreground
 
 	hiddencolour <- do.call(rgb,as.list(dd$colormap$hiddenColor))
   # Remap point aesthetics to R appropriate values
-  df$col <- ifelse(df$hidden, hiddencolour, dd$colormap$foreground[df$color + 1])
+  df$col <- factor(ifelse(df$hidden, hiddencolour, cmap[df$color + 1]), levels = c(rev(cmap), hiddencolour))
   df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
   df$cex <- (df$glyphsize + 1)/6
 
