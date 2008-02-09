@@ -62,6 +62,8 @@ compact_pcp <- function(data) {
 # @arguments plot to display
 # @arguments other (currently) unused arguments
 # @keyword hplot 
+#X pcp <- dd_load 
+#
 ggplot.parcoords <- function(data, ...) { 
 	df <- as.data.frame(compact_pcp(data))
 	p <- ggpcp(df, vars = setdiff(names(df), c("cex","pch","col", "id")), scale="range") +
@@ -69,7 +71,9 @@ ggplot.parcoords <- function(data, ...) {
     scale_size_identity() + 
     scale_shape_identity() + 
     scale_linetype_identity() + 
-    opts(title = data$title)
+    opts(title = data$title) +
+    scale_y_continuous("", breaks = seq(0, 1, length=4), labels = "") + 
+    scale_x_discrete("")
    
 	if (data$showPoints) {
 	  p <- p + geom_point(aes(colour=col, shape=pch, size=cex * 4.5), ...)
