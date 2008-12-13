@@ -11,8 +11,8 @@
 # @arguments outline colour of brush
 # @keyword hplot 
 addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill=NA, col="black") {
-	brush <- data.frame(x=x, y=y, width=width, height=height)
-	ggrect(plot, data=brush, aes=list(x=x, y=y, width=width, height=height), justification=just, fill=fill, colour=col)
+  brush <- data.frame(x=x, y=y, width=width, height=height)
+  ggrect(plot, data=brush, aes=list(x=x, y=y, width=width, height=height), justification=just, fill=fill, colour=col)
 }
 
 # Fix DescribeDisplay files with extra commas
@@ -33,10 +33,10 @@ fixup <- function(path) {
 # @argument ddplot object
 # @keyword manip
 removehiddens <- function(d) {
-	d$plots <- lapply(d$plots, function(dd) {
-		dd$points <- dd$points[!dd$points$hidden, ]
-		dd
-	})
-	
-	d
+  d$plots <- lapply(d$plots, function(dd) {
+    dd$points <- dd$points[!dd$points$hidden, ]
+    dd
+  })
+  
+  d
 }

@@ -37,23 +37,23 @@ panelGrob <- function(panel,axislocation = c(0.1, 0.1), axis.gp = gpar(col="blac
   axesVp <- axesViewport(axes, axislocation)
   grobs <- list(
     rectGrob(gp=gpar(col="grey", fill=background.color))
-	)
+  )
 
 
   if (!is.null(edges))  
     grobs <- append(grobs, list(segmentsGrob(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=edges$col))))
-	
-	if (is.null(panel$showPoints) || panel$showPoints) {
-		grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char"))))
-	}
-	
-	if (!is.null(panel$labels)) {
-	  labels <- panel$labels
-	  grobs <- append(grobs, list(
-	    textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",hjust=labels$left, vjust=labels$top)
-	  ))
-	}
-	
+  
+  if (is.null(panel$showPoints) || panel$showPoints) {
+    grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=points$col), size=unit(points$cex, "char"))))
+  }
+  
+  if (!is.null(panel$labels)) {
+    labels <- panel$labels
+    grobs <- append(grobs, list(
+      textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",hjust=labels$left, vjust=labels$top)
+    ))
+  }
+  
   grobs <- append(grobs,  list(
     textGrob(nulldefault(panel$params$xlab, ""), 0.99, 0.01, just = c("right","bottom")),
     textGrob(nulldefault(panel$params$ylab, ""), 0.01, 0.99, just = c("left", "top")),
@@ -129,18 +129,18 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
   
   for(i in 1:x$nplot) {
     panels <- placeGrob(panels, 
-			panelGrob(x$plots[[i]], axislocation=axislocation, axis.gp=axisgp, background.color=background.color), 
-			col = (i - 1) %/% d[1] + 1, row = (i - 1) %% d[1] + 1
-		)
+      panelGrob(x$plots[[i]], axislocation=axislocation, axis.gp=axisgp, background.color=background.color), 
+      col = (i - 1) %/% d[1] + 1, row = (i - 1) %% d[1] + 1
+    )
   }
 
-	if (!is.null(x$title) && nchar(x$title) != 0) {
-	  pg <- frameGrob(grid.layout(nrow=2, ncol=1))
-	  pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
-	  pg <- packGrob(pg, panels, row=2)
-	} else {
-		pg <- panels
-	}
+  if (!is.null(x$title) && nchar(x$title) != 0) {
+    pg <- frameGrob(grid.layout(nrow=2, ncol=1))
+    pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
+    pg <- packGrob(pg, panels, row=2)
+  } else {
+    pg <- panels
+  }
 
   if (draw) {
     grid.newpage()

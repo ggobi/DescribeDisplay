@@ -45,7 +45,9 @@ dd_clean_plot <- function(dd, n=1) {
     dd$plots[[n]][c("type","projection", "params")]
   )
 
-	plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
+  if (!is.null(plot$projection)) {
+    plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))    
+  }
   
   if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
     plot$xscale <- expand_range(range(plot$points$x), 0.1)
@@ -90,7 +92,7 @@ dd_points <- function(dd, n=1) {
   df$hidden <- df$hidden != 0
   cmap <- dd$colormap$foreground
 
-	hiddencolour <- do.call(rgb,as.list(dd$colormap$hiddenColor))
+  hiddencolour <- do.call(rgb,as.list(dd$colormap$hiddenColor))
   # Remap point aesthetics to R appropriate values
   df$col <- factor(ifelse(df$hidden, hiddencolour, cmap[df$color + 1]), levels = c(rev(cmap), hiddencolour))
   df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
@@ -159,30 +161,30 @@ dd_defaults <- function(dd, n=1) {
 # @arguments plot number, defaults to first plot
 # @keyword internal 
 dd_tour_axes <- function(plot) {
-	if (is.null(plot$params$F)) return()
+  if (is.null(plot$params$F)) return()
 
 
-	if (plot$projection == "1D Tour") {
-		proj <- matrix(plot$params$F, ncol=1)
-		colnames(proj) <- "x"
-	} else {
-		proj <- matrix(plot$params$F, ncol=2, byrow=F)
-		colnames(proj) <- c("x","y")
-	}
+  if (plot$projection == "1D Tour") {
+    proj <- matrix(plot$params$F, ncol=1)
+    colnames(proj) <- "x"
+  } else {
+    proj <- matrix(plot$params$F, ncol=2, byrow=F)
+    colnames(proj) <- c("x","y")
+  }
 
-	lbls <- plot$params$labels
+  lbls <- plot$params$labels
 
-	ranges <- do.call(rbind,  plot$params$ranges)
-	df <- data.frame(proj, label=lbls, range=ranges)
+  ranges <- do.call(rbind,  plot$params$ranges)
+  df <- data.frame(proj, label=lbls, range=ranges)
 
-	if (plot$projection == "2D Tour") {
-		df$r <- with(df, sqrt(x^2 + y^2))
-		df$theta <- atan2(df$y, df$x)
-	} else {
-		df <- df[nrow(df):1, ]
-	}
-	
-	df
+  if (plot$projection == "2D Tour") {
+    df$r <- with(df, sqrt(x^2 + y^2))
+    df$theta <- atan2(df$y, df$x)
+  } else {
+    df <- df[nrow(df):1, ]
+  }
+  
+  df
 }
 
 # Print dd object
