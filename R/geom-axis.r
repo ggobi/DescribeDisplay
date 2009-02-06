@@ -1,3 +1,4 @@
+require("proto")
 GeomAxis <- proto(Geom, {
   new <- function(., mapping=NULL, data=NULL, stat=NULL, position=NULL, ...){
     do.call("layer", list(mapping=mapping, data=data, stat=stat, geom=., position=position, ..., ignore.extra = TRUE))
@@ -13,7 +14,7 @@ GeomAxis <- proto(Geom, {
     )    
   }
 
-  objname <- "axes"
+  objname <- "axis"
   icon <- function(.) {}
   desc <- "Projection axes"
   
@@ -23,4 +24,9 @@ GeomAxis <- proto(Geom, {
   
 })
 
+# Geom Axis
+# A special ggplot2 geom for drawing the tour axes
+# 
+# @keywords internal
+# @alias GeomAxis
 geom_axis <- function(...) GeomAxis$new(...)

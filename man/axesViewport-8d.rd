@@ -6,9 +6,9 @@
 \description{
 Construct viewport for axes.
 }
-\usage{axesViewport(panel, axislocation)}
+\usage{axesViewport(axes, axislocation)}
 \arguments{
-\item{panel}{describe display object}
+\item{axes}{describe display object}
 \item{axislocation}{plot}
 }
 

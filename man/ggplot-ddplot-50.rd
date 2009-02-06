@@ -7,15 +7,16 @@
 \description{
 Create a nice looking plot complete with axes using ggplot.
 }
-\usage{ggplot.ddplot(data, plot=ggpoint, ...)}
+\usage{ggplot.ddplot(data, axis.location = c(0.2, 0.2), ...)}
 \arguments{
 \item{data}{plot to display}
-\item{plot}{grob function to use for drawing}
+\item{axis.location}{grob function to use for drawing}
 \item{...}{other arguments passed to the grob function}
 }
 
 \details{}
 
-\examples{xy <- dd_load(system.file("examples", "test-xyplot.r", package="DescribeDisplay"))
-ggplot(xy$plots[[1]])}
+\examples{ggplot(dd_example("edges"))
+ggplot(dd_example("xyplot"))
+ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)}
 \keyword{hplot}

@@ -26,14 +26,20 @@ This function reads a number of options directly out of the
 descripedisplay datastructure.  See the examples for ways to use
 these.}
 
-\examples{ash <- dd_load(system.file("examples", "test-ash.r", package="DescribeDisplay"))
+\examples{plot(dd_example("dot"))
+plot(dd_example("xyplot"))
+plot(dd_example("edges"))
+plot(dd_example("tour1d"))
+plot(dd_example("tour2d"))
+
+ash <- dd_example("ash")
 plot(ash)
 ash$plots[[1]]$drawlines <- TRUE
 plot(ash)
 ash$plots[[1]]$showPoints <- FALSE
 plot(ash)
 
-texture <- dd_load(system.file("examples", "1d-texture.r", package="DescribeDisplay"))
+texture <- dd_example("1d-texture")
 plot(texture)
 texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 plot(texture)}

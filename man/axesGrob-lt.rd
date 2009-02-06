@@ -6,9 +6,9 @@
 \description{
 Construct grob for axes.
 }
-\usage{axesGrob(panel, gp=gpar(col="black"))}
+\usage{axesGrob(axes, gp=gpar(col="black"))}
 \arguments{
-\item{panel}{describe display object}
+\item{axes}{describe display object}
 \item{gp}{plot}
 }
 

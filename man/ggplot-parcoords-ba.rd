@@ -14,5 +14,6 @@ Create a nice looking plot complete with axes using ggplot.
 
 \details{}
 
-\examples{}
+\examples{ggplot(dd_example("pcp"))
+ggplot(dd_example("pcp"), size = 1)}
 \keyword{hplot}

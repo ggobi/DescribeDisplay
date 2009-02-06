@@ -4,7 +4,7 @@
 \author{Hadley Wickham <h.wickham@gmail.com>}
 
 \description{
-
+Use str to print out human readable describe display object
 }
 \usage{print.dd(x, ...)}
 \arguments{

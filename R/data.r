@@ -13,9 +13,6 @@
 # a <- dd_load(system.file("examples", "test-edges.r"))
 # b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
-  opt <- options(warn=-1)
-  on.exit(options(opt))
-  
   dd <- source(path)$value
   class(dd) <- c(dd_plot_class(dd$type), "dd")
   dd$colormap$foreground <- sapply(dd$colormap$foregroundColors, 
@@ -27,6 +24,18 @@ dd_load <- function(path) {
   dd$plots <- lapply(1:dd$nplots, function(n) dd_clean_plot(dd, n))  
   
   dd
+}
+
+# Load example describe display file
+# Load example describe display file included with package.
+# 
+# These are mainly used for testing.
+# 
+# @arguments name of example
+# @keywords internal
+dd_example <- function(name) {
+  file <- paste(name, ".r", sep = "")
+  dd_load(system.file("examples", file, package = "DescribeDisplay"))
 }
 
 # Clean plot data structure
@@ -188,6 +197,7 @@ dd_tour_axes <- function(plot) {
 }
 
 # Print dd object
+# Use str to print out human readable describe display object
 # 
 # @keyword internal 
 print.dd <- function(x, ...) str(x)
