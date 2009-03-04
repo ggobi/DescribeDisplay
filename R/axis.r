@@ -1,10 +1,10 @@
 
-# Axes grob
-# Construct grob for axes.
-# 
-# @arguments describe display object
-# @arguments plot 
-# @keyword internal 
+#' Axes grob
+#' Construct grob for axes.
+#' 
+#' @param axes describe display object
+#' @param gp arguments to 
+#' @keywords internal 
 axesGrob <- function(axes, gp=gpar(col="black")) {
   if (is.null(axes)) return()
 
@@ -32,12 +32,12 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
   }
 }
 
-# Axes viewport
-# Construct viewport for axes.
-# 
-# @arguments describe display object
-# @arguments plot 
-# @keyword internal 
+#' Axes viewport
+#' Construct viewport for axes.
+#' 
+#' @param axes describe display object
+#' @param axislocation location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
+#' @keywords internal 
 axesViewport <- function(axes, axislocation) {
   if (is.null(axes)) return()
 

@@ -1,39 +1,42 @@
-# Draw dd plot
-# Draw a complete describe display.
-# 
-# If you want to layout multiple dd plots on the same page, you can
-# use \code{\link[grid]{grid.layout}}.  If you need even more control,
-# set \code{draw = FALSE} and then \code{\link[grid]{grid.draw}} the 
-# resulting grob yourself.
-# 
-# This function reads a number of options directly out of the 
-# descripedisplay datastructure.  See the examples for ways to use
-# these.
-# 
-# @arguments dd object to plot
-# @arguments (unused)
-# @arguments draw plot, or just return grob
-# @arguments location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
-# @arguments size of plot as a proportion of the total display area (set to 1 for printed out)
-# @value frame grob containing all panels, note that this does not contain the title or border
-#X plot(dd_example("dot"))
-#X plot(dd_example("xyplot"))
-#X plot(dd_example("edges"))
-#X plot(dd_example("tour1d"))
-#X plot(dd_example("tour2d"))
-#X
-#X ash <- dd_example("ash")
-#X plot(ash)
-#X ash$plots[[1]]$drawlines <- TRUE
-#X plot(ash)
-#X ash$plots[[1]]$showPoints <- FALSE
-#X plot(ash)
-#X
-#X texture <- dd_example("1d-texture")
-#X plot(texture)
-#X texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
-#X plot(texture)
-# @keyword internal 
+#' Draw dd plot
+#' Draw a complete describe display.
+#' 
+#' If you want to layout multiple dd plots on the same page, you can
+#' use \code{\link[grid]{grid.layout}}.  If you need even more control,
+#' set \code{draw = FALSE} and then \code{\link[grid]{grid.draw}} the 
+#' resulting grob yourself.
+#' 
+#' This function reads a number of options directly out of the 
+#' descripedisplay datastructure.  See the examples for ways to use
+#' these.
+#' 
+#' @param x dd object to plot
+#' @param ... (unused)
+#' @param draw draw plot, or just return grob
+#' @param axislocation location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
+#' @param size size of plot as a proportion of the total display area (set to 1 for printed out)
+#' @param axisgp color of the axis
+#' @param background.color color of in the background of the plot
+#' @return frame grob containing all panels, note that this does not contain the title or border
+#' @examples
+#' plot(dd_example("dot"))
+#' plot(dd_example("xyplot"))
+#' plot(dd_example("edges"))
+#' plot(dd_example("tour1d"))
+#' plot(dd_example("tour2d"))
+#'
+#' ash <- dd_example("ash")
+#' plot(ash)
+#' ash$plots[[1]]$drawlines <- TRUE
+#' plot(ash)
+#' ash$plots[[1]]$showPoints <- FALSE
+#' plot(ash)
+#'
+#' texture <- dd_example("1d-texture")
+#' plot(texture)
+#' texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
+#' plot(texture)
+#' @keywords internal 
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
@@ -63,20 +66,24 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
   invisible(panels)
 }
 
-# Plot a dd plot
-# Convenient method to draw a single panel.
-# 
-# This is mainly used for bug testing so that you can pull out a single 
-# panel quickly and easily.
-# 
-# @arguments object to plot
-# @arguments axis location, x and y position
-# @keyword hplot
-#X scatmat <- dd_example("scattermat")
-#X plot(scatmat)
-#X plot(scatmat$plots[[1]])
-#X plot(scatmat$plots[[3]])
-#X plot(scatmat$plots[[4]])
+#' Plot a dd plot
+#' Convenient method to draw a single panel.
+#' 
+#' This is mainly used for bug testing so that you can pull out a single 
+#' panel quickly and easily.
+#' 
+#' @param x object to plot
+#' @param ... (not used)
+#' @param axis location, x and y position
+#' @param axisgp frame grob containing all panels, note that this does not contain the title or border
+#' @param background.color color of in the background of the plot
+#' @keywords hplot
+#' @examples
+#' scatmat <- dd_example("scattermat")
+#' plot(scatmat)
+#' plot(scatmat$plots[[1]])
+#' plot(scatmat$plots[[3]])
+#' plot(scatmat$plots[[4]])
 plot.ddplot <- function(x, ..., axislocation = c(0.1, 0.1), axis.gp=gpar(col="black"), background.color = "grey90") {
   grid.newpage()
   grob <- ddpanelGrob(x, axislocation = axislocation, axis.gp = axis.gp,
@@ -85,13 +92,14 @@ plot.ddplot <- function(x, ..., axislocation = c(0.1, 0.1), axis.gp=gpar(col="bl
 }
 
 
-# Panel grob
-# Construct grob for single panel.
-# 
-# @arguments describe display object
-# @arguments plot 
-# @arguments axis location, x and y position
-# @keyword internal 
+#' Panel grob
+#' Construct grob for single panel.
+#' 
+#' @param panel describe display object
+#' @param axis location, x and y position
+#' @param axisgp frame grob containing all panels, note that this does not contain the title or border
+#' @param background.color color of in the background of the plot
+#' @keywords internal 
 ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey90") {
   points <- panel$points
   edges <- panel$edges

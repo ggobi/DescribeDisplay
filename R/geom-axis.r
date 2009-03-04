@@ -1,3 +1,8 @@
+#' GeomAxis
+#' A special ggplot2 geom for drawing the tour axes
+#' 
+#' @keywords internal
+#' @aliases geom_axis
 require("proto")
 GeomAxis <- proto(Geom, {
   new <- function(., mapping=NULL, data=NULL, stat=NULL, position=NULL, ...){
@@ -7,7 +12,7 @@ GeomAxis <- proto(Geom, {
   draw <- function(., data, scales, coordinates, location = c(0.2, 0.2), size=0.9, colour = "black", ...) {
     axesVp <- axesViewport(data, location)
     axes <- axesGrob(data, gp=gpar(col = colour))
-    
+
     gTree(
       children = gList(axes), 
       childrenvp = axesVp
@@ -24,9 +29,10 @@ GeomAxis <- proto(Geom, {
   
 })
 
-# Geom Axis
-# A special ggplot2 geom for drawing the tour axes
-# 
-# @keywords internal
-# @alias GeomAxis
+#' Geom Axis
+#' A special ggplot2 geom for drawing the tour axes
+#' 
+#' @param ... should include data, location, aes_string information
+#' @keywords internal
+#' @aliases GeomAxis
 geom_axis <- function(...) GeomAxis$new(...)

@@ -1,16 +1,17 @@
-# Create a nice plot
-# Create a nice looking plot complete with axes using ggplot.
-# 
-# @arguments plot to display
-# @arguments grob function to use for drawing
-# @arguments other arguments passed to the grob function
-# @keyword hplot
-# @alias ggplot.dd
-#X ggplot(dd_example("edges"))
-#X ggplot(dd_example("xyplot"))
-#X ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
+#' Create a nice plot
+#' Create a nice looking plot complete with axes using ggplot.
+#' 
+#' @param data plot to display, object created by \code{dd_load()}
+#' @param axis.location grob function to use for drawing
+#' @param other arguments passed to the grob function
+#' @keywords hplot
+#' @aliases ggplot.dd
+#' @examples
+#' ggplot(dd_example("edges"))
+#' ggplot(dd_example("xyplot"))
+#' ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
 ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
-  print(head(data$points))
+	print(head(data$points))
   p <- ggplot(data$points, 
     aes_string(x = "x", y = "y", shape = "pch", size = "cex * 6", colour = "col")) +
     scale_colour_identity() + 
@@ -18,17 +19,17 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     scale_shape_identity() + 
     scale_linetype_identity() +
     scale_x_continuous(
-    if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
-      name = "" 
-    else 
-      name = data$params$xlab,
-    limits = data$xscale) + 
+		if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
+			name = "" 
+		else 
+			name = data$params$xlab,
+		limits = data$xscale) + 
     scale_y_continuous(
-    if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
-      name = "" 
-    else
-      name = data$params$ylab,
-    limits = data$yscale) + 
+		if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
+			name = "" 
+		else
+			name = data$params$ylab,
+		limits = data$yscale) + 
     geom_point() 
 
   
@@ -41,7 +42,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
       data = axes, location = axis.location, 
       do.call(aes_string, as.list(vars)) 
     ) +
-    opts(aspect.ratio = 1)
+	  opts(aspect.ratio = 1)
   }
 
   edges <- data$edges
@@ -64,11 +65,3 @@ ggplot.dd <- function(data, ...) {
   panel <- data$plots[[1]]
   ggplot(panel, ...) + opts(title = data$title)
 }
-
-
-
-
-
-
-
-

@@ -1,17 +1,18 @@
-# Load describe display
-# Retrieve output of from describe display plugin
-# 
-# Also performs some conversion of data structures to more 
-# conveient form so that other functions do not have to repeatedly
-# recompute.  Some of these conversions could probably be moved into 
-# the Describe Display plugin, but it may be easier to just do them
-# on the R side..
-# 
-# @arguments file path
-# @value object of class dd
-# @keyword  manip
-# a <- dd_load(system.file("examples", "test-edges.r"))
-# b <- dd_load(system.file("examples", "test-dot.r"))
+#' Load describe display
+#' Retrieve output of from describe display plugin
+#' 
+#' Also performs some conversion of data structures to more 
+#' conveient form so that other functions do not have to repeatedly
+#' recompute.  Some of these conversions could probably be moved into 
+#' the Describe Display plugin, but it may be easier to just do them
+#' on the R side..
+#' 
+#' @param path file path
+#' @return object of class dd
+#' @keywords  manip
+#' @examples
+#' a <- dd_load(system.file("examples", "test-edges.r"))
+#' b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
   dd <- source(path)$value
   class(dd) <- c(dd_plot_class(dd$type), "dd")
@@ -26,24 +27,24 @@ dd_load <- function(path) {
   dd
 }
 
-# Load example describe display file
-# Load example describe display file included with package.
-# 
-# These are mainly used for testing.
-# 
-# @arguments name of example
-# @keywords internal
+#' Load example describe display file
+#' Load example describe display file included with package.
+#' 
+#' These are mainly used for testing.
+#' 
+#' @param name name of example
+#' @keywords internal
 dd_example <- function(name) {
   file <- paste(name, ".r", sep = "")
   dd_load(system.file("examples", file, package = "DescribeDisplay"))
 }
 
-# Clean plot data structure
-# Cleans up plot data structure into consistent, easy to use data structure
-# 
-# @arguments dd object
-# @arguments plot number
-# @keyword internal 
+#' Clean plot data structure
+#' Cleans up plot data structure into consistent, easy to use data structure
+#' 
+#' @param dd dd object
+#' @param n plot number
+#' @keywords internal 
 dd_clean_plot <- function(dd, n=1) {
   names(dd$plots[[n]]) <- gsub("plot", "", names(dd$plots[[n]]))
   plot <- c(
@@ -89,13 +90,13 @@ dd_clean_plot <- function(dd, n=1) {
   plot
 }
 
-# Describe display points data
-# Retrieves the describe display points data for the given plot number.
-# 
-# @arguments list of values from describe display 
-# @arguments plot number, defaults to first plot
-# @value data frame suitable for plotting
-# @keyword internal 
+#' Describe display points data
+#' Retrieves the describe display points data for the given plot number.
+#' 
+#' @param dd list of values from describe display 
+#' @param n plot number, defaults to first plot
+#' @return data frame suitable for plotting
+#' @keywords internal 
 dd_points <- function(dd, n=1) {
   df <- as.data.frame(dd$plots[[n]]$points)
   df$hidden <- df$hidden != 0
@@ -112,13 +113,13 @@ dd_points <- function(dd, n=1) {
   df[order(!df$hidden), intersect(names(df), c("x","y", "col","pch", "cex", "hidden"))]
 }
 
-# Describe display edge data
-# Retrieves the describe display edge data for the given plot number.
-# 
-# @arguments list of values from describe display 
-# @arguments plot number, defaults to first plot
-# @value data frame suitable for plotting
-# @keyword internal 
+#' Describe display edge data
+#' Retrieves the describe display edge data for the given plot number.
+#' 
+#' @param dd list of values from describe display 
+#' @param n plot number, defaults to first plot
+#' @return data frame suitable for plotting
+#' @keywords internal 
 dd_edges <- function(dd, n=1) {
   if (is.null(dd$plots[[n]]$edges)) return()
   df <- do.call(rbind, lapply(dd$plots[[n]]$edges, as.data.frame))
@@ -138,22 +139,21 @@ dd_edges <- function(dd, n=1) {
   cbind(src, dest, df)
 }
 
-# Describe display plot class
-# Compute valid R class name for given plot type
-# 
-# @arguments list of values from describe display 
-# @arguments plot number, defaults to first plot
-# @keyword internal 
+#' Describe display plot class
+#' Compute valid R class name for given plot type
+#' 
+#' @param projection type of projection that should be used
+#' @keywords internal 
 dd_plot_class <- function(projection) {
   gsub("\\s+", "", tolower(projection))
 }
 
-# Describe display plot defaults
-# Gather overall plot defaults for specified plot
-# 
-# @arguments list of values from describe display 
-# @arguments plot number, defaults to first plot
-# @keyword internal 
+#' Describe display plot defaults
+#' Gather overall plot defaults for specified plot
+#' 
+#' @param dd list of values from describe display 
+#' @param n plot number, defaults to first plot
+#' @keywords internal 
 dd_defaults <- function(dd, n=1) {
   list(
     main = dd$title,
@@ -163,12 +163,11 @@ dd_defaults <- function(dd, n=1) {
   )  
 }
 
-# Describe display tour axis
-# Return representation of axes for specified plot
-# 
-# @arguments list of values from describe display 
-# @arguments plot number, defaults to first plot
-# @keyword internal 
+#' Describe display tour axis
+#' Return representation of axes for specified plot
+#' 
+#' @param plot list of information of a plot
+#' @keywords internal 
 dd_tour_axes <- function(plot) {
   if (is.null(plot$params$F)) return()
 
@@ -196,8 +195,10 @@ dd_tour_axes <- function(plot) {
   df
 }
 
-# Print dd object
-# Use str to print out human readable describe display object
-# 
-# @keyword internal 
+#' Print dd object
+#' Use str to print out human readable describe display object
+#' 
+#' @param x dd object
+#' @param ... not used
+#' @keywords internal 
 print.dd <- function(x, ...) str(x)
