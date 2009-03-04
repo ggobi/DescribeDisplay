@@ -9,8 +9,7 @@
 #' @param which corner of brush should be determined by x and y position
 #' @param fill colour for brush (use ggplot-alpha for alpha blending)
 #' @param outline colour of brush
-#' @keywords hplot 
-#' @returns NULL
+#' @keywords hplot
 addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill=NA, col="black") {
   brush <- data.frame(x=x, y=y, width=width, height=height)
   geom_rect(
@@ -25,7 +24,6 @@ addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fi
 #'
 #' @param ddplot object
 #' @keywords manip
-#' @returns NULL
 removehiddens <- function(d) {
   d$plots <- lapply(d$plots, function(dd) {
     dd$points <- dd$points[!dd$points$hidden, ]

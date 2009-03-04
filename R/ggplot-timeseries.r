@@ -1,3 +1,9 @@
+#' Compact time series data
+#' A time series plot is made from scatterplots with a common x axis.  
+#' This function pulls the correct information out of the data.
+#' 
+#' @param data
+#' @keywords internal 
 compact_timeseries <- function(data){
 	dfx <- data.frame(
 		data$plots[[1]]$points[,c("col","pch","cex")], 
@@ -30,6 +36,14 @@ compact_timeseries <- function(data){
 	
 }
 
+
+#' Create nice plots for a time series
+#' Create nice looking plots complete with axes using ggplot.  Produces graphics with a uniform x axis.  
+#' 
+#' @param plot to display
+#' @param edges Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.
+#' @param other (currently) unused arguments
+#' @keywords hplot 
 ggplot.timeseries <- function(data, edges = FALSE,...){
 	df <- compact_timeseries(data)
 
@@ -55,8 +69,8 @@ ggplot.timeseries <- function(data, edges = FALSE,...){
 
 
 
-	  all$xvar <- factor(all$xvar, levels=names(df))
-	  all$yvar <- factor(all$yvar, levels=names(df))
+	all$xvar <- factor(all$xvar, levels=names(df))
+	all$yvar <- factor(all$yvar, levels=names(df))
 	
     aesString <- aes_string(x="x", y="y",group="xvar")
 	class(aesString) <- "uneval"
