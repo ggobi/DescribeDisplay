@@ -1,14 +1,14 @@
-#' Add brush to plot
+#' Add brush to plot.
 #' This adds a rectangle to a ggplot plot indicating the brush position
 #' 
-#' @param plot object
-#' @param x position of brush
-#' @param y position of brush
-#' @param width of brush
-#' @param height of brush
-#' @param which corner of brush should be determined by x and y position
-#' @param fill colour for brush (use ggplot-alpha for alpha blending)
-#' @param outline colour of brush
+#' @param plot plot object
+#' @param x x position of brush
+#' @param y y position of brush
+#' @param width width of brush
+#' @param height height of brush
+#' @param just which corner of brush should be determined by x and y position
+#' @param fill fill colour for brush (use ggplot-alpha for alpha blending)
+#' @param col outline colour of brush
 #' @keywords hplot
 addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill=NA, col="black") {
   brush <- data.frame(x=x, y=y, width=width, height=height)
