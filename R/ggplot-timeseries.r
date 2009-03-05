@@ -3,6 +3,7 @@
 #' This function pulls the correct information out of the data.
 #' 
 #' @param data
+#' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords internal 
 compact_timeseries <- function(data){
 	dfx <- data.frame(
@@ -43,6 +44,7 @@ compact_timeseries <- function(data){
 #' @param plot to display
 #' @param edges Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.
 #' @param other (currently) unused arguments
+#' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
 ggplot.timeseries <- function(data, edges = FALSE,...){
 	df <- compact_timeseries(data)

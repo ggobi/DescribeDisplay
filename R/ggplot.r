@@ -4,6 +4,7 @@
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param axis.location grob function to use for drawing
 #' @param other arguments passed to the grob function
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords hplot
 #' @aliases ggplot.dd
 #' @examples
@@ -61,6 +62,19 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   p
 }
 
+
+#' Create a nice plot
+#' Create a nice looking plot complete with axes using ggplot.
+#' 
+#' @param data plot to display, object created by \code{dd_load()}
+#' @param other not used
+#' @author Hadley Wickham h.wickham [at] gmail.com
+#' @keywords hplot
+#' @aliases ggplot.dd
+#' @examples
+#' ggplot(dd_example("edges"))
+#' ggplot(dd_example("xyplot"))
+#' ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
 ggplot.dd <- function(data, ...) { 
   panel <- data$plots[[1]]
   ggplot(panel, ...) + opts(title = data$title)

@@ -3,6 +3,7 @@
 #' compacts it back into one dataset.
 #' 
 #' @param data
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 compact_pcp <- function(data) {
   df <- do.call(rbind, lapply(data$plots, function(p) {
@@ -24,6 +25,7 @@ compact_pcp <- function(data) {
 #' 
 #' @param plot to display
 #' @param other (currently) unused arguments
+#' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
 #' @examples
 #' ggplot(dd_example("pcp"))

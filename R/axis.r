@@ -2,7 +2,8 @@
 #' Construct grob for axes.
 #' 
 #' @param axes describe display object
-#' @param gp arguments to 
+#' @param gp arguments to the axes
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 axesGrob <- function(axes, gp=gpar(col="black")) {
   if (is.null(axes)) return()
@@ -36,6 +37,7 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
 #' 
 #' @param axes describe display object
 #' @param axislocation location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 axesViewport <- function(axes, axislocation) {
   if (is.null(axes)) return()

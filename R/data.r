@@ -9,6 +9,7 @@
 #' 
 #' @param path file path
 #' @return object of class dd
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords  manip
 #' @examples
 #' a <- dd_load(system.file("examples", "test-edges.r"))
@@ -33,6 +34,7 @@ dd_load <- function(path) {
 #' These are mainly used for testing.
 #' 
 #' @param name name of example
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal
 dd_example <- function(name) {
   file <- paste(name, ".r", sep = "")
@@ -44,6 +46,7 @@ dd_example <- function(name) {
 #' 
 #' @param dd dd object
 #' @param n plot number
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_clean_plot <- function(dd, n=1) {
   names(dd$plots[[n]]) <- gsub("plot", "", names(dd$plots[[n]]))
@@ -96,6 +99,7 @@ dd_clean_plot <- function(dd, n=1) {
 #' @param dd list of values from describe display 
 #' @param n plot number, defaults to first plot
 #' @return data frame suitable for plotting
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_points <- function(dd, n=1) {
   df <- as.data.frame(dd$plots[[n]]$points)
@@ -119,6 +123,7 @@ dd_points <- function(dd, n=1) {
 #' @param dd list of values from describe display 
 #' @param n plot number, defaults to first plot
 #' @return data frame suitable for plotting
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_edges <- function(dd, n=1) {
   if (is.null(dd$plots[[n]]$edges)) return()
@@ -143,6 +148,7 @@ dd_edges <- function(dd, n=1) {
 #' Compute valid R class name for given plot type
 #' 
 #' @param projection type of projection that should be used
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_plot_class <- function(projection) {
   gsub("\\s+", "", tolower(projection))
@@ -153,6 +159,7 @@ dd_plot_class <- function(projection) {
 #' 
 #' @param dd list of values from describe display 
 #' @param n plot number, defaults to first plot
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_defaults <- function(dd, n=1) {
   list(
@@ -167,6 +174,7 @@ dd_defaults <- function(dd, n=1) {
 #' Return representation of axes for specified plot
 #' 
 #' @param plot list of information of a plot
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_tour_axes <- function(plot) {
   if (is.null(plot$params$F)) return()
@@ -200,5 +208,6 @@ dd_tour_axes <- function(plot) {
 #' 
 #' @param x dd object
 #' @param ... not used
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 print.dd <- function(x, ...) str(x)

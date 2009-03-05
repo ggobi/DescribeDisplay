@@ -4,8 +4,8 @@
 #' @keywords internal
 #' @param Geom previous information
 #' @param new function to set up the axis
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @aliases geom_axis
-require("proto")
 GeomAxis <- proto(Geom, {
   new <- function(., mapping=NULL, data=NULL, stat=NULL, position=NULL, ...){
     do.call("layer", list(mapping=mapping, data=data, stat=stat, geom=., position=position, ..., ignore.extra = TRUE))
@@ -35,6 +35,7 @@ GeomAxis <- proto(Geom, {
 #' A special ggplot2 geom for drawing the tour axes
 #' 
 #' @param ... should include data, location, aes_string information
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal
 #' @aliases GeomAxis
 geom_axis <- function(...) GeomAxis$new(...)

@@ -36,6 +36,7 @@
 #' plot(texture)
 #' texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #' plot(texture)
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
@@ -77,6 +78,7 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 #' @param axis location, x and y position
 #' @param axisgp frame grob containing all panels, note that this does not contain the title or border
 #' @param background.color color of in the background of the plot
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords hplot
 #' @examples
 #' scatmat <- dd_example("scattermat")
@@ -99,6 +101,7 @@ plot.ddplot <- function(x, ..., axislocation = c(0.1, 0.1), axis.gp=gpar(col="bl
 #' @param axis location, x and y position
 #' @param axisgp frame grob containing all panels, note that this does not contain the title or border
 #' @param background.color color of in the background of the plot
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey90") {
   points <- panel$points

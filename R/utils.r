@@ -1,16 +1,17 @@
-#' Add brush to plot.
-#' This adds a rectangle to a ggplot plot indicating the brush position
-#' 
+#' Add brush to plot
+#' This adds a rectangle to a ggplot plot indicating the brush position.
+#'
 #' @param plot plot object
 #' @param x x position of brush
 #' @param y y position of brush
 #' @param width width of brush
 #' @param height height of brush
 #' @param just which corner of brush should be determined by x and y position
-#' @param fill fill colour for brush (use ggplot-alpha for alpha blending)
+#' @param fill fill colour for brush.  Use ggplot-alpha for alpha blending.
 #' @param col outline colour of brush
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords hplot
-addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill=NA, col="black") {
+addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill="transparent", col="black") {
   brush <- data.frame(x=x, y=y, width=width, height=height)
   geom_rect(
     aes_string("x", "y", width = "width", height = "height"),
@@ -22,7 +23,8 @@ addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fi
 #' Remove hidden points
 #' Will remove all hidden points from the plot.
 #'
-#' @param ddplot object
+#' @param d ddplot object
+#' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords manip
 removehiddens <- function(d) {
   d$plots <- lapply(d$plots, function(dd) {
