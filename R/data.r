@@ -38,7 +38,13 @@ dd_load <- function(path) {
 #' @keywords internal
 dd_example <- function(name) {
   file <- paste(name, ".r", sep = "")
-  dd_load(system.file("examples", file, package = "DescribeDisplay"))
+  path <- system.file("examples", file, package = "DescribeDisplay")
+  
+  if (!file.exists(path)) {
+    stop("Cannot find example ", name, call. = FALSE)
+  }
+  
+  dd_load(path)
 }
 
 #' Clean plot data structure
