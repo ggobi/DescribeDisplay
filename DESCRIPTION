@@ -1,5 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2
+Version: 0.2.1
 Date: 2008-12-13
 Title: R interface to DescribeDisplay (GGobi plugin)
 Author: Hadley Wickham <hadley@iastate.edu>, Di Cook <dicook@iastate.edu>, Andreas Buja
@@ -10,5 +10,5 @@ Description: Produce publication quality graphics from output of GGobi's describ
 License: BSD
 LazyData: true
 URL: http://www.ggobi.org/describe-display
-Collate: 'axis.r' 'data.r' 'geom-axis.r' 'ggplot-parcoords.r' 'ggplot-scatmat.r'
-    'ggplot-timeseries.r' 'ggplot.r' 'plots.r' 'utils.r'
+Collate: 'axis.r' 'data.r' 'geom-axis.r' 'ggplot-barchart.r' 'ggplot-parcoords.r'
+    'ggplot-scatmat.r' 'ggplot-timeseries.r' 'ggplot.r' 'plots.r' 'utils.r'

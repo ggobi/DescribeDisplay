@@ -47,6 +47,7 @@ compact_timeseries <- function(data){
 #' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
 ggplot.timeseries <- function(data, edges = FALSE,...){
+  cat("\nggplot.timeseries\n")
 	df <- compact_timeseries(data)
 
 	data.par <- df[,colnames(df) %in% c("cex","pch","col","id") ]

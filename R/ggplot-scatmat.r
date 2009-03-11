@@ -33,6 +33,7 @@ compact_scatmat <- function(data) {
 #' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
 ggplot.scatmat <- function(data,...){
+  cat("\nggplot.scatmat\n")
 	df <- compact_scatmat(data)
 
 	p <- plotmatrix( df[,setdiff(names(df), c("cex","pch","col", "id")) ] ) +

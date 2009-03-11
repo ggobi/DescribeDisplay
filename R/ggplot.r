@@ -6,12 +6,12 @@
 #' @param other arguments passed to the grob function
 #' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords hplot
-#' @aliases ggplot.dd
 #' @examples
 #' ggplot(dd_example("edges"))
 #' ggplot(dd_example("xyplot"))
 #' ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
 ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
+  cat("\nggplot.ddplot\n")
 	print(head(data$points))
   p <- ggplot(data$points, 
     aes_string(x = "x", y = "y", shape = "pch", size = "cex * 6", colour = "col")) +
@@ -21,18 +21,22 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     scale_linetype_identity() +
     scale_x_continuous(
 		if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
-			name = "" 
+			name = ""
+		else if(TRUE %in% (c("1dplot") %in% class(data) ) )
+			name = data$params$label 
 		else 
 			name = data$params$xlab,
 		limits = data$xscale) + 
     scale_y_continuous(
-		if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
+		if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data) ) )
 			name = "" 
 		else
 			name = data$params$ylab,
 		limits = data$yscale) + 
     geom_point() 
 
+	if("1dplot" %in% class(data))
+		p <- p + opts(axis.text.y = theme_blank() )
   
   axes <- dd_tour_axes(data)
   if (!is.null(axes)) {
@@ -43,7 +47,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
       data = axes, location = axis.location, 
       do.call(aes_string, as.list(vars)) 
     ) +
-	  opts(aspect.ratio = 1)
+	  opts(aspect.ratio = 1, axis.text.x = theme_blank(), axis.text.y = theme_blank())
   }
 
   edges <- data$edges
@@ -70,12 +74,12 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #' @param other not used
 #' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords hplot
-#' @aliases ggplot.dd
 #' @examples
 #' ggplot(dd_example("edges"))
 #' ggplot(dd_example("xyplot"))
 #' ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
 ggplot.dd <- function(data, ...) { 
+  cat("\nggplot.dd\n")
   panel <- data$plots[[1]]
   ggplot(panel, ...) + opts(title = data$title)
 }
