@@ -11,27 +11,27 @@
 ggplot.histogram <- function(data, spine = FALSE,...) {
   cat("\nggplot.barchart\n")
 
-	print(head(data$points))
-	#print(unique(data$points$col))
-	
+  print(head(data$points))
+  #print(unique(data$points$col))
+  
   p <- ggplot(data$points, 
-    	aes(x = x, colour = col, fill = col,...)) +
+      aes(x = x, colour = col, fill = col,...)) +
     scale_size_identity() + 
     scale_shape_identity() + 
     scale_linetype_identity() +
-	scale_colour_identity()
-	
-	
-	if(spine){
-		## not correct yet
-		p <- p + geom_bar( position = "fill", binwidth = diff(data$params$breaks[1:2]) , ...)
-		cat("\nspine\n")
-	}else{
-		p <- p + geom_bar(binwidth = diff(data$params$breaks[1:2]),...)
-	}
+  scale_colour_identity()
+  
+  
+  if(spine){
+    ## not correct yet
+    p <- p + geom_bar( position = "fill", binwidth = diff(data$params$breaks[1:2]) , ...)
+    cat("\nspine\n")
+  }else{
+    p <- p + geom_bar(binwidth = diff(data$params$breaks[1:2]),...)
+  }
 
-	
-	    
+  
+      
 
 
   p

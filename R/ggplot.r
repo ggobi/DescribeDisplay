@@ -12,7 +12,7 @@
 #' ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)
 ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   cat("\nggplot.ddplot\n")
-	print(head(data$points))
+  print(head(data$points))
   p <- ggplot(data$points, 
     aes_string(x = "x", y = "y", shape = "pch", size = "cex * 6", colour = "col")) +
     scale_colour_identity() + 
@@ -20,23 +20,23 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     scale_shape_identity() + 
     scale_linetype_identity() +
     scale_x_continuous(
-		if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
-			name = ""
-		else if(TRUE %in% (c("1dplot") %in% class(data) ) )
-			name = data$params$label 
-		else 
-			name = data$params$xlab,
-		limits = data$xscale) + 
+    if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
+      name = ""
+    else if(TRUE %in% (c("1dplot") %in% class(data) ) )
+      name = data$params$label 
+    else 
+      name = data$params$xlab,
+    limits = data$xscale) + 
     scale_y_continuous(
-		if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data) ) )
-			name = "" 
-		else
-			name = data$params$ylab,
-		limits = data$yscale) + 
+    if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data) ) )
+      name = "" 
+    else
+      name = data$params$ylab,
+    limits = data$yscale) + 
     geom_point() 
 
-	if("1dplot" %in% class(data))
-		p <- p + opts(axis.text.y = theme_blank() )
+  if("1dplot" %in% class(data))
+    p <- p + opts(axis.text.y = theme_blank() )
   
   axes <- dd_tour_axes(data)
   if (!is.null(axes)) {
@@ -47,7 +47,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
       data = axes, location = axis.location, 
       do.call(aes_string, as.list(vars)) 
     ) +
-	  opts(aspect.ratio = 1, axis.text.x = theme_blank(), axis.text.y = theme_blank())
+    opts(aspect.ratio = 1, axis.text.x = theme_blank(), axis.text.y = theme_blank())
   }
 
   edges <- data$edges
