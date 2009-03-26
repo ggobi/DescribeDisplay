@@ -29,11 +29,12 @@ compact_scatmat <- function(data) {
 #' @param plot to display
 #' @param other (currently) unused arguments
 #' @examples
+#' ggplot(dd_example("scattermat-small"))
 #' ggplot(dd_example("scattermat"))
 #' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
 ggplot.scatmat <- function(data,...){
-  cat("\nggplot.scatmat\n")
+  #cat("\nggplot.scatmat\n")
   df <- compact_scatmat(data)
 
   p <- plotmatrix( df[,setdiff(names(df), c("cex","pch","col", "id")) ] ) +

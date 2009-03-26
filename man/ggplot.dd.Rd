@@ -8,6 +8,4 @@ Create a nice looking plot complete with axes using ggplot.}
 \keyword{hplot}
 \arguments{\item{data}{plot to display, object created by \code{dd_load()}}
 \item{other}{not used}}
-\examples{ggplot(dd_example("edges"))
-ggplot(dd_example("xyplot"))
-ggplot(dd_example("edges")) + xlab(NULL) + ylab(NULL)}
+\examples{ggplot(dd_example("xyplot"))}

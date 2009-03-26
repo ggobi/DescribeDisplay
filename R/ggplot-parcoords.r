@@ -32,12 +32,11 @@ compact_pcp <- function(data,x.values=TRUE) {
 #' @keywords hplot 
 #' @examples
 #' ggplot(dd_example("pcp"))
-#' ggplot(dd_example("pcp"), size = 1)
 #' ggplot(dd_example("pcp-ash"))
 #' ggplot(dd_example("pcp-ash"),lines = FALSE)
-#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE)
-#' ggplot(dd_example("pcp-ash"),absoluteY = TRUE)
-#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE, absoluteY = TRUE)
+#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE, lines = FALSE)
+#' ggplot(dd_example("pcp-ash"),absoluteY = TRUE, lines = FALSE)
+#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE, absoluteY = TRUE, lines = FALSE)
 #' ggplot(dd_example("pcp-texture"))
 #' ggplot(dd_example("pcp-texture"),lines=FALSE)
 #' ggplot(dd_example("pcp-texture"),absoluteY=TRUE,lines=FALSE)
@@ -49,7 +48,7 @@ ggplot.parcoords <- function(
   ...
 ) { 
 
-  cat("\nggplot.parcoords\n")
+  #cat("\nggplot.parcoords\n")
 
   df.x <- compact_pcp(data)
   df.y <- compact_pcp(data,x.values=FALSE)
@@ -131,7 +130,7 @@ ggplot.parcoords <- function(
 
   ### Make a pretty picture
   aesString <- aes_string(x="X", y="Y",group="id")
-  p <- ggplot(data = df.final, aesString)+
+  p <- ggplot(data = df.final, aesString,...)+
       scale_colour_identity() + 
       scale_size_identity() + 
       scale_shape_identity() + 

@@ -9,3 +9,5 @@ Create nice looking plots complete with axes using ggplot.  Produces graphics wi
 \arguments{\item{plot}{to display}
 \item{edges}{Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.}
 \item{other}{(currently) unused arguments}}
+\examples{ggplot(dd_example("timeser"))
+ggplot(dd_example("timeser-col"))}

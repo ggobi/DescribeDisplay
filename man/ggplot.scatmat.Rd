@@ -10,4 +10,5 @@ to eachother within the matrix.}
 \keyword{hplot}
 \arguments{\item{plot}{to display}
 \item{other}{(currently) unused arguments}}
-\examples{ggplot(dd_example("scattermat"))}
+\examples{ggplot(dd_example("scattermat-small"))
+ggplot(dd_example("scattermat"))}

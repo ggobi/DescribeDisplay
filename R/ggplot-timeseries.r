@@ -46,8 +46,11 @@ compact_timeseries <- function(data){
 #' @param other (currently) unused arguments
 #' @author Barret Schloerke schloerke [at] gmail.com
 #' @keywords hplot 
+#' @examples
+#' ggplot(dd_example("timeser"))
+#' ggplot(dd_example("timeser-col"))
 ggplot.timeseries <- function(data, edges = FALSE,...){
-  cat("\nggplot.timeseries\n")
+  #cat("\nggplot.timeseries\n")
   df <- compact_timeseries(data)
 
   data.par <- df[,colnames(df) %in% c("cex","pch","col","id") ]
@@ -86,7 +89,9 @@ ggplot.timeseries <- function(data, edges = FALSE,...){
       opts(title = data$title) +
       scale_x_continuous(all[1,"yvar"]) +
       scale_y_continuous("")+
-    geom_point(data = all, aes_string(size = "cex * 4",colour="col", shape = "pch"))
+      geom_point(data = all, aes_string(size = "cex * 4",colour="col", shape = "pch")) +
+      opts(title = data$title)
+    
   
   if(data$showDirectedEdges | data$showUndirectedEdges | edges == TRUE)
     p <- p + geom_path(data = all, aes_string(x = "x", y = "y", size = "cex", colour = "col"))
