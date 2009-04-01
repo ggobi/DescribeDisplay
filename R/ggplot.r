@@ -4,7 +4,7 @@
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param axis.location grob function to use for drawing
 #' @param other arguments passed to the grob function
-#' @author Hadley Wickham h.wickham [at] gmail.com
+#' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
 #' @examples
 #' 
@@ -14,6 +14,7 @@
 #' ggplot(dd_example("dot"))
 #' ggplot(dd_example("dot-labels"))
 #' ggplot(dd_example("xyplot"))
+#' ggplot(dd_example("xyplot")) + opts(aspect.ratio = 1)
 #' ggplot(dd_example("xyplot")) + xlab(NULL) + ylab(NULL)
 #' ggplot(dd_example("ash"))
 #' ggplot(dd_example("ash")) + geom_segment(aes(x=x,xend=x,y=0,yend=y),size=0.3)
@@ -47,6 +48,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   
   axes <- dd_tour_axes(data)
   if (!is.null(axes)) {
+    #Only is performed if it has tour data
     vars <- names(axes)
     names(vars) <- vars
 
@@ -67,6 +69,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 
   
   if (!is.null(data$labels)) {
+    ## Following three lines are to remove errors.
     data$labels$pch <- rep(1,length(data$labels$x))
     data$labels$cex <- rep(2/5,length(data$labels$x))
     data$labels$colour <- rep("black",length(data$labels$x))
@@ -82,10 +85,12 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #' 
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param other not used
-#' @author Hadley Wickham h.wickham [at] gmail.com
+#' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
 #' @examples
-#' ggplot(dd_example("xyplot"))
+#' example(ggplot.ddplot)
+#' example(ggplot.histogram)
+#' example(ggplot.barplot)
 ggplot.dd <- function(data, ...) { 
   #cat("\nggplot.dd\n")
   panel <- data$plots[[1]]

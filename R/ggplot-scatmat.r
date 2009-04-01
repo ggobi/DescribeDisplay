@@ -2,7 +2,7 @@
 #' A scatter plot matrix is made from the information from the 1Dplots. This function collects only that data.
 #' 
 #' @param data
-#' @author Barret Schloerke schloerke [at] gmail.com
+#' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords internal 
 compact_scatmat <- function(data) {
   
@@ -30,8 +30,8 @@ compact_scatmat <- function(data) {
 #' @param other (currently) unused arguments
 #' @examples
 #' ggplot(dd_example("scattermat-small"))
-#' ggplot(dd_example("scattermat"))
-#' @author Barret Schloerke schloerke [at] gmail.com
+#' ggplot(dd_example("scattermat")) + opts(aspect.ratio=1)
+#' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 ggplot.scatmat <- function(data,...){
   #cat("\nggplot.scatmat\n")

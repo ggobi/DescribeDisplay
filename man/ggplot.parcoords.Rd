@@ -4,7 +4,7 @@
 \usage{ggplot.parcoords(data, absoluteX=FALSE, absoluteY=FALSE, lines=TRUE, ...)}
 \description{Create a nice plot for parallel coordinates plot
 Create a nice looking plot complete with axes using ggplot.}
-\author{Barret Schloerke schloerke [at] gmail.com}
+\author{Barret Schloerke \email{bigbear@iastate.edu}}
 \keyword{hplot}
 \arguments{\item{plot}{to display}
 \item{absoluteX}{make the sections proportional horizontally to eachother}

@@ -5,6 +5,6 @@
 \description{Load example describe display file
 Load example describe display file included with package.}
 \details{These are mainly used for testing.}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{internal}
 \arguments{\item{name}{name of example}}

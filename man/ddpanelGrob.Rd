@@ -4,7 +4,7 @@
 \usage{ddpanelGrob(panel, axislocation=c(0.1, 0.1), axis.gp=gpar(col = "black"), background.color=grey90)}
 \description{Panel grob
 Construct grob for single panel.}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{internal}
 \arguments{\item{panel}{describe display object}
 \item{axis}{location, x and y position}

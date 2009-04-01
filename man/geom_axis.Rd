@@ -3,7 +3,7 @@
 \usage{geom_axis(...)}
 \description{Geom Axis
 A special ggplot2 geom for drawing the tour axes}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{internal}
 \alias{GeomAxis}
 \arguments{\item{...}{should include data, location, aes_string information}}

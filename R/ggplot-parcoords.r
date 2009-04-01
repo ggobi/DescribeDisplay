@@ -4,7 +4,7 @@
 #' 
 #' @param data data to pull points from
 #' @param x.values pull the x or y values
-#' @author Hadley Wickham h.wickham [at] gmail.com
+#' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
 compact_pcp <- function(data,x.values=TRUE) {
   df <- do.call(rbind, lapply(data$plots, function(p) {
@@ -28,7 +28,7 @@ compact_pcp <- function(data,x.values=TRUE) {
 #' @param absoluteX make the sections proportional horizontally to eachother
 #' @param absoluteY make the sections proportional vertically to eachother
 #' @param other arguments passed to the grob function
-#' @author Barret Schloerke schloerke [at] gmail.com
+#' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 #' @examples
 #' ggplot(dd_example("pcp"))

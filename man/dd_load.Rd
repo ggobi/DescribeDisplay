@@ -10,7 +10,7 @@ recompute.  Some of these conversions could probably be moved into
 the Describe Display plugin, but it may be easier to just do them
 on the R side..}
 \value{object of class dd}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{manip}
 \arguments{\item{path}{file path}}
 \examples{a <- dd_load(system.file("examples", "test-edges.r"))

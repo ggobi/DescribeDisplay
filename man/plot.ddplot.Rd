@@ -6,7 +6,7 @@
 Convenient method to draw a single panel.}
 \details{This is mainly used for bug testing so that you can pull out a single 
 panel quickly and easily.}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{hplot}
 \arguments{\item{x}{object to plot}
 \item{...}{(not used)}

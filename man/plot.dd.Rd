@@ -14,7 +14,7 @@ This function reads a number of options directly out of the
 descripedisplay datastructure.  See the examples for ways to use
 these.}
 \value{frame grob containing all panels, note that this does not contain the title or border}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{internal}
 \arguments{\item{x}{dd object to plot}
 \item{...}{(unused)}

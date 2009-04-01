@@ -4,7 +4,7 @@
 \usage{addbrush(plot, x, y, width=0.5, height=0.5, just=c("left", "top"), fill=transparent, col=black)}
 \description{Add brush to plot
 This adds a rectangle to a ggplot plot indicating the brush position.}
-\author{Hadley Wickham h.wickham [at] gmail.com}
+\author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{hplot}
 \arguments{\item{plot}{plot object}
 \item{x}{x position of brush}

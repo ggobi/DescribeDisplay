@@ -6,9 +6,9 @@
 Create a nice looking plots in a matrix.  The 1d sections along
 the diagonal have a smooth density while the values are compared 
 to eachother within the matrix.}
-\author{Barret Schloerke schloerke [at] gmail.com}
+\author{Barret Schloerke \email{bigbear@iastate.edu}}
 \keyword{hplot}
 \arguments{\item{plot}{to display}
 \item{other}{(currently) unused arguments}}
 \examples{ggplot(dd_example("scattermat-small"))
-ggplot(dd_example("scattermat"))}
+ggplot(dd_example("scattermat")) + opts(aspect.ratio=1)}
