@@ -10,4 +10,4 @@ Description: Produce publication quality graphics from output of GGobi's describ
 License: BSD
 LazyData: true
 URL: http://www.ggobi.org/describe-display
-Collate: 'DescribeDisplay-package.r' 'axis.r' 'data.r' 'geom-axis.r' 'ggplot-barchart.r' 'ggplot-parcoords.r' 'ggplot-scatmat.r' 'ggplot-timeseries.r' 'ggplot.r' 'plots.r' 'utils.r'
+Collate: 'DescribeDisplay-package.r' 'axis-grob.r' 'data.r' 'axis-geom.r' 'ggplot-barchart.r' 'ggplot-parcoords.r' 'ggplot-scatmat.r' 'ggplot-timeseries.r' 'ggplot.r' 'plots.r' 'utils.r'
