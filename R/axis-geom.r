@@ -1,3 +1,5 @@
+require("ggplot2")
+
 #' GeomAxis
 #' A special ggplot2 geom for drawing the tour axes
 #' 
@@ -6,9 +8,11 @@
 #' @param new function to set up the axis
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @aliases geom_axis
+#' @examples
+#' ggplot(dd_example("tour2d"))
 GeomAxis <- proto(Geom, {
   new <- function(., mapping=NULL, data=NULL, stat=NULL, position=NULL, ...){
-    do.call("layer", list(mapping=mapping, data=data, stat=stat, geom=., position=position, ..., ignore.extra = TRUE))
+    do.call("layer", list(mapping=mapping, data=data, stat=stat, geom=., position=position, ..., inherit.aes = FALSE))
   }
   
   draw <- function(., data, scales, coordinates, location = c(0.2, 0.2), size=0.9, colour = "black", ...) {

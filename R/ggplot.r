@@ -8,9 +8,9 @@
 #' @keywords hplot
 #' @examples
 #' 
-#' #ggplot(dd_example("tour2d"))
-#' #ggplot(dd_example("tour1d"))
-#' #ggplot(dd_example("tour2d-cube3"))
+#' ggplot(dd_example("tour2d"))
+#' ggplot(dd_example("tour1d"))
+#' ggplot(dd_example("tour2d-cube3"))
 #' ggplot(dd_example("dot"))
 #' ggplot(dd_example("dot-labels"))
 #' ggplot(dd_example("xyplot"))
