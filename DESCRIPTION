@@ -6,10 +6,12 @@ Author: Hadley Wickham <hadley@rice.edu>,
   Di Cook <dicook@iastate.edu>,
   Andreas Buja <buja@wharton.upenn.edu>, 
   Barret Schloerke <bigbear@iastate.edu>
-Depends: R (>= 2.6.1), grid, reshape (>= 0.7.1), ggplot2 (>= 0.8.2), proto
+Depends: R (>= 2.6.1), grid, reshape (>= 0.7.1), ggplot2 (>= 0.8.3), proto
 Maintainer: Hadley Wickham <hadley@rice.edu>
 Description: Produce publication quality graphics from output of GGobi's describe display plugin
 License: BSD
+LazyLoad: false
 LazyData: true
 URL: http://www.ggobi.org/describe-display
 Collate: 'DescribeDisplay-package.r' 'axis-grob.r' 'data.r' 'ggplot-barchart.r' 'ggplot-parcoords.r' 'ggplot-scatmat.r' 'ggplot-timeseries.r' 'plots.r' 'utils.r' 'ggplot.r'  'axis-geom.r'
+

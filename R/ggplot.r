@@ -52,11 +52,10 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     vars <- names(axes)
     names(vars) <- vars
 
-    p <- p + geom_axis(
-      data = axes, location = axis.location, 
-      do.call(aes_string, as.list(vars)) 
-    ) +
-    opts(aspect.ratio = 1, axis.text.x = theme_blank(), axis.text.y = theme_blank())
+    p <- p + 
+      geom_axis(data = axes, location = axis.location) +
+      opts(axis.text.x = theme_blank(), axis.text.y = theme_blank(), 
+        aspect.ratio = 1)
   }
 
   edges <- data$edges

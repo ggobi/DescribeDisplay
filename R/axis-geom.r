@@ -11,8 +11,8 @@ require("ggplot2")
 #' @examples
 #' ggplot(dd_example("tour2d"))
 GeomAxis <- proto(Geom, {
-  new <- function(., mapping=NULL, data=NULL, stat=NULL, position=NULL, ...){
-    do.call("layer", list(mapping=mapping, data=data, stat=stat, geom=., position=position, ..., inherit.aes = FALSE))
+  new <- function(., data=NULL, stat=NULL, position=NULL, ...){
+    do.call("layer", list(mapping=NULL, data=data, stat=stat, geom=., position=position, ..., inherit.aes = FALSE))
   }
   
   draw <- function(., data, scales, coordinates, location = c(0.2, 0.2), size=0.9, colour = "black", ...) {
