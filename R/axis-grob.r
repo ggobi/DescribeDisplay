@@ -9,7 +9,9 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
   if (is.null(axes)) return()
 
   if (!is.null(axes$y)) { # 2d tour 
-    bigaxes <- subset(axes, r > 0.3)
+    #bigaxes <- subset(as.data.frame(axes), r > 0.3)
+    print(axes)
+    bigaxes <- axes[axes[,"r"] > 0.3,]
     
     gTree(children=gList(
       circleGrob(0, 0, 1, default.units="native", gp=gpar(fill="transparent", col="black")),

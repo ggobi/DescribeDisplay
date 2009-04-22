@@ -51,6 +51,14 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     #Only is performed if it has tour data
     vars <- names(axes)
     names(vars) <- vars
+    
+    ## Following three lines are to remove errors.
+    axes$pch <- rep(1,length(axes$x))
+    axes$cex <- rep(2/5,length(axes$x))
+    axes$colour <- rep("black",length(axes$x))
+    
+    print(axes)
+	print(str(axes))
 
     p <- p + 
       geom_axis(data = axes, location = axis.location) +

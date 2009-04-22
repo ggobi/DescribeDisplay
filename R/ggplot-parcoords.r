@@ -126,10 +126,14 @@ ggplot.parcoords <- function(
 #  print(head(df2))
   df.final <- df2
   df2 <- NULL
+  
+  df.final$ROW <- 1:nrow(df.final)
 
+	print(head(df.final))
+	print(df.final[(nrow(df.final)-8):nrow(df.final),])
 
   ### Make a pretty picture
-  aesString <- aes_string(x="X", y="Y",group="id")
+  aesString <- aes_string(x="X", y="Y",group="id", order= "ROW")
   p <- ggplot(data = df.final, aesString,...)+
       scale_colour_identity() + 
       scale_size_identity() + 
@@ -155,7 +159,7 @@ ggplot.parcoords <- function(
 
   if(lines)
     p <- p + geom_line(
-      aes_string(colour="col", size="cex * 2", order="as.numeric(col)")
+      aes_string(colour="col", size="cex * 2", order = "ROW")
     )
 
   ## Moved to have points plotted last
