@@ -6,20 +6,20 @@
 #' @param x.values pull the x or y values
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
-compact_pcp <- function(data,x.values=TRUE) {
-  df <- do.call(rbind, lapply(data$plots, function(p) {
-    aes <- p$points[, c("col", "pch", "cex")]
+compact_pcp <- function(data) {
+  ldply(data$plots, function(p) {
     data.frame(
-      aes, 
-      value = if(x.values){p$points$x }else{ p$points$y}, 
+      id = 1:nrow(p$points),
       variable = p$params$label, 
-      id = 1:nrow(p$points)
+      p$points[c("col", "pch", "cex")], 
+      x = p$points$y,
+      y = p$points$x
     )
-  }))
-  cast(df, id + ... ~ variable)
+  })
 }
 
 
+range01 <- function(x) (x - min(x)) / (max(x) - min(x))
 
 #' Create a nice plot for parallel coordinates plot
 #' Create a nice looking plot complete with axes using ggplot.
@@ -34,9 +34,7 @@ compact_pcp <- function(data,x.values=TRUE) {
 #' ggplot(dd_example("pcp"))
 #' ggplot(dd_example("pcp-ash"))
 #' ggplot(dd_example("pcp-ash"),lines = FALSE)
-#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE, lines = FALSE)
 #' ggplot(dd_example("pcp-ash"),absoluteY = TRUE, lines = FALSE)
-#' ggplot(dd_example("pcp-ash"),absoluteX = TRUE, absoluteY = TRUE, lines = FALSE)
 #' ggplot(dd_example("pcp-texture"))
 #' ggplot(dd_example("pcp-texture"),lines=FALSE)
 #' ggplot(dd_example("pcp-texture"),absoluteY=TRUE,lines=FALSE)
@@ -48,125 +46,41 @@ ggplot.parcoords <- function(
   ...
 ) { 
 
-  #cat("\nggplot.parcoords\n")
-
-  df.x <- compact_pcp(data)
-  df.y <- compact_pcp(data,x.values=FALSE)
+  df <- compact_pcp(data)
   
-  vars.par <- c("cex","pch","col", "id")
-  vars.using <- setdiff(names(df.x), vars.par)
-  
-  df.y <- df.y[,vars.using]
-  
-  names(df.y) <- vars.using.Y <- paste(names(df.y),".y",sep="")
-
-  df <- cbind(df.x,df.y)
-
-    
-  ### Actually the X part of data
-  if(!absoluteY){
-    ## Make everything scaled to the same range
-    
-    for(i in 1:length(vars.using)){
-      df[,vars.using[i]] <- (df[,vars.using[i]] - min(df[,vars.using[i]]))/diff(range(df[,vars.using[i]])) 
-    }
+  if (absoluteX) {
+    std <- transform(df, x = as.numeric(variable) + range01(x) / 2)  
+  } else {
+    # Scale variables individually
+    std <- ddply(df, .(variable), transform, 
+      x = as.numeric(variable) + range01(x) / 2)    
   }
   
-  ### Actually the Y part of data
-  maxRangeX <- diff(range(df[,vars.using.Y[1]]))
-  if(absoluteX){
-    ## find the max range to do correct scaling
-    
-    for(i in 1:length(vars.using.Y)){
-      tmp <- diff(range(df[,vars.using.Y[i]]))
-#      print(tmp)
-      if(maxRangeX < tmp) maxRangeX <- tmp
-    }
-#    cat("\nmaxRangeX = ", maxRangeX,"\n")
-  }
-  
-  
-  for(i in 1:length(vars.using.Y)){
-    if(diff(range(df[,vars.using.Y[i]])) == 0){
-      ## put values on a straight line
-      df[,vars.using.Y[i]] <- i
-    }else{
-      ## give values a range of 2/3 the area to the right of the break line
-      if(absoluteX){
-        ## Area used is relative to the other sections
-        df[,vars.using.Y[i]] <- (df[,vars.using.Y[i]] - min(df[,vars.using.Y[i]])) / maxRangeX * 2/3 + i
-#        print(range(df[,vars.using.Y[i]]))
-      }else{
-        ## Each section fills up 2/3 area
-        df[,vars.using.Y[i]] <- (df[,vars.using.Y[i]] - min(df[,vars.using.Y[i]]))/diff(range(df[,vars.using.Y[i]]))* 2/3 + i
-      }
-    }
+  if (!absoluteY) {
+    std <- ddply(std, .(variable), transform, y = range01(y))
   }
 
-  
-  ### Reformat data
-  Y <- c(as.matrix(df[,vars.using]))
-  X <- c(as.matrix(df[,vars.using.Y]))
-
-  df.vars.par <- NULL
-  for(i in 1:length(vars.using)){
-    df.vars.par <- rbind(df.vars.par, df.x[,vars.par])
-  }  
-
-  df.final <- cbind(X,Y,df.vars.par)
-
-  ## Reorder according to occurances of color (causes it to plot the ids who appear the least, last)
-  df2 <- NULL
-  colTable <- table(df.final[,"col"])
-  for(i in names(colTable[order(colTable, decreasing = TRUE)])){
-    df2 <- rbind(df2, df.final[df.final[,"col"] == i, ])
-  }
-  
-#  print(head(df.final))
-#  print(head(df2))
-  df.final <- df2
-  df2 <- NULL
-  
-  df.final$ROW <- 1:nrow(df.final)
-
-	print(head(df.final))
-	print(df.final[(nrow(df.final)-8):nrow(df.final),])
+  ybreaks <- seq(min(df$y), max(df$y), length = 5)
+  vars <- levels(df$variable)
 
   ### Make a pretty picture
-  aesString <- aes_string(x="X", y="Y",group="id", order= "ROW")
-  p <- ggplot(data = df.final, aesString,...)+
-      scale_colour_identity() + 
-      scale_size_identity() + 
-      scale_shape_identity() + 
-      scale_linetype_identity() + 
-      opts(title = data$title) +
-      scale_y_continuous(
-      "", 
-      breaks = seq(
-        min(df.final[,"Y"]),
-        max(df.final[,"Y"]), 
-        length = 5
-      ), 
-      labels = ""
-    ) + 
-        scale_x_continuous(
-      name = "", 
-        #limits=c(2/3,(length(vars.using)+1)), 
-      breaks = 1:length(vars.using), 
-      labels = vars.using, 
-      minor_breaks = FALSE
-    )
+  p <- ggplot(std, aes(x, y, group = id, colour = col, order = col)) +
+    scale_colour_identity() + 
+    scale_size_identity() + 
+    scale_shape_identity() + 
+    scale_linetype_identity() + 
+    opts(title = data$title) +
+    scale_y_continuous("", breaks = ybreaks, labels = "") + 
+    scale_x_continuous("", breaks = 1:length(vars), 
+      labels = vars, minor_breaks = FALSE)
+  
+  if (lines) {
+    p <- p + geom_line(aes(size = cex * 2))
+  }
 
-  if(lines)
-    p <- p + geom_line(
-      aes_string(colour="col", size="cex * 2", order = "ROW")
-    )
-
-  ## Moved to have points plotted last
+  # Plot points on top
   if (data$showPoints) {
-    p <- p + geom_point(
-      aes_string(colour="col", shape="pch", size="cex * 4.5")
-    )
+    p <- p + geom_point(aes(shape = pch, size = cex * 4.5))
   }
 
   p
