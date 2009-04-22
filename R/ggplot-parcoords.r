@@ -12,14 +12,21 @@ compact_pcp <- function(data) {
       id = 1:nrow(p$points),
       variable = p$params$label, 
       p$points[c("col", "pch", "cex")], 
-      x = p$points$y,
+      x = nulldefault(p$points$y, 1),
       y = p$points$x
     )
   })
 }
 
 
-range01 <- function(x) (x - min(x)) / (max(x) - min(x))
+range01 <- function(x) {
+  rng <- range(x, na.rm = TRUE)
+  if (diff(rng) == 0) {
+    rep(0, length(x))
+  } else {
+    (x - rng[1]) / diff(rng)
+  }
+}
 
 #' Create a nice plot for parallel coordinates plot
 #' Create a nice looking plot complete with axes using ggplot.
@@ -47,6 +54,7 @@ ggplot.parcoords <- function(
 ) { 
 
   df <- compact_pcp(data)
+  browser()
   
   if (absoluteX) {
     std <- transform(df, x = as.numeric(variable) + range01(x) / 2)  
