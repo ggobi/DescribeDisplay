@@ -1,7 +1,8 @@
 \name{ddpanelGrob}
 \alias{ddpanelGrob}
 \title{Panel grob...}
-\usage{ddpanelGrob(panel, axislocation=c(0.1, 0.1), axis.gp=gpar(col = "black"), background.color=grey90)}
+\usage{ddpanelGrob(panel, axislocation=c(0.1, 0.1), axis.gp=gpar(col =
+    "black"), background.color=grey90)}
 \description{Panel grob
 Construct grob for single panel.}
 \author{Hadley Wickham \email{h.wickham@gmail.com}}

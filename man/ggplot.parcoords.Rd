@@ -1,7 +1,8 @@
 \name{ggplot.parcoords}
 \alias{ggplot.parcoords}
 \title{Create a nice plot for parallel coordinates plot...}
-\usage{ggplot.parcoords(data, absoluteX=FALSE, absoluteY=FALSE, lines=TRUE, ...)}
+\usage{ggplot.parcoords(data, absoluteX=FALSE, absoluteY=FALSE, lines=TRUE,
+    ...)}
 \description{Create a nice plot for parallel coordinates plot
 Create a nice looking plot complete with axes using ggplot.}
 \author{Barret Schloerke \email{bigbear@iastate.edu}}

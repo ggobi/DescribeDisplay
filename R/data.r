@@ -10,10 +10,9 @@
 #' @param path file path
 #' @return object of class dd
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
+#' @seealso \code{\link{dd_example}} for an easier way of loading example
+#'   files
 #' @keywords  manip
-#' @examples
-#' a <- dd_load(system.file("examples", "test-edges.r"))
-#' b <- dd_load(system.file("examples", "test-dot.r"))
 dd_load <- function(path) {
   dd <- source(path)$value
   class(dd) <- c(dd_plot_class(dd$type), "dd")
@@ -36,6 +35,8 @@ dd_load <- function(path) {
 #' @param name name of example
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
+#' @examples
+#' a <- dd_example("xyplot")
 dd_example <- function(name) {
   file <- paste(name, ".r", sep = "")
   path <- system.file("examples", file, package = "DescribeDisplay")
@@ -183,14 +184,14 @@ dd_defaults <- function(dd, n=1) {
 #' @author Hadley Wickham h.wickham [at] gmail.com
 #' @keywords internal 
 dd_tour_axes <- function(plot) {
-  if (is.null(plot$params$F)) return()
+  if (is.null(plot$params[["F"]])) return()
 
 
   if (plot$projection == "1D Tour") {
-    proj <- matrix(plot$params$F, ncol=1)
+    proj <- matrix(plot$params[["F"]], ncol=1)
     colnames(proj) <- "x"
   } else {
-    proj <- matrix(plot$params$F, ncol=2, byrow=F)
+    proj <- matrix(plot$params[["F"]], ncol=2, byrow=FALSE)
     colnames(proj) <- c("x","y")
   }
 

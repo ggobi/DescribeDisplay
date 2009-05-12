@@ -8,3 +8,4 @@ Load example describe display file included with package.}
 \author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{internal}
 \arguments{\item{name}{name of example}}
+\examples{a <- dd_example("xyplot")}

@@ -1,5 +1,3 @@
-require("ggplot2")
-
 #' GeomAxis
 #' A special ggplot2 geom for drawing the tour axes
 #' 

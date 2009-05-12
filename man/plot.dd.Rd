@@ -1,8 +1,8 @@
 \name{plot.dd}
 \alias{plot.dd}
 \title{Draw dd plot...}
-\usage{plot.dd(x, ..., draw=TRUE, axislocation=c(0.1, 0.1), size=0.9, axisgp=gpar(col = "black"),
-    background.color=grey90)}
+\usage{plot.dd(x, ..., draw=TRUE, axislocation=c(0.1, 0.1), size=0.9,
+    axisgp=gpar(col = "black"), background.color=grey90)}
 \description{Draw dd plot
 Draw a complete describe display.}
 \details{If you want to layout multiple dd plots on the same page, you can
