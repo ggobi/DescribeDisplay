@@ -75,7 +75,7 @@ ggplot.parcoords <- function(
   vars <- levels(df$variable)
 
   ### Make a pretty picture
-  p <- ggplot(std, aes_string(x = "x", y = "y", group = "id", colour = "col", order = "col")) +
+  p <- ggplot(std, aes(x, y, group = id, colour = col, order = col)) +
     scale_colour_identity() + 
     scale_size_identity() + 
     scale_shape_identity() + 
