@@ -9,11 +9,11 @@
 #' @examples
 #' ggplot(dd_example("barchart"))
 ggplot.histogram <- function(data, spine = FALSE,...) {
-  #cat("\nggplot.histogram\n")
+  cat("\nggplot.histogram\n")
   
   p <- ggplot(data$points, 
-    aes(x = x, fill = col,...)) + 
-      xlab(data$params$label) +
+    aes_string(x = "x", fill = "col",...)) + 
+      scale_x_continuous(data$params$label)+
       coord_flip() +
       scale_size_identity() + 
       scale_shape_identity() + 
@@ -47,26 +47,32 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
 #' @keywords hplot
 #' @examples
 #' ggplot(dd_example("barchart-species"))
-ggplot.barplot <- function(panel,spine=FALSE,...){
-  #cat("\nggplot.barplot\n")
-  levelnames <- panel$params$levelnames
-  levelNameOrder <- panel$params$levelvalues + 1
-  xVals <- panel$points$x
+ggplot.barplot <- function(data,spine=FALSE,...){
+  cat("\nggplot.barplot\n")
+  levelnames <- data$params$levelnames
+  levelNameOrder <- data$params$levelvalues + 1
+  xVals <- data$points$x
   for(i in 1:length(levelnames)){
     xVals[xVals==i] <- levelnames[levelNameOrder[i]]
   }
 
-  panel$points$splitBy <- xVals
-#print(panel$points)
+  data$points$splitBy <- xVals
+print(unique(data$points$splitBy))
+temp <- unique(data$points$splitBy)
 
-  p <- ggplot(panel$points, aes_string(x = "splitBy", fill = "col", ...)) + 
-    geom_bar() + xlab(panel$params$label) +
+  p <- ggplot(data$points, aes_string(x = "splitBy", fill = "col", ...)) + 
+    geom_bar() + 
     coord_flip() +
+	scale_x_discrete(data$params$label, limits=c(temp)) +
     scale_size_identity() + 
     scale_shape_identity() + 
     scale_linetype_identity() +
-    scale_fill_identity() + 
-    xlim(unique(panel$points$splitBy))
+    scale_fill_identity() #+
+#    xlim(temp)
     
+
+#	scale_x_continuous(data$params$label, limits = c(unique(data$points$splitBy)) )+
+
+
   p
 }      

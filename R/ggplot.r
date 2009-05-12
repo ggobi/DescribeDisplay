@@ -57,8 +57,8 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     axes$cex <- rep(2/5,length(axes$x))
     axes$colour <- rep("black",length(axes$x))
     
-    print(axes)
-	print(str(axes))
+#    print(axes)
+#	print(str(axes))
 
     p <- p + 
       geom_axis(data = axes, location = axis.location) +
@@ -99,7 +99,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #' example(ggplot.histogram)
 #' example(ggplot.barplot)
 ggplot.dd <- function(data, ...) { 
-  #cat("\nggplot.dd\n")
+#  cat("\nggplot.dd\n")
   panel <- data$plots[[1]]
   ggplot(panel, ...) + opts(title = data$title)
 }

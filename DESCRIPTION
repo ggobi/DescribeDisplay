@@ -13,5 +13,5 @@ License: BSD
 LazyLoad: false
 LazyData: true
 URL: http://www.ggobi.org/describe-display
-Collate: 'DescribeDisplay-package.r' 'axis-grob.r' 'data.r' 'ggplot-barchart.r' 'ggplot-parcoords.r' 'ggplot-scatmat.r' 'ggplot-timeseries.r' 'plots.r' 'utils.r' 'ggplot.r'  'axis-geom.r'
+
 

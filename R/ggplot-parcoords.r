@@ -3,7 +3,6 @@
 #' compacts it back into one dataset.
 #' 
 #' @param data data to pull points from
-#' @param x.values pull the x or y values
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
 compact_pcp <- function(data) {
@@ -18,9 +17,16 @@ compact_pcp <- function(data) {
   })
 }
 
-
+#' Scale the values by range
+#' Divide the values of the objects by the range of values
+#' 
+#' @param x values to be worked on
+#' @author Hadley Wickham \email{h.wickham@@gmail.com}
+#' @keywords internal 
 range01 <- function(x) {
+print(head(x))
   rng <- range(x, na.rm = TRUE)
+cat("\n  ");print(rng)
   if (diff(rng) == 0) {
     rep(0, length(x))
   } else {
@@ -31,7 +37,7 @@ range01 <- function(x) {
 #' Create a nice plot for parallel coordinates plot
 #' Create a nice looking plot complete with axes using ggplot.
 #' 
-#' @param plot to display
+#' @param data plot to display
 #' @param absoluteX make the sections proportional horizontally to eachother
 #' @param absoluteY make the sections proportional vertically to eachother
 #' @param other arguments passed to the grob function
@@ -54,7 +60,7 @@ ggplot.parcoords <- function(
 ) { 
 
   df <- compact_pcp(data)
-  browser()
+#  browser()
   
   if (absoluteX) {
     std <- transform(df, x = as.numeric(variable) + range01(x) / 2)  
@@ -70,9 +76,12 @@ ggplot.parcoords <- function(
 
   ybreaks <- seq(min(df$y), max(df$y), length = 5)
   vars <- levels(df$variable)
+print(vars)
+
+print(std)
 
   ### Make a pretty picture
-  p <- ggplot(std, aes(x, y, group = id, colour = col, order = col)) +
+  p <- ggplot(std, aes_string("x", "y", group = "id", colour = "col", order = "col")) +
     scale_colour_identity() + 
     scale_size_identity() + 
     scale_shape_identity() + 
@@ -81,15 +90,17 @@ ggplot.parcoords <- function(
     scale_y_continuous("", breaks = ybreaks, labels = "") + 
     scale_x_continuous("", breaks = 1:length(vars), 
       labels = vars, minor_breaks = FALSE)
-  
-  if (lines) {
-    p <- p + geom_line(aes(size = cex * 2))
+  cat("\nDone with GGplot\n")
+  if(lines) {
+    p <- p + geom_line(aes_string(size = "cex * 2"))
   }
+  cat("\nDone with Lines\n")
 
   # Plot points on top
   if (data$showPoints) {
-    p <- p + geom_point(aes(shape = pch, size = cex * 4.5))
+    p <- p + geom_point(aes_string(shape = "pch", size = "cex * 4.5"))
   }
+  cat("\nDone with points\n")
 
   p
 }
