@@ -24,9 +24,7 @@ compact_pcp <- function(data) {
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
 range01 <- function(x) {
-print(head(x))
   rng <- range(x, na.rm = TRUE)
-cat("\n  ");print(rng)
   if (diff(rng) == 0) {
     rep(0, length(x))
   } else {
@@ -60,7 +58,6 @@ ggplot.parcoords <- function(
 ) { 
 
   df <- compact_pcp(data)
-#  browser()
   
   if (absoluteX) {
     std <- transform(df, x = as.numeric(variable) + range01(x) / 2)  
@@ -76,12 +73,9 @@ ggplot.parcoords <- function(
 
   ybreaks <- seq(min(df$y), max(df$y), length = 5)
   vars <- levels(df$variable)
-print(vars)
-
-print(std)
 
   ### Make a pretty picture
-  p <- ggplot(std, aes_string("x", "y", group = "id", colour = "col", order = "col")) +
+  p <- ggplot(std, aes_string(x = "x", y = "y", group = "id", colour = "col", order = "col")) +
     scale_colour_identity() + 
     scale_size_identity() + 
     scale_shape_identity() + 
