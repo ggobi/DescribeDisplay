@@ -22,8 +22,4 @@
 # ' \url{http://www.ggobi.org/}
 # ' \url{http://www.had.co.nz/ggplot2/}
 # ' @keywords package
-# ' @examples
-# ' example(ggplot.dd)
-# ' example(ggplot.scatmat)
-# ' example(ggplot.parcoords)
-# ' example(ggplot.timeseries)
+

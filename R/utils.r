@@ -34,3 +34,15 @@ removehiddens <- function(d) {
   
   d
 }
+
+#' Run All Examples
+#' Will run all examples within the package
+#' @author Barret Schloerke bigbear@@iastate.edu
+#' @keywords hplot
+zeeThemAll <- function()
+{
+	example(ggplot.dd)
+	example(ggplot.scatmat)
+	example(ggplot.parcoords)
+	example(ggplot.timeseries)	
+}
