@@ -21,7 +21,6 @@
 #' @examples
 #' plot(dd_example("dot"))
 #' plot(dd_example("xyplot"))
-#' plot(dd_example("edges"))
 #' plot(dd_example("tour1d"))
 #' plot(dd_example("tour2d"))
 #'
@@ -75,8 +74,8 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 #' 
 #' @param x object to plot
 #' @param ... (not used)
-#' @param axis location, x and y position
-#' @param axisgp frame grob containing all panels, note that this does not contain the title or border
+#' @param axislocation location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
+#' @param axis.gp frame grob containing all panels, note that this does not contain the title or border
 #' @param background.color color of in the background of the plot
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot

@@ -3,21 +3,21 @@
 #' 
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param axis.location grob function to use for drawing
-#' @param other arguments passed to the grob function
+#' @param ... arguments passed to the grob function
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
 #' @examples
 #' 
-#' ggplot(dd_example("tour2d"))
-#' ggplot(dd_example("tour1d"))
-#' ggplot(dd_example("tour2d-cube3"))
-#' ggplot(dd_example("dot"))
-#' ggplot(dd_example("dot-labels"))
-#' ggplot(dd_example("xyplot"))
-#' ggplot(dd_example("xyplot")) + opts(aspect.ratio = 1)
-#' ggplot(dd_example("xyplot")) + xlab(NULL) + ylab(NULL)
-#' ggplot(dd_example("ash"))
-#' ggplot(dd_example("ash")) + geom_segment(aes(x=x,xend=x,y=0,yend=y),size=0.3)
+#' print(ggplot(dd_example("tour2d")))
+#' print(ggplot(dd_example("tour1d")))
+#' print(ggplot(dd_example("tour2d-cube3")))
+#' print(ggplot(dd_example("dot")))
+#' print(ggplot(dd_example("dot-labels")))
+#' print(ggplot(dd_example("xyplot")))
+#' print(ggplot(dd_example("xyplot")) + opts(aspect.ratio = 1))
+#' print(ggplot(dd_example("xyplot")) + xlab(NULL) + ylab(NULL))
+#' print(ggplot(dd_example("ash")))
+#' print(ggplot(dd_example("ash")) + geom_segment(aes(x=x,xend=x,y=0,yend=y),size=0.3))
 ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   #cat("\nggplot.ddplot\n")
 #print(head(data$points))
@@ -91,13 +91,13 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #' Create a nice looking plot complete with axes using ggplot.
 #' 
 #' @param data plot to display, object created by \code{dd_load()}
-#' @param other not used
+#' @param ... not used
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
 #' @examples
-#' example(ggplot.ddplot)
-#' example(ggplot.histogram)
-#' example(ggplot.barplot)
+#' print(example(ggplot.ddplot))
+#' print(example(ggplot.histogram))
+#' print(example(ggplot.barplot))
 ggplot.dd <- function(data, ...) { 
 #  cat("\nggplot.dd\n")
   panel <- data$plots[[1]]

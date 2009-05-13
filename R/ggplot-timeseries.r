@@ -41,14 +41,14 @@ compact_timeseries <- function(data){
 #' Create nice plots for a time series
 #' Create nice looking plots complete with axes using ggplot.  Produces graphics with a uniform x axis.  
 #' 
-#' @param plot to display
+#' @param data to display
 #' @param edges Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.
-#' @param other (currently) unused arguments
+#' @param ... (currently) unused arguments
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 #' @examples
-#' ggplot(dd_example("pigs"))
-#' ggplot(dd_example("pigs"),edges=TRUE)
+#' print(ggplot(dd_example("pigs")))
+#' print(ggplot(dd_example("pigs"),edges=TRUE))
 ggplot.timeseries <- function(data, edges = FALSE,...){
   #cat("\nggplot.timeseries\n")
   df <- compact_timeseries(data)

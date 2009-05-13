@@ -7,4 +7,4 @@ A special ggplot2 geom for drawing the tour axes}
 \alias{geom_axis}
 \arguments{\item{Geom}{previous information}
 \item{new}{function to set up the axis}}
-\examples{ggplot(dd_example("tour2d"))}
+\examples{print(ggplot(dd_example("tour2d")))}

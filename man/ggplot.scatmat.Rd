@@ -8,7 +8,7 @@ the diagonal have a smooth density while the values are compared
 to eachother within the matrix.}
 \author{Barret Schloerke \email{bigbear@iastate.edu}}
 \keyword{hplot}
-\arguments{\item{plot}{to display}
-\item{other}{(currently) unused arguments}}
-\examples{ggplot(dd_example("scattermat-small"))
-ggplot(dd_example("scattermat")) + opts(aspect.ratio=1)}
+\arguments{\item{data}{to display}
+\item{...}{(currently) unused arguments}}
+\examples{print(ggplot(dd_example("scattermat-small")))
+print(ggplot(dd_example("scattermat")) + opts(aspect.ratio=1))}

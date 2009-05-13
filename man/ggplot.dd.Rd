@@ -7,7 +7,7 @@ Create a nice looking plot complete with axes using ggplot.}
 \author{Hadley Wickham \email{h.wickham@gmail.com}}
 \keyword{hplot}
 \arguments{\item{data}{plot to display, object created by \code{dd_load()}}
-\item{other}{not used}}
-\examples{example(ggplot.ddplot)
-example(ggplot.histogram)
-example(ggplot.barplot)}
+\item{...}{not used}}
+\examples{print(example(ggplot.ddplot))
+print(example(ggplot.histogram))
+print(example(ggplot.barplot))}

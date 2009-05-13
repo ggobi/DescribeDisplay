@@ -8,5 +8,5 @@ Create a nice looking plot complete with axes using ggplot.}
 \keyword{hplot}
 \arguments{\item{data}{plot to display, object created by \code{dd_load()}}
 \item{spine}{(not implemented currently) whether to display the barchart as a spine plot}
-\item{other}{arguments passed through to the ggplot function}}
-\examples{ggplot(dd_example("barchart-species"))}
+\item{...}{arguments passed through to the ggplot function}}
+\examples{print(ggplot(dd_example("barchart-species")))}

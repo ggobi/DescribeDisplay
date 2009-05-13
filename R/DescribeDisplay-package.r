@@ -16,7 +16,7 @@
 # ' @docType package
 # ' @title Tests pseudoprimality by Fermat ' s little theorem
 # ' @author Hadley Wickham \email{hadley@@iastate.edu}, Di Cook \email{dicook@@iastate.edu}, Andreas Buja \email{buja@@wharton.upenn.edu}, Barret Schloerke \email{bigbear@iastate.edu}
-# ' @depends R (>= 2.6.1), grid, reshape (>= 0.7.1), ggplot2 (>= 0.8.2), proto
+# ' @depends R (>= 2.6.1), grid, reshape (>= 0.7.1), ggplot2 (>= 0.8.3), proto
 # ' @references
 # ' \url{http://www.ggobi.org/describe-display}
 # ' \url{http://www.ggobi.org/}

@@ -3,11 +3,11 @@
 #' 
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param spine (not implemented currently) whether to display the barchart as a spine plot
-#' @param other arguments passed through to the ggplot function
+#' @param ... arguments passed through to the ggplot function
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot
 #' @examples
-#' ggplot(dd_example("barchart"))
+#' print(ggplot(dd_example("barchart")))
 ggplot.histogram <- function(data, spine = FALSE,...) {
   cat("\nggplot.histogram\n")
   
@@ -42,11 +42,11 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
 #' 
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param spine (not implemented currently) whether to display the barchart as a spine plot
-#' @param other arguments passed through to the ggplot function
+#' @param ... arguments passed through to the ggplot function
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot
 #' @examples
-#' ggplot(dd_example("barchart-species"))
+#' print(ggplot(dd_example("barchart-species")))
 ggplot.barplot <- function(data,spine=FALSE,...){
   cat("\nggplot.barplot\n")
   levelnames <- data$params$levelnames

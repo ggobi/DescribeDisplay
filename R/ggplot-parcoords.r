@@ -38,22 +38,23 @@ range01 <- function(x) {
 #' @param data plot to display
 #' @param absoluteX make the sections proportional horizontally to eachother
 #' @param absoluteY make the sections proportional vertically to eachother
-#' @param other arguments passed to the grob function
+#' @param edges boolean value to print edges.  Defaults to TRUE.
+#' @param ... arguments passed to the grob function
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 #' @examples
-#' ggplot(dd_example("pcp"))
-#' ggplot(dd_example("pcp-ash"))
-#' ggplot(dd_example("pcp-ash"),lines = FALSE)
-#' ggplot(dd_example("pcp-ash"),absoluteY = TRUE, lines = FALSE)
-#' ggplot(dd_example("pcp-texture"))
-#' ggplot(dd_example("pcp-texture"),lines=FALSE)
-#' ggplot(dd_example("pcp-texture"),absoluteY=TRUE,lines=FALSE)
+#' print(ggplot(dd_example("pcp")))
+#' print(ggplot(dd_example("pcp-ash")))
+#' print(ggplot(dd_example("pcp-ash"), edges = FALSE))
+#' print(ggplot(dd_example("pcp-ash"),absoluteY = TRUE, edges = FALSE))
+#' print(ggplot(dd_example("pcp-texture")))
+#' print(ggplot(dd_example("pcp-texture"), edges =FALSE))
+#' print(ggplot(dd_example("pcp-texture"),absoluteY=TRUE, edges =FALSE))
 ggplot.parcoords <- function(
   data,
   absoluteX = FALSE, 
   absoluteY = FALSE, 
-  lines = TRUE,
+  edges = TRUE,
   ...
 ) { 
 
@@ -85,10 +86,10 @@ ggplot.parcoords <- function(
     scale_x_continuous("", breaks = 1:length(vars), 
       labels = vars, minor_breaks = FALSE)
   cat("\nDone with GGplot\n")
-  if(lines) {
+  if(edges) {
     p <- p + geom_line(aes_string(size = "cex * 2"))
   }
-  cat("\nDone with Lines\n")
+  cat("\nDone with edges\n")
 
   # Plot points on top
   if (data$showPoints) {

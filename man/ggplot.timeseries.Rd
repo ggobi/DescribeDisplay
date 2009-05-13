@@ -6,8 +6,8 @@
 Create nice looking plots complete with axes using ggplot.  Produces graphics with a uniform x axis.}
 \author{Barret Schloerke \email{bigbear@iastate.edu}}
 \keyword{hplot}
-\arguments{\item{plot}{to display}
+\arguments{\item{data}{to display}
 \item{edges}{Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.}
-\item{other}{(currently) unused arguments}}
-\examples{ggplot(dd_example("pigs"))
-ggplot(dd_example("pigs"),edges=TRUE)}
+\item{...}{(currently) unused arguments}}
+\examples{print(ggplot(dd_example("pigs")))
+print(ggplot(dd_example("pigs"),edges=TRUE))}

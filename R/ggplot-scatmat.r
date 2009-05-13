@@ -26,11 +26,11 @@ compact_scatmat <- function(data) {
 #' the diagonal have a smooth density while the values are compared 
 #' to eachother within the matrix.
 #' 
-#' @param plot to display
-#' @param other (currently) unused arguments
+#' @param data to display
+#' @param ... (currently) unused arguments
 #' @examples
-#' ggplot(dd_example("scattermat-small"))
-#' ggplot(dd_example("scattermat")) + opts(aspect.ratio=1)
+#' print(ggplot(dd_example("scattermat-small")))
+#' print(ggplot(dd_example("scattermat")) + opts(aspect.ratio=1))
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 ggplot.scatmat <- function(data,...){
