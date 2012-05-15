@@ -25,10 +25,10 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
     gTree(children=gList(
       rectGrob(),
       linesGrob(x=unit(c(0,0), "native"), y = unit(c(0,1), "npc")),
-      segmentsGrob(-1, 1:n , 1, 1:n, default="native", gp=gpar(lty=3)),
-      segmentsGrob(0, 1:n , axes$x, 1:n, default="native", gp=gpar(lwd=2)),
-      textGrob(-1:1, -1:1, -0.3, default="native", just=c("centre", "top"), gp=gpar(cex=0.9)),
-      textGrob(axes$label, 1.1, 1:n, default="native", just=c("left", "centre"))
+      segmentsGrob(-1, 1:n , 1, 1:n, default.units="native", gp=gpar(lty=3)),
+      segmentsGrob(0, 1:n , axes$x, 1:n, default.units="native", gp=gpar(lwd=2)),
+      textGrob(-1:1, -1:1, -0.3, default.units="native", just=c("centre", "top"), gp=gpar(cex=0.9)),
+      textGrob(axes$label, 1.1, 1:n, default.units="native", just=c("left", "centre"))
       
     ), name="axis", vp=vpPath("axes"), gp=gp)
   }

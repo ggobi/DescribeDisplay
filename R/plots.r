@@ -38,7 +38,7 @@
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
 #' @method plot dd
-#' @export
+#' @exportdefault
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
@@ -61,7 +61,7 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 
   if (draw) {
     grid.newpage()
-    pushViewport(viewport(w = size, h = size))
+    pushViewport(viewport(width = size, height = size))
     grid.draw(pg)
   }
   
