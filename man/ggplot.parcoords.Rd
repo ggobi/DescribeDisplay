@@ -25,6 +25,7 @@ Create a nice looking plot complete with axes using ggplot.}
   nice looking plot complete with axes using ggplot.
 }
 \examples{
+library(ggplot2)
 print(ggplot(dd_example("pcp")))
 print(ggplot(dd_example("pcp-ash")))
 print(ggplot(dd_example("pcp-ash"), edges = FALSE))

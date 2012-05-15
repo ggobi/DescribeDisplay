@@ -44,6 +44,7 @@ range01 <- function(x) {
 #' @keywords hplot 
 #' @S3method ggplot parcoords 
 #' @examples
+#' library(ggplot2)
 #' print(ggplot(dd_example("pcp")))
 #' print(ggplot(dd_example("pcp-ash")))
 #' print(ggplot(dd_example("pcp-ash"), edges = FALSE))

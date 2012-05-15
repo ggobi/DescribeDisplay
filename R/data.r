@@ -13,6 +13,7 @@
 #' @seealso \code{\link{dd_example}} for an easier way of loading example
 #'   files
 #' @keywords  manip
+#' @export
 dd_load <- function(path) {
   dd <- source(path)$value
   class(dd) <- c(dd_plot_class(dd$type), "dd")
@@ -35,6 +36,7 @@ dd_load <- function(path) {
 #' @param name name of example
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
+#' @export
 #' @examples
 #' a <- dd_example("xyplot")
 dd_example <- function(name) {
@@ -216,11 +218,5 @@ dd_tour_axes <- function(plot) {
   df
 }
 
-#' Print dd object
-#' Use str to print out human readable describe display object
-#' 
-#' @param x dd object
-#' @param ... not used
-#' @author Hadley Wickham h.wickham [at] gmail.com
-#' @keywords internal 
+#' @S3method print dd
 print.dd <- function(x, ...) str(x)

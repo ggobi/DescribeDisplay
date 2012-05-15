@@ -18,6 +18,7 @@ Create a nice looking plot complete with axes using ggplot.}
   with axes using ggplot.
 }
 \examples{
+library(ggplot2)
 print(ggplot(dd_example("tour2d")))
 print(ggplot(dd_example("tour1d")))
 print(ggplot(dd_example("tour2d-cube3")))

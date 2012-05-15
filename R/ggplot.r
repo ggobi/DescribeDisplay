@@ -8,7 +8,7 @@
 #' @keywords hplot
 #' @S3method ggplot ddplot
 #' @examples
-#' 
+#' library(ggplot2)
 #' print(ggplot(dd_example("tour2d")))
 #' print(ggplot(dd_example("tour1d")))
 #' print(ggplot(dd_example("tour2d-cube3")))
@@ -98,6 +98,7 @@ print("axes")
 #' @keywords hplot
 #' @S3method ggplot dd
 #' @examples
+#' library(ggplot2)
 #' print(example(ggplot.ddplot))
 #' print(example(ggplot.histogram))
 #' print(example(ggplot.barplot))

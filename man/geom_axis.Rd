@@ -14,6 +14,10 @@ A special ggplot2 geom for drawing the tour axes}
   Geom Axis A special ggplot2 geom for drawing the tour
   axes
 }
+\examples{
+library(ggplot2)
+print(ggplot(dd_example("tour2d")))
+}
 \author{
   Hadley Wickham \email{h.wickham@gmail.com}
 }

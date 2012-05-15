@@ -37,6 +37,8 @@
 #' plot(texture)
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
+#' @method plot dd
+#' @exportnull
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
@@ -79,6 +81,8 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 #' @param background.color color of in the background of the plot
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
+#' @method plot ddplot
+#' @export
 #' @examples
 #' scatmat <- dd_example("scattermat")
 #' plot(scatmat)

@@ -19,6 +19,7 @@ to eachother within the matrix.}
   compared to eachother within the matrix.
 }
 \examples{
+library(ggplot2)
 print(ggplot(dd_example("scattermat-small")))
 print(ggplot(dd_example("scattermat")) + opts(aspect.ratio=1))
 }

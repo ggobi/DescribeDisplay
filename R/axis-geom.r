@@ -1,13 +1,4 @@
-#' GeomAxis
-#' A special ggplot2 geom for drawing the tour axes
-#' 
-#' @keywords internal
-#' @param Geom previous information
-#' @param new function to set up the axis
-#' @author Hadley Wickham \email{h.wickham@@gmail.com}
-#' @aliases geom_axis
-#' @examples
-#' print(ggplot(dd_example("tour2d")))
+#' @importFrom proto proto
 GeomAxis <- proto(ggplot2:::Geom, {
   new <- function(., data=NULL, stat=NULL, position=NULL, ...){
     do.call("layer", list(mapping=NULL, data=data, stat=stat, geom=., position=position, ..., inherit.aes = FALSE))
@@ -40,4 +31,8 @@ GeomAxis <- proto(ggplot2:::Geom, {
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
 #' @aliases GeomAxis
+#' @export
+#' @examples
+#' library(ggplot2)
+#' print(ggplot(dd_example("tour2d")))
 geom_axis <- function(...) GeomAxis$new(...)
