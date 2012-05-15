@@ -11,7 +11,7 @@ compact_pcp <- function(data) {
       id = 1:nrow(p$points),
       variable = p$params$label, 
       p$points[c("col", "pch", "cex")], 
-      x = nulldefault(p$points$y, 1),
+      x = p$points$y %||% 1,
       y = p$points$x
     )
   })

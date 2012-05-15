@@ -21,7 +21,7 @@ dd_load <- function(path) {
     function(x) do.call(rgb, as.list(x))
   )
   dd$colormap$foregroundColors <- NULL
-  cols <- nulldefault(dd$ncols, 1)
+  cols <- dd$ncols %||% 1
   dd$dim <- c(dd$nplots / cols, cols)
   dd$plots <- lapply(1:dd$nplots, function(n) dd_clean_plot(dd, n))  
   
@@ -127,7 +127,7 @@ dd_points <- function(dd, n=1) {
     df$cex <- (df$glyphsize + 1)/6
   }
   
-  rownames(df) <- nulldefault(df$index, 1:nrow(df))
+  rownames(df) <- df$index %||% seq_len(nrow(df))
   
   df[order(!df$hidden), intersect(names(df), c("x","y", "col","pch", "cex", "hidden"))]
 }
@@ -179,8 +179,8 @@ dd_plot_class <- function(projection) {
 dd_defaults <- function(dd, n=1) {
   list(
     main = dd$title,
-    xlab = nulldefault(dd$plots[[n]]$plotparams$xlab, ""),
-    ylab = nulldefault(dd$plots[[n]]$plotparams$ylab, ""),
+    xlab = dd$plots[[n]]$plotparams$xlab %||% "",
+    ylab = dd$plots[[n]]$plotparams$ylab %||% "",
     axes = FALSE
   )  
 }

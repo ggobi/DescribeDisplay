@@ -38,7 +38,7 @@
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
 #' @method plot dd
-#' @exportnull
+#' @export
 plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
@@ -131,13 +131,15 @@ ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="b
   }
   
   grobs <- append(grobs,  list(
-    textGrob(nulldefault(panel$params$xlab, ""), 0.99, 0.01, just = c("right","bottom")),
-    textGrob(nulldefault(panel$params$ylab, ""), 0.01, 0.99, just = c("left", "top")),
+    textGrob(panel$params$xlab %||% "", 0.99, 0.01, 
+      just = c("right","bottom")),
+    textGrob(panel$params$ylab %||% "", 0.01, 0.99, just = c("left", "top")),
     axesGrob(axes, gp=axis.gp)
   ))
 
   if (length(panel$params$label) == 1)
-    grobs <- append(grobs, list(textGrob(nulldefault(panel$params$label, ""), 0.5, 0.01, just = c("centre", "bottom"))))
+    grobs <- append(grobs, list(textGrob(panel$params$label %||% "",
+     0.5, 0.01, just = c("centre", "bottom"))))
 
   if (!is.null(panel$drawlines) && panel$drawlines) {
     grobs <- append(grobs, list(segmentsGrob(points$x, panel$baseline, points$x, points$y, default.units="native",  gp=gpar(col=as.character(points$col)))))
