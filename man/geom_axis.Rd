@@ -1,9 +1,21 @@
 \name{geom_axis}
-\title{Geom Axis...}
-\usage{geom_axis(...)}
-\description{Geom Axis
-A special ggplot2 geom for drawing the tour axes}
-\author{Hadley Wickham \email{h.wickham@gmail.com}}
-\keyword{internal}
+\alias{geom_axis}
 \alias{GeomAxis}
-\arguments{\item{...}{should include data, location, aes\_string information}}
+\title{Geom Axis
+A special ggplot2 geom for drawing the tour axes}
+\usage{
+  geom_axis(...)
+}
+\arguments{
+  \item{...}{should include data, location, aes\_string
+  information}
+}
+\description{
+  Geom Axis A special ggplot2 geom for drawing the tour
+  axes
+}
+\author{
+  Hadley Wickham \email{h.wickham@gmail.com}
+}
+\keyword{internal}
+
