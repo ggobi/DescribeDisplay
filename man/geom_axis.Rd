@@ -1,8 +1,6 @@
 \name{geom_axis}
 \alias{geom_axis}
-\alias{GeomAxis}
-\title{Geom Axis
-A special ggplot2 geom for drawing the tour axes}
+\title{Geom Axis.}
 \usage{
   geom_axis(axis, location, ...)
 }
@@ -11,8 +9,7 @@ A special ggplot2 geom for drawing the tour axes}
   information}
 }
 \description{
-  Geom Axis A special ggplot2 geom for drawing the tour
-  axes
+  A special ggplot2 geom for drawing the tour axes
 }
 \examples{
 library(ggplot2)

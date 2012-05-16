@@ -1,4 +1,3 @@
-#' @importFrom proto proto
 GeomAxis <- proto(ggplot2:::Geom, {
   draw <- function(., data, scales, coordinates, location = c(0.2, 0.2), size=0.9, colour = "black", axis, ...) {
     axesVp <- axesViewport(axis, location)

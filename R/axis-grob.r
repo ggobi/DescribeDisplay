@@ -5,6 +5,7 @@
 #' @param gp arguments to the axes
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
+#' @export
 axesGrob <- function(axes, gp=gpar(col="black")) {
   if (is.null(axes)) return()
 
@@ -42,6 +43,7 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
 #' @param axislocation location of axes (as x and y position in npc coordinates, ie. between 0 and 1)
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
+#' @export
 axesViewport <- function(axes, axislocation) {
   if (is.null(axes)) return()
 

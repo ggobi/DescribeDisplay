@@ -5,11 +5,12 @@ Author: Hadley Wickham <hadley@rice.edu>,
     Di Cook <dicook@iastate.edu>,
     Andreas Buja <buja@wharton.upenn.edu>,
     Barret Schloerke <bigbear@iastate.edu>
+Depends:
+    proto
 Imports:
     grid,
     reshape2,
     ggplot2 (>= 0.9.1),
-    proto,
     plyr,
     scales,
     grid
