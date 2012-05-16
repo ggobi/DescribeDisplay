@@ -82,7 +82,8 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     data$labels$pch <- rep(1,length(data$labels$x))
     data$labels$cex <- rep(2/5,length(data$labels$x))
     data$labels$colour <- rep("black",length(data$labels$x))
-    p <- p + geom_text(data=data$labels, aes_string(x = "x", y = "y", label = "label"),  justification=c(data$labels$left[1], data$labels$top[1]))
+    p <- p + geom_text(data = data$labels, aes_string(x = "x", y = "y", 
+      label = "label", hjust = "left", vjust = "top"), inherit.aes = FALSE)
   }  
 
   p
