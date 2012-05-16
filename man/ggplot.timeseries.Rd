@@ -20,6 +20,7 @@ Create nice looking plots complete with axes using ggplot.  Produces graphics wi
   with a uniform x axis.
 }
 \examples{
+library(ggplot2)
 print(ggplot(dd_example("pigs")))
 print(ggplot(dd_example("pigs"),edges=TRUE))
 }

@@ -33,6 +33,7 @@
 #'
 #' texture <- dd_example("1d-texture")
 #' plot(texture)
+#' library(scales)
 #' texture$plots[[1]]$yscale <- expand_range(texture$plots[[1]]$yscale, 0.5)
 #' plot(texture)
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}

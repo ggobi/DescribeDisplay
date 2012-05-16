@@ -49,6 +49,7 @@ compact_timeseries <- function(data){
 #' @keywords hplot
 #' @S3method ggplot timeseries 
 #' @examples
+#' library(ggplot2)
 #' print(ggplot(dd_example("pigs")))
 #' print(ggplot(dd_example("pigs"),edges=TRUE))
 ggplot.timeseries <- function(data, edges = FALSE,...){
