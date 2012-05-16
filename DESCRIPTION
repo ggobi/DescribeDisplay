@@ -18,7 +18,7 @@ Maintainer: Hadley Wickham <hadley@rice.edu>
 Description: Produce publication quality graphics from output of GGobi's
     describe display plugin
 License: BSD
-URL: NA
+URL: http://www.ggobi.org/describe-display/
 Collate:
     'axis-geom.r'
     'axis-grob.r'
