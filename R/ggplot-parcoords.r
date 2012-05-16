@@ -5,6 +5,7 @@
 #' @param data data to pull points from
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
+#' @importFrom plyr ldply
 compact_pcp <- function(data) {
   ldply(data$plots, function(p) {
     data.frame(
@@ -43,6 +44,7 @@ range01 <- function(x) {
 #' @author Barret Schloerke \email{bigbear@@iastate.edu}
 #' @keywords hplot 
 #' @S3method ggplot parcoords 
+#' @importFrom plyr ddply
 #' @examples
 #' library(ggplot2)
 #' print(ggplot(dd_example("pcp")))
@@ -68,12 +70,12 @@ ggplot.parcoords <- function(
     std <- transform(df, x = as.numeric(variable) + range01(x) / 2)  
   } else {
     # Scale variables individually
-    std <- ddply(df, .(variable), transform, 
+    std <- ddply(df, variable, transform, 
       x = as.numeric(variable) + range01(x) / 2)    
   }
   
   if (!absoluteY) {
-    std <- ddply(std, .(variable), transform, y = range01(y))
+    std <- ddply(std, variable, transform, y = range01(y))
   }
 
   ybreaks <- seq(min(df$y), max(df$y), length = 5)

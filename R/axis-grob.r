@@ -10,7 +10,7 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
 
   if (!is.null(axes$y)) { # 2d tour 
     #bigaxes <- subset(as.data.frame(axes), r > 0.3)
-    print(axes)
+
     bigaxes <- axes[axes[,"r"] > 0.3,]
     
     gTree(children=gList(
@@ -22,6 +22,7 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
   } else { # 1d tour  
     n <- nrow(axes)
 
+    browser()
     gTree(children=gList(
       rectGrob(),
       linesGrob(x=unit(c(0,0), "native"), y = unit(c(0,1), "npc")),

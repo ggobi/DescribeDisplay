@@ -4,7 +4,7 @@
 \title{Geom Axis
 A special ggplot2 geom for drawing the tour axes}
 \usage{
-  geom_axis(...)
+  geom_axis(axis, location, ...)
 }
 \arguments{
   \item{...}{should include data, location, aes\_string

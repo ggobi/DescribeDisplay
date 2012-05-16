@@ -49,7 +49,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   
   axes <- dd_tour_axes(data)
   if (!is.null(axes)) {
-print("axes")
+
     #Only is performed if it has tour data
     vars <- names(axes)
     names(vars) <- vars
@@ -63,7 +63,7 @@ print("axes")
 #	print(str(axes))
 
     p <- p + 
-      geom_axis(data = axes, location = axis.location) +
+      geom_axis(axes, location = axis.location) +
       opts(axis.text.x = theme_blank(), axis.text.y = theme_blank(), 
         aspect.ratio = 1)
   }

@@ -57,6 +57,7 @@ dd_example <- function(name) {
 #' @param n plot number
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal 
+#' @importFrom scales expand_range
 dd_clean_plot <- function(dd, n=1) {
   names(dd$plots[[n]]) <- gsub("plot", "", names(dd$plots[[n]]))
   plot <- c(
