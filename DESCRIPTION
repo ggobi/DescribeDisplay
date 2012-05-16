@@ -1,5 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2.1
+Version: 0.2.2
 Title: R interface to DescribeDisplay (GGobi plugin)
 Author: Hadley Wickham <hadley@rice.edu>,
     Di Cook <dicook@iastate.edu>,
