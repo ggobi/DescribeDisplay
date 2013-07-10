@@ -1,5 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2.3
+Version: 0.2.4
 Title: R interface to DescribeDisplay (GGobi plugin)
 Author: Hadley Wickham <hadley@rice.edu>,
     Di Cook <dicook@iastate.edu>,
@@ -8,13 +8,13 @@ Author: Hadley Wickham <hadley@rice.edu>,
 Depends:
     proto
 Imports:
-    grid,
     reshape2,
     ggplot2 (>= 0.9.1),
     plyr,
     scales,
-    grid
-Maintainer: Hadley Wickham <hadley@rice.edu>
+    grid,
+    GGally
+Maintainer: Di Cook <dicook@iastate.edu>
 Description: Produce publication quality graphics from output of GGobi's
     describe display plugin
 License: BSD
