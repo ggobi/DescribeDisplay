@@ -1,10 +1,16 @@
 Package: DescribeDisplay
 Version: 0.2.4
-Title: R interface to DescribeDisplay (GGobi plugin)
+Title: An Interface to the DescribeDisplay GGobi Plugin
+Description: Produce publication quality graphics from output of GGobi's
+    describe display plugin
 Author: Hadley Wickham <hadley@rice.edu>,
     Di Cook <dicook@iastate.edu>,
     Andreas Buja <buja@wharton.upenn.edu>,
     Barret Schloerke <bigbear@iastate.edu>
+Maintainer: Di Cook <dicook@iastate.edu>
+License: MIT + file LICENSE
+URL: https://github.com/ggobi/DescribeDisplay
+BugReports: https://github.com/ggobi/DescribeDisplay/issues
 Depends:
     proto
 Imports:
@@ -14,8 +20,3 @@ Imports:
     scales,
     grid,
     GGally
-Maintainer: Di Cook <dicook@iastate.edu>
-Description: Produce publication quality graphics from output of GGobi's
-    describe display plugin
-License: MIT + file LICENSE
-URL: http://www.ggobi.org/describe-display/
