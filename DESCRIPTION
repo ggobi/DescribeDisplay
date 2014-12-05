@@ -19,15 +19,3 @@ Description: Produce publication quality graphics from output of GGobi's
     describe display plugin
 License: BSD
 URL: http://www.ggobi.org/describe-display/
-Collate:
-    'axis-geom.r'
-    'axis-grob.r'
-    'data.r'
-    'DescribeDisplay-package.r'
-    'ggplot-barchart.r'
-    'ggplot-parcoords.r'
-    'ggplot-scatmat.r'
-    'ggplot-timeseries.r'
-    'ggplot.r'
-    'plots.r'
-    'utils.r'
