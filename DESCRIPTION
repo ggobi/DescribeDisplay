@@ -17,5 +17,5 @@ Imports:
 Maintainer: Di Cook <dicook@iastate.edu>
 Description: Produce publication quality graphics from output of GGobi's
     describe display plugin
-License: BSD
+License: MIT + file LICENSE
 URL: http://www.ggobi.org/describe-display/
