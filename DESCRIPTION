@@ -15,8 +15,8 @@ Depends:
     proto
 Imports:
     reshape2,
-    ggplot2 (>= 0.9.1),
+    ggplot2 (>= 2.0.0),
     plyr,
     scales,
     grid,
-    GGally
+    GGally (>= 1.0.0)
