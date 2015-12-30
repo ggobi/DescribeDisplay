@@ -3,7 +3,7 @@
 #' This function pulls the correct information out of the data.
 #'
 #' @param data
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords internal
 #' @importFrom reshape2 dcast
 compact_timeseries <- function(data){
@@ -45,7 +45,7 @@ compact_timeseries <- function(data){
 #' @param data to display
 #' @param edges Boolean operator to tell whether to try to force the edges or not.  Will not work to remove the edges.
 #' @param ... (currently) unused arguments
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 #' @export
 #' @examples

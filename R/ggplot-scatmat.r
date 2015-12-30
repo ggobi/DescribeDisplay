@@ -2,7 +2,7 @@
 #' A scatter plot matrix is made from the information from the 1Dplots. This function collects only that data.
 #'
 #' @param data
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords internal
 #' @importFrom reshape2 dcast
 compact_scatmat <- function(data) {
@@ -35,7 +35,7 @@ compact_scatmat <- function(data) {
 #' library(GGally)
 #' print(ggplot(dd_example("scatmat")))
 #' print(ggplot(dd_example("scatmat")) + theme(aspect.ratio=1))
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 ggplot.scatmat <- function(data,...){
   #cat("\nggplot.scatmat\n")

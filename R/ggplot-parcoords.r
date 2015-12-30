@@ -42,7 +42,7 @@ range01 <- function(x) {
 #' @param absoluteY make the sections proportional vertically to eachother
 #' @param edges boolean value to print edges.  Defaults to TRUE.
 #' @param ... arguments passed to the grob function
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 #' @export
 #' @importFrom plyr ddply

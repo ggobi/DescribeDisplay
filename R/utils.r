@@ -39,7 +39,7 @@ removehiddens <- function(d) {
 
 #' Run All Examples
 #' Will run all examples within the package
-#' @author Barret Schloerke bigbear@@iastate.edu
+#' @author Barret Schloerke schloerke@@gmail.com
 #' @keywords hplot
 #' @export
 zeeThemAll <- function()

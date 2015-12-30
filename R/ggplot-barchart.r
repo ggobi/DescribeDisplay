@@ -4,7 +4,7 @@
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param spine (not implemented currently) whether to display the barchart as a spine plot
 #' @param ... arguments passed through to the ggplot function
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 #' @export
 #' @examples
@@ -46,7 +46,7 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
 #' @param data plot to display, object created by \code{dd_load()}
 #' @param spine (not implemented currently) whether to display the barchart as a spine plot
 #' @param ... arguments passed through to the ggplot function
-#' @author Barret Schloerke \email{bigbear@@iastate.edu}
+#' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 #' @export
 #' @examples

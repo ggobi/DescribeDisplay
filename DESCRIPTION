@@ -6,7 +6,7 @@ Description: Produce publication quality graphics from output of GGobi's
 Author: Hadley Wickham <hadley@rice.edu>,
     Di Cook <dicook@iastate.edu>,
     Andreas Buja <buja@wharton.upenn.edu>,
-    Barret Schloerke <bigbear@iastate.edu>
+    Barret Schloerke <schloerke@gmail.com>
 Maintainer: Di Cook <dicook@iastate.edu>
 License: MIT + file LICENSE
 URL: https://github.com/ggobi/DescribeDisplay
