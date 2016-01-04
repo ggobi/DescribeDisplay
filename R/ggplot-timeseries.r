@@ -94,7 +94,7 @@ ggplot.timeseries <- function(data, edges = FALSE,...){
       scale_linetype_identity() +
       theme(title = element_text(data$title)) +
       scale_x_continuous(all[1,"yvar"]) +
-      scale_y_continuous("")+
+      scale_y_continuous("") +
       geom_point(data = all, aes_string(size = "cex * 4",colour="col", shape = "pch"))
 
   if(data$showDirectedEdges | data$showUndirectedEdges | edges == TRUE)

@@ -88,7 +88,10 @@ dd_clean_plot <- function(dd, n=1) {
 
   if (!is.null(dd$plots[[n]]$stickylabels)) {
     labels <- do.call(rbind, lapply(dd$plots[[n]]$stickylabels, as.data.frame))
-    labels <- cbind(plot$points[labels$index+1, c("x", "y")], label = labels$label)
+    labels <- cbind(
+      plot$points[labels$index + 1, c("x", "y")],
+      label = labels$label
+    )
     rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
     # tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
     labels$left <- ifelse(rl, 0, 1)
@@ -124,7 +127,7 @@ dd_points <- function(dd, n=1) {
     df$pch <- df$cex <- rep(1, nrow(df))
   } else {
     df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
-    df$cex <- (df$glyphsize + 1)/6
+    df$cex <- (df$glyphsize + 1) / 6
   }
 
   rownames(df) <- df$index %||% seq_len(nrow(df))
@@ -146,7 +149,7 @@ dd_edges <- function(dd, n=1) {
 
   # Remap edge aesthetics to appropriate values
   df$col <- dd$colormap$foreground[df$color + 1]
-  df$lwd <- (df$lwd + 1)/2
+  df$lwd <- (df$lwd + 1) / 2
   df$lty <- rep(1,6)[df$ltype + 1]
 
   df <- df[!df$hidden, c("src","dest", "col","lwd", "lty")] # Return only visible edges

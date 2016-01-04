@@ -6,7 +6,5 @@ linters: with_defaults(
     commented_code_linter = NULL, # 26
     trailing_whitespace_linter = NULL, # 16
     assignment_linter = NULL, # 15
-    infix_spaces_linter = NULL, # 11
-    no_tab_linter = NULL, # 7
     NULL
   )

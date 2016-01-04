@@ -50,12 +50,12 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     names(vars) <- vars
 
     ## Following three lines are to remove errors.
-    axes$pch <- rep(1,length(axes$x))
-    axes$cex <- rep(2/5,length(axes$x))
-    axes$colour <- rep("black",length(axes$x))
+    axes$pch <- rep(1, length(axes$x))
+    axes$cex <- rep(2 / 5, length(axes$x))
+    axes$colour <- rep("black", length(axes$x))
 
 #    print(axes)
-#	print(str(axes))
+# print(str(axes))
 
     p <- p +
       geom_axis(axes, location = axis.location) +
@@ -75,7 +75,7 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
   if (!is.null(data$labels)) {
     ## Following three lines are to remove errors.
     data$labels$pch <- rep(1,length(data$labels$x))
-    data$labels$cex <- rep(2/5,length(data$labels$x))
+    data$labels$cex <- rep(2 / 5,length(data$labels$x))
     data$labels$colour <- rep("black",length(data$labels$x))
     p <- p + geom_text(data = data$labels, aes_string(x = "x", y = "y",
       label = "label", hjust = "left", vjust = "top"), inherit.aes = FALSE)

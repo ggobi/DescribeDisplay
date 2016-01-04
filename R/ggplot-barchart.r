@@ -14,14 +14,16 @@
 ggplot.histogram <- function(data, spine = FALSE,...) {
 #  cat("\nggplot.histogram\n")
 
-  p <- ggplot(data$points,
-    aes_string(x = "x", fill = "col",...)) +
-      scale_x_continuous(data$params$label)+
-      coord_flip() +
-      scale_size_identity() +
-      scale_shape_identity() +
-      scale_linetype_identity() +
-      scale_fill_identity()
+  p <- ggplot(
+      data$points,
+      aes_string(x = "x", fill = "col",...)
+    ) +
+    scale_x_continuous(data$params$label) +
+    coord_flip() +
+    scale_size_identity() +
+    scale_shape_identity() +
+    scale_linetype_identity() +
+    scale_fill_identity()
 
 
 #  if(spine){
@@ -58,7 +60,7 @@ ggplot.barplot <- function(data,spine=FALSE,...){
   levelNameOrder <- data$params$levelvalues + 1
   xVals <- data$points$x
   for(i in 1:length(levelnames)){
-    xVals[xVals==i] <- levelnames[levelNameOrder[i]]
+    xVals[xVals == i] <- levelnames[levelNameOrder[i]]
   }
 
   data$points$splitBy <- xVals
@@ -76,7 +78,7 @@ ggplot.barplot <- function(data,spine=FALSE,...){
 #    xlim(temp)
 
 
-#	scale_x_continuous(data$params$label, limits = c(unique(data$points$splitBy)) )+
+# scale_x_continuous(data$params$label, limits = c(unique(data$points$splitBy)) )+
 
 
   p
