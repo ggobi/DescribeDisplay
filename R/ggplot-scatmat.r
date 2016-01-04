@@ -1,7 +1,7 @@
 #' Compact scatmat data
 #' A scatter plot matrix is made from the information from the 1Dplots. This function collects only that data.
 #'
-#' @param data
+#' @param data data to display
 #' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords internal
 #' @importFrom reshape2 dcast
@@ -27,7 +27,7 @@ compact_scatmat <- function(data) {
 #' the diagonal have a smooth density while the values are compared
 #' to eachother within the matrix.
 #'
-#' @param data to display
+#' @param data data to display
 #' @param ... (currently) unused arguments
 #' @export
 #' @examples

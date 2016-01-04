@@ -2,7 +2,7 @@
 #' A time series plot is made from scatterplots with a common x axis.
 #' This function pulls the correct information out of the data.
 #'
-#' @param data
+#' @param data data to display
 #' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords internal
 #' @importFrom reshape2 dcast
