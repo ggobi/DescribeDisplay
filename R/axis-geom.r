@@ -43,7 +43,7 @@ geom_axis <- function(axis, location, ...) {
       axesVp <- axesViewport(axis, location)
       axes <- axesGrob(axis, gp = gpar(col = axis[, "colour"]))
 
-      grid::gTree(
+      gTree(
         children = gList(axes),
         childrenvp = axesVp
       )
