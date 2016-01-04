@@ -1,8 +1,20 @@
 linters: with_defaults(
     commas_linter = NULL, # 16887
     line_length_linter = NULL, # 303
-    single_quotes_linter = NULL, # 183
     camel_case_linter = NULL, # 38
     commented_code_linter = NULL, # 26
     NULL
+  )
+exclusions:
+  list(
+    "inst/examples/barchart.R",
+    "inst/examples/histogram.R",
+    "inst/examples/parcoord.R",
+    "inst/examples/plot1d.R",
+    "inst/examples/scatmat.R",
+    "inst/examples/timeseries.R",
+    "inst/examples/tour1d.R",
+    "inst/examples/tour2d.R",
+    "inst/examples/tour2x1d.R",
+    "inst/examples/xyplot.R"
   )
