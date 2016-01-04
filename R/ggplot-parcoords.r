@@ -72,12 +72,12 @@ ggplot.parcoords <- function(
 
   if (!absoluteY) {
     std <- ddply(std, "variable", transform, y = range01(y))
-    yscale <- scale_y_continuous(NULL)
+    # yscale <- scale_y_continuous(NULL)
   } else {
-    ybreaks <- seq(min(std$y), max(std$y), length = 5)
-    ylabels <- seq(min(df$y), max(df$y), length = 5)
+    # ybreaks <- seq(min(std$y), max(std$y), length = 5)
+    # ylabels <- seq(min(df$y), max(df$y), length = 5)
 
-    yscale <- scale_y_continuous(breaks = ybreaks, labels = ylabels)
+    # yscale <- scale_y_continuous(breaks = ybreaks, labels = ylabels)
   }
 
   vars <- levels(df$variable)

@@ -16,7 +16,7 @@ addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fi
   brush <- data.frame(x=x, y=y, width=width, height=height)
   geom_rect(
     aes_string("x", "y", width = "width", height = "height"),
-    data = brush, 
+    data = brush,
     justification=just, fill=fill, colour=col
   )
 }
@@ -33,7 +33,7 @@ removehiddens <- function(d) {
     dd$points <- dd$points[!dd$points$hidden, ]
     dd
   })
-  
+
   d
 }
 
@@ -42,12 +42,11 @@ removehiddens <- function(d) {
 #' @author Barret Schloerke schloerke@@gmail.com
 #' @keywords hplot
 #' @export
-zeeThemAll <- function()
-{
-	example(ggplot.dd)
-	example(ggplot.scatmat)
-	example(ggplot.parcoords)
-	example(ggplot.timeseries)	
+zeeThemAll <- function() {
+  example(ggplot.dd)
+  example(ggplot.scatmat)
+  example(ggplot.parcoords)
+  example(ggplot.timeseries)
 }
 
 

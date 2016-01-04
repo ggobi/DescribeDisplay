@@ -90,7 +90,7 @@ dd_clean_plot <- function(dd, n=1) {
     labels <- do.call(rbind, lapply(dd$plots[[n]]$stickylabels, as.data.frame))
     labels <- cbind(plot$points[labels$index+1, c("x", "y")], label = labels$label)
     rl <- (labels$x - plot$xscale[1]) / diff(plot$xscale) < 0.5
-    tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
+    # tb <- (labels$y - plot$yscale[1]) / diff(plot$yscale) < 0.5
     labels$left <- ifelse(rl, 0, 1)
     labels$top <-  1 #ifelse(tb, 0, 1)
 
@@ -120,10 +120,9 @@ dd_points <- function(dd, n=1) {
   # Remap point aesthetics to R appropriate values
   df$col <- factor(ifelse(df$hidden, hiddencolour, cmap[df$color + 1]), levels = c(rev(cmap), hiddencolour))
 
-  if(is.null(df$glyphtype))
+  if(is.null(df$glyphtype)) {
     df$pch <- df$cex <- rep(1, nrow(df))
-  else
-  {
+  } else {
     df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
     df$cex <- (df$glyphsize + 1)/6
   }
@@ -210,7 +209,7 @@ dd_tour_axes <- function(plot) {
   df <- data.frame(proj, label=lbls, range=ranges)
 
   if (plot$projection == "2D Tour") {
-    df$r <- with(df, sqrt(x^2 + y^2))
+    df$r <- with(df, sqrt(x^2 + y^2)) # nolint
     df$theta <- atan2(df$y, df$x)
   } else {
     df <- df[nrow(df):1, ]

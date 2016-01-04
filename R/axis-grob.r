@@ -9,8 +9,9 @@
 axesGrob <- function(axes, gp=gpar(col="black")) {
   if (is.null(axes)) return()
 
-  if (!is.null(axes$y)) { # 2d tour
-    #bigaxes <- subset(as.data.frame(axes), r > 0.3)
+  if (!is.null(axes$y)) {
+    # 2d tour
+    # bigaxes <- subset(as.data.frame(axes), r > 0.3)
 
     bigaxes <- axes[axes[,"r"] > 0.3,]
 
@@ -20,7 +21,8 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
       textGrob(bigaxes$label, 1.1 * cos(bigaxes$theta), 1.1 * sin(bigaxes$theta), default.units="native")
     ), name="axis", vp=vpPath("axes"), gp=gp)
 
-  } else { # 1d tour
+  } else {
+    # 1d tour
     n <- nrow(axes)
 
     gTree(children=gList(
@@ -46,9 +48,11 @@ axesGrob <- function(axes, gp=gpar(col="black")) {
 axesViewport <- function(axes, axislocation) {
   if (is.null(axes)) return()
 
-  if (!is.null(axes$y)) { # 2d tour
+  if (!is.null(axes$y)) {
+    # 2d tour
     viewport(xscale=c(-1,1), yscale=c(-1,1), name="axes", width=0.2, height=0.2, x=axislocation[1], y=axislocation[2], default.units="snpc")
-  } else { # 1d tour
+  } else {
+    # 1d tour
     n <- nrow(axes)
     viewport(xscale=c(-1,1), yscale=c(0, n + 1), name="axes", width=0.1, height=unit(n+1, "lines"), x=axislocation[1], y=axislocation[2])
   }
