@@ -34,7 +34,6 @@ compact_scatmat <- function(data) {
 #' library(ggplot2)
 #' library(GGally)
 #' print(ggplot(dd_example("scatmat")))
-#' print(ggplot(dd_example("scatmat")) + theme(aspect.ratio=1))
 #' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
 ggplot.scatmat <- function(data,...){
