@@ -12,8 +12,6 @@ Author@R: c(
 License: MIT + file LICENSE
 URL: https://github.com/ggobi/DescribeDisplay
 BugReports: https://github.com/ggobi/DescribeDisplay/issues
-Depends:
-    proto
 Imports:
     reshape2,
     ggplot2 (>= 2.0.0),
