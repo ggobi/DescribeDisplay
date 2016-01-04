@@ -1,5 +1,5 @@
 #' R interface to DescribeDisplay (GGobi plugin).
-#' 
+#'
 #' Produce publication quality graphics from output of GGobi's describe
 #' display plugin
 #'
