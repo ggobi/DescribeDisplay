@@ -27,12 +27,15 @@ compact_timeseries <- function(data){
   df <- dcast(df, id + ... ~ variable)
   dfx <- dcast(dfx, id + ... ~ variable)
 
+  cPCI <- c("cex","pch","col", "id")
+  namesDf <- names(df)
+  namesInDf <- namesDf %in% cPCI
   df <- cbind(
-    df[,names(df) %in% c("cex","pch","col", "id") ],
-     dfx[,setdiff(names(dfx), c("cex","pch","col", "id")) ],
-    df[,setdiff(names(df), c("cex","pch","col", "id")) ]
+    df[, namesInDf],
+     dfx[,setdiff(names(dfx), cPCI) ],
+    df[,setdiff(namesDf, cPCI) ]
   )
-  colnames(df)[sum(names(df) %in% c("cex","pch","col", "id")) + 1] <- data$plots[[1]]$params$xlabel
+  colnames(df)[sum(namesInDf) + 1] <- data$plots[[1]]$params$xlabel
 
   return(df)
 
@@ -95,10 +98,17 @@ ggplot.timeseries <- function(data, edges = FALSE,...){
       theme(title = element_text(data$title)) +
       scale_x_continuous(all[1,"yvar"]) +
       scale_y_continuous("") +
-      geom_point(data = all, aes_string(size = "cex * 4",colour="col", shape = "pch"))
+      geom_point(
+        data = all,
+        aes_string(size = "cex * 4", colour = "col", shape = "pch")
+      )
 
   if(data$showDirectedEdges | data$showUndirectedEdges | edges == TRUE)
-    p <- p + geom_path(data = all, aes_string(x = "x", y = "y", size = "cex", colour = "col"))
+    p <- p +
+      geom_path(
+        data = all,
+        aes_string(x = "x", y = "y", size = "cex", colour = "col")
+      )
 
   p
 }

@@ -26,21 +26,41 @@
 #' @keywords internal
 #' @method plot dd
 #' @export
-plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, axisgp=gpar(col="black"), background.color="grey90") {
+plot.dd <- function(
+  x,
+  ...,
+  draw = TRUE,
+  axislocation = c(0.1, 0.1),
+  size = 0.9,
+  axisgp = gpar(col = "black"),
+  background.color = "grey90"
+) {
   d <- x$dim
   layout <- grid.layout(nrow = d[1], ncol = d[2])
   panels <- frameGrob(layout = layout)
 
   for (i in 1:x$nplot) {
     panels <- placeGrob(panels,
-      ddpanelGrob(x$plots[[i]], axislocation=axislocation, axis.gp=axisgp, background.color=background.color),
+      ddpanelGrob(
+        x$plots[[i]],
+        axislocation = axislocation,
+        axis.gp = axisgp,
+        background.color = background.color
+      ),
       col = (i - 1) %/% d[1] + 1, row = (i - 1) %% d[1] + 1
     )
   }
 
   if (!is.null(x$title) && nchar(x$title) != 0) {
     pg <- frameGrob(grid.layout(nrow=2, ncol=1))
-    pg <- packGrob(pg, textGrob(x$title, gp=gpar(cex=1.3)), row=1, height=unit(2,"lines"))
+    pg <- packGrob(
+      pg,
+      textGrob(
+        x$title,
+        gp = gpar(cex=1.3)
+      ),
+      row = 1, height = unit(2,"lines")
+    )
     pg <- packGrob(pg, panels, row=2)
   } else {
     pg <- panels
@@ -76,10 +96,20 @@ plot.dd <- function(x, ..., draw = TRUE, axislocation = c(0.1, 0.1), size=0.9, a
 #' plot(scatmat$plots[[1]])
 #' plot(scatmat$plots[[3]])
 #' plot(scatmat$plots[[4]])
-plot.ddplot <- function(x, ..., axislocation = c(0.1, 0.1), axis.gp=gpar(col="black"), background.color = "grey90") {
+plot.ddplot <- function(
+  x,
+  ...,
+  axislocation = c(0.1, 0.1),
+  axis.gp = gpar(col = "black"),
+  background.color = "grey90"
+) {
   grid.newpage()
-  grob <- ddpanelGrob(x, axislocation = axislocation, axis.gp = axis.gp,
-    background.color = background.color)
+  grob <- ddpanelGrob(
+    x,
+    axislocation = axislocation,
+    axis.gp = axis.gp,
+    background.color = background.color
+  )
   grid.draw(grob)
 }
 
@@ -93,7 +123,12 @@ plot.ddplot <- function(x, ..., axislocation = c(0.1, 0.1), axis.gp=gpar(col="bl
 #' @param background.color color of in the background of the plot
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
-ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="black"), background.color="grey90") {
+ddpanelGrob <- function(
+  panel,
+  axislocation = c(0.1, 0.1),
+  axis.gp = gpar(col="black"),
+  background.color = "grey90"
+) {
   points <- panel$points
   edges <- panel$edges
 
@@ -103,18 +138,52 @@ ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="b
     rectGrob(gp=gpar(col="grey", fill=background.color))
   )
 
-  if (!is.null(edges))
-    grobs <- append(grobs, list(segmentsGrob(edges$src.x, edges$src.y, edges$dest.x, edges$dest.y, default.units="native", gp=gpar(lwd=edges$lwd, col=as.character(edges$col)))))
+  if (!is.null(edges)) {
+    grobs <- append(
+      grobs,
+      list(
+        segmentsGrob(
+          edges$src.x, edges$src.y,
+          edges$dest.x, edges$dest.y,
+          default.units = "native",
+          gp = gpar(
+            lwd = edges$lwd,
+            col = as.character(edges$col)
+          )
+        )
+      )
+    )
+  }
 
   if (is.null(panel$showPoints) || panel$showPoints) {
-    grobs <- append(grobs, list(pointsGrob(points$x, points$y, pch=points$pch, gp=gpar(col=as.character(points$col)), size=unit(points$cex, "char"))))
+    grobs <- append(
+      grobs,
+      list(
+        pointsGrob(
+          points$x, points$y,
+          pch = points$pch,
+          gp = gpar(
+            col = as.character(points$col)
+          ),
+          size = unit(points$cex, "char")
+        )
+      )
+    )
   }
 
   if (!is.null(panel$labels)) {
     labels <- panel$labels
-    grobs <- append(grobs, list(
-      textGrob(as.character(labels$label), labels$x, labels$y, default.units="native",hjust=labels$left, vjust=labels$top)
-    ))
+    grobs <- append(
+      grobs,
+      list(
+        textGrob(
+          as.character(labels$label),
+          labels$x, labels$y,
+          default.units = "native",
+          hjust = labels$left, vjust = labels$top
+        )
+      )
+    )
   }
 
   grobs <- append(grobs,  list(
@@ -129,7 +198,20 @@ ddpanelGrob <- function(panel, axislocation = c(0.1, 0.1), axis.gp = gpar(col="b
      0.5, 0.01, just = c("centre", "bottom"))))
 
   if (!is.null(panel$drawlines) && panel$drawlines) {
-    grobs <- append(grobs, list(segmentsGrob(points$x, panel$baseline, points$x, points$y, default.units="native",  gp=gpar(col=as.character(points$col)))))
+    grobs <- append(
+      grobs,
+      list(
+        segmentsGrob(
+          points$x,
+          panel$baseline,
+          points$x, points$y,
+          default.units = "native",
+          gp = gpar(
+            col = as.character(points$col)
+          )
+        )
+      )
+    )
   }
 
 

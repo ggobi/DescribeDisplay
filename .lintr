@@ -1,8 +1,6 @@
 linters: with_defaults(
-    commas_linter = NULL, # 16887
-    line_length_linter = NULL, # 303
     camel_case_linter = NULL, # 38
-    commented_code_linter = NULL, # 26
+    commented_code_linter = NULL, # 31
     NULL
   )
 exclusions:

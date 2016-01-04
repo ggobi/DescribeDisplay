@@ -18,21 +18,27 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #  cat("\nggplot.ddplot\n")
 #print(head(data$points))
   p <- ggplot(data$points,
-    aes_string(x = "x", y = "y", shape = "pch", size = "cex * 6", colour = "col")) +
+      aes_string(
+        x = "x", y = "y",
+        shape = "pch",
+        size = "cex * 6",
+        colour = "col"
+      )
+    ) +
     scale_colour_identity() +
     scale_size_identity() +
     scale_shape_identity() +
     scale_linetype_identity() +
     scale_x_continuous(
-      if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
+      if(TRUE %in% (c("2dtour", "1dtour") %in% class(data)))
         ""
-      else if(TRUE %in% (c("1dplot") %in% class(data) ) )
+      else if(TRUE %in% (c("1dplot") %in% class(data)))
         data$params$label
       else
         data$params$xlab,
       limits = data$xscale) +
     scale_y_continuous(
-      if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data) ) )
+      if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data)))
         ""
       else
         data$params$ylab,

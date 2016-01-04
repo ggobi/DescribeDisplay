@@ -12,7 +12,14 @@
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords hplot
 #' @export
-addbrush <- function(plot, x,y, width=0.5, height=0.5, just=c("left", "top"), fill="transparent", col="black") {
+addbrush <- function(
+  plot,
+  x, y,
+  width = 0.5, height = 0.5,
+  just = c("left", "top"),
+  fill = "transparent",
+  col = "black"
+) {
   brush <- data.frame(x=x, y=y, width=width, height=height)
   geom_rect(
     aes_string("x", "y", width = "width", height = "height"),

@@ -28,10 +28,18 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
 
 #  if(spine){
 #    ## not correct yet
-#    p <- p + geom_bar( position = "fill", binwidth = diff(data$params$breaks[1:2]) , ...)
+  # p <- p + geom_bar(
+  #   position = "fill",
+  #   binwidth = diff(data$params$breaks[1:2]) ,
+  #   ...
+  # )
 #    cat("\nspine\n")
 #  }else{
-    allBreaks <- c(data$params$breaks,data$params$breaks[length(data$params$breaks)] + diff(data$params$breaks[1:2]))
+    allBreaks <- c(
+      data$params$breaks,
+      data$params$breaks[length(data$params$breaks)] +
+        diff(data$params$breaks[1:2])
+    )
 
     p <- p + geom_histogram(breaks = allBreaks,...)
 #  }
@@ -78,7 +86,10 @@ ggplot.barplot <- function(data,spine=FALSE,...){
 #    xlim(temp)
 
 
-# scale_x_continuous(data$params$label, limits = c(unique(data$points$splitBy)) )+
+# scale_x_continuous(
+#   data$params$label,
+#   limits = c(unique(data$points$splitBy))
+# )+
 
 
   p

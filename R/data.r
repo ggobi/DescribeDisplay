@@ -69,17 +69,27 @@ dd_clean_plot <- function(dd, n=1) {
   )
 
   if (!is.null(plot$projection)) {
-    plot$baseline <- if(plot$projection == "1D plot") 0 else (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
+    plot$baseline <- if(plot$projection == "1D plot") {
+       0
+    } else {
+      (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
+    }
   }
 
   if (identical(dd$plots[[n]]$scale, c(0.7, 0.7))) {
     plot$xscale <- expand_range(range(plot$points$x), 0.1)
     plot$yscale <- expand_range(range(plot$points$y), 0.1)
-  } else if (!is.null(dd$plots[[n]]$tformLims) & sum(dd$plots[[n]]$tformLims[1:2]) == 0 ) {
+  } else if (
+    (!is.null(dd$plots[[n]]$tformLims)) &
+    (sum(dd$plots[[n]]$tformLims[1:2]) == 0)
+  ) {
     plot$xscale <- range(dd$plots[[n]]$planarLims[1:2])
     plot$yscale <- range(dd$plots[[n]]$planarLims[3:4])
 
-    if (diff(plot$yscale) == 0 ) plot$yscale <- expand_range(range(plot$points$y), 0.1) ; print("THIRD")
+    if (diff(plot$yscale) == 0 ) {
+      plot$yscale <- expand_range(range(plot$points$y), 0.1)
+      print("THIRD")
+    }
 
   } else {
     plot$xscale <- dd$plots[[n]]$tformLims[1:2]
@@ -87,7 +97,10 @@ dd_clean_plot <- function(dd, n=1) {
   }
 
   if (!is.null(dd$plots[[n]]$stickylabels)) {
-    labels <- do.call(rbind, lapply(dd$plots[[n]]$stickylabels, as.data.frame))
+    labels <- do.call(
+      rbind,
+      lapply(dd$plots[[n]]$stickylabels, as.data.frame)
+    )
     labels <- cbind(
       plot$points[labels$index + 1, c("x", "y")],
       label = labels$label
@@ -121,7 +134,10 @@ dd_points <- function(dd, n=1) {
   cmap <- dd$colormap$foreground
   hiddencolour <- do.call(rgb,as.list(dd$colormap$hiddenColor))
   # Remap point aesthetics to R appropriate values
-  df$col <- factor(ifelse(df$hidden, hiddencolour, cmap[df$color + 1]), levels = c(rev(cmap), hiddencolour))
+  df$col <- factor(
+    ifelse(df$hidden, hiddencolour, cmap[df$color + 1]),
+    levels = c(rev(cmap), hiddencolour)
+  )
 
   if(is.null(df$glyphtype)) {
     df$pch <- df$cex <- rep(1, nrow(df))
@@ -132,7 +148,8 @@ dd_points <- function(dd, n=1) {
 
   rownames(df) <- df$index %||% seq_len(nrow(df))
 
-  df[order(!df$hidden), intersect(names(df), c("x","y", "col","pch", "cex", "hidden"))]
+  dfNames <- intersect(names(df), c("x","y", "col","pch", "cex", "hidden"))
+  df[order(!df$hidden), dfNames]
 }
 
 #' Describe display edge data
@@ -152,7 +169,9 @@ dd_edges <- function(dd, n=1) {
   df$lwd <- (df$lwd + 1) / 2
   df$lty <- rep(1,6)[df$ltype + 1]
 
-  df <- df[!df$hidden, c("src","dest", "col","lwd", "lty")] # Return only visible edges
+  # Return only visible edges
+  df <- df[!df$hidden, c("src","dest", "col","lwd", "lty")]
+
   points <- dd_points(dd, n)
   src <- points[as.character(df$src), c("x","y")]
   names(src) <- c("src.x", "src.y")
