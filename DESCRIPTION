@@ -2,7 +2,7 @@ Package: DescribeDisplay
 Version: 0.2.4.9999
 Title: An Interface to the DescribeDisplay GGobi Plugin
 Description: Produce publication quality graphics from output of GGobi's
-    describe display plugin
+    describe display plugin.  
 Authors@R: c(
     person("Di", "Cook",          , "dicook@monash.edu"     , c("aut", "cre")),
     person("Hadley", "Wickham",   , "h.wickham@gmail.com"   , c("aut")),
