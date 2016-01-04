@@ -35,7 +35,7 @@ compact_scatmat <- function(data) {
 #' print(ggplot(dd_example("scatmat")))
 #' @author Barret Schloerke \email{schloerke@@gmail.com}
 #' @keywords hplot
-ggplot.scatmat <- function(data,...){
+ggplot.scatmat <- function(data, ...){
   #cat("\nggplot.scatmat\n")
   df <- compact_scatmat(data)
 
@@ -57,10 +57,10 @@ ggplot.scatmat <- function(data,...){
   p <- GGally::ggpairs(
     data = df,
     columns = 5:ncol(df),
-    mapping = aes(
-      colour = col,
-      shape = pch#,
-      #size = cex
+    mapping = aes_string(
+      colour = "col",
+      shape = "pch"#,
+      #size = "cex"
     ),
     lower = list(continuous = dd_points),
     diag = list(continuous = diag_density),
