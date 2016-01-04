@@ -25,17 +25,17 @@ ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
     scale_linetype_identity() +
     scale_x_continuous(
       if(TRUE %in% (c("2dtour", "1dtour") %in% class(data) ) )
-        name = ""
+        ""
       else if(TRUE %in% (c("1dplot") %in% class(data) ) )
-        name = data$params$label
+        data$params$label
       else
-        name = data$params$xlab,
+        data$params$xlab,
       limits = data$xscale) +
     scale_y_continuous(
       if(TRUE %in% (c("2dtour", "1dtour","1dplot") %in% class(data) ) )
-        name = ""
+        ""
       else
-        name = data$params$ylab,
+        data$params$ylab,
       limits = data$yscale) +
     geom_point()
 
