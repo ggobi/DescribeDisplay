@@ -50,7 +50,24 @@ ggplot.scatmat <- function(data,...){
 #      scale_y_continuous("") +
 #      scale_x_continuous("")
   df$pch <- factor(df$pch)
-  p <- GGally::ggpairs(df, columns=5:ncol(df), colour="col", shape="pch", size="cex")
+  dd_points <- function(data, mapping, ...) {
+    GGally::ggally_points(data, mapping, ...) + scale_color_identity()
+  }
+  diag_density <- function(data, mapping, ...) {
+    GGally::ggally_densityDiag(data, mapping, ...) + scale_fill_identity()
+  }
+  p <- GGally::ggpairs(
+    data = df,
+    columns = 5:ncol(df),
+    mapping = aes(
+      colour = col,
+      shape = pch#,
+      #size = cex
+    ),
+    lower = list(continuous = dd_points),
+    diag = list(continuous = diag_density),
+    upper = list(continuous = dd_points)
+  )
 
   p
 }
