@@ -22,9 +22,7 @@ to eachother within the matrix.
 }
 \examples{
 library(ggplot2)
-library(GGally)
-print(ggplot(dd_example("scatmat")))
-print(ggplot(dd_example("scatmat")) + theme(aspect.ratio=1))
+ggplot(dd_example("scatmat"))
 }
 \author{
 Barret Schloerke \email{schloerke@gmail.com}
