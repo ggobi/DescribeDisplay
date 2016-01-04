@@ -29,11 +29,11 @@ frame grob containing all panels, note that this does not contain the title or b
 \description{
 If you want to layout multiple dd plots on the same page, you can
 use \code{\link[grid]{grid.layout}}.  If you need even more control,
-set \code{draw = FALSE} and then \code{\link[grid]{grid.draw}} the 
+set \code{draw = FALSE} and then \code{\link[grid]{grid.draw}} the
 resulting grob yourself.
 }
 \details{
-This function reads a number of options directly out of the 
+This function reads a number of options directly out of the
 descripedisplay datastructure.  See the examples for ways to use
 these.
 }

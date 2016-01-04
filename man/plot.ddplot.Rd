@@ -20,7 +20,7 @@ Convenient method to draw a single panel.}
 \item{background.color}{color of in the background of the plot}
 }
 \description{
-This is mainly used for bug testing so that you can pull out a single 
+This is mainly used for bug testing so that you can pull out a single
 panel quickly and easily.
 }
 \examples{
