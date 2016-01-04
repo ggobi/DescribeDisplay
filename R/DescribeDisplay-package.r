@@ -7,6 +7,8 @@
 #'   \url{http://www.ggobi.org/}
 #'   \url{http://www.had.co.nz/ggplot2/}
 #' @docType package
-#' @import grid ggplot2
+#' @import ggplot2
+#' @importFrom grid pointsGrob circleGrob segmentsGrob textGrob rectGrob linesGrob frameGrob placeGrob packGrob
+#' @importFrom grid gpar gTree gList vpPath viewport grid.layout grid.newpage grid.draw pushViewport popViewport dataViewport
 #' @name describedisplayreshape
 NA
