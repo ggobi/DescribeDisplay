@@ -11,8 +11,8 @@ after_success:
 after_failure:
   - ./travis-tool.sh dump_logs
 
-# env:
-#   - WARNINGS_ARE_ERRORS=1
+env:
+  - WARNINGS_ARE_ERRORS=1
 
 branches:
   only:
