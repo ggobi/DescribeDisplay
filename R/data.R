@@ -40,7 +40,7 @@ dd_load <- function(path) {
 #' @examples
 #' a <- dd_example("xyplot")
 dd_example <- function(name) {
-  file <- paste(name, ".r", sep = "")
+  file <- paste(name, ".R", sep = "")
   path <- system.file("examples", file, package = "DescribeDisplay")
 
   if (!file.exists(path)) {
