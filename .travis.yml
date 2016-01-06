@@ -11,10 +11,6 @@ after_success:
 after_failure:
   - ./travis-tool.sh dump_logs
 
-before_script:
-  - pwd
-  - ls -Ra
-
 # env:
 #   - WARNINGS_ARE_ERRORS=1
 
