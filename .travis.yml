@@ -11,6 +11,8 @@ after_success:
 after_failure:
   - ./travis-tool.sh dump_logs
 
+before_script:
+  - ls -R
 # env:
 #   - WARNINGS_ARE_ERRORS=1
 
