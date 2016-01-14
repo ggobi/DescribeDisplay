@@ -13,7 +13,10 @@
 #' print(ggplot(dd_example("tour2d")))
 #' print(ggplot(dd_example("tour1d")))
 #' print(ggplot(dd_example("plot1d")))
-#' print(ggplot(dd_example("plot1d")) + geom_segment(aes(x = x, xend = x, y = 0, yend = y), size = 0.3))
+#' print(
+#'   ggplot(dd_example("plot1d")) + 
+#'   geom_segment(aes(x = x, xend = x, y = 0, yend = y), size = 0.3)
+#' )
 ggplot.ddplot <- function(data, axis.location = c(0.2, 0.2), ...) {
 #  cat("\nggplot.ddplot\n")
 #print(head(data$points))
