@@ -16,6 +16,8 @@ exclusions:
     "inst/examples/tour2x1d.R",
     "inst/examples/xyplot.R"
   )
+lintr_code:
+  lintr::lint_package()
 lintr_code_to_create_lintr:
   library(magrittr)
   library(dplyr)
