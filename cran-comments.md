@@ -34,7 +34,26 @@
 
 * win-builder (devel and release)
   * There were no ERRORs, WARNINGs.  
-  * There are no NOTEs.
+  * There is one NOTE. The possibly mis-spelled words are not packages, just proper names.
+
+    * checking CRAN incoming feasibility ... NOTE
+    Maintainer: 'Di Cook <schloerke@gmail.com>'
+
+    New maintainer:
+      Di Cook <schloerke@gmail.com>
+    Old maintainer(s):
+      Di Cook <dicook@iastate.edu>
+
+    License components with restrictions and base license permitting such:
+      MIT + file LICENSE
+    File 'LICENSE':
+      YEAR: 2006-2014
+      COPYRIGHT HOLDER: Hadley Wickham; Di Cook; Andreas Buja; Barret Schloerke
+
+    Possibly mis-spelled words in DESCRIPTION:
+      DescribeDisplay (4:28)
+      GGobi (4:44)
+      GGobi's (5:66)
 
 
 ## Downstream dependencies
