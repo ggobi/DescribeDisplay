@@ -21,7 +21,7 @@ Create nice looking plots complete with axes using ggplot.  Produces graphics wi
 \examples{
 library(ggplot2)
 print(ggplot(dd_example("timeseries")))
-print(ggplot(dd_example("timeseries"),edges=TRUE))
+print(ggplot(dd_example("timeseries"), edges = TRUE))
 }
 \author{
 Barret Schloerke \email{schloerke@gmail.com}

@@ -24,7 +24,10 @@ print(ggplot(dd_example("xyplot")))
 print(ggplot(dd_example("tour2d")))
 print(ggplot(dd_example("tour1d")))
 print(ggplot(dd_example("plot1d")))
-print(ggplot(dd_example("plot1d")) + geom_segment(aes(x=x,xend=x,y=0,yend=y),size=0.3))
+print(
+  ggplot(dd_example("plot1d")) + 
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), size = 0.3)
+)
 }
 \author{
 Hadley Wickham \email{h.wickham@gmail.com}
