@@ -20,7 +20,6 @@ Imports:
     grid,
     GGally (>= 1.0.0)
 Suggests:
-  lintr (>= 0.3.3),
   roxygen2 (>= 5.0.1),
   testthat
 Roxygen: list(wrap = FALSE)

@@ -5,6 +5,7 @@ sudo: required
 
 r_github_packages:
   - jimhester/covr  # code coverage check
+  - jimhester/lintr # code lint check
 
 after_success:
   - Rscript -e 'covr::codecov()'
