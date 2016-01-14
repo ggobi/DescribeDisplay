@@ -19,7 +19,7 @@ Imports:
     plyr,
     scales,
     grid,
-    GGally (>= 1.0.1)
+    GGally (>= 1.0.0)
 Suggests:
   roxygen2 (>= 5.0.1),
   testthat
