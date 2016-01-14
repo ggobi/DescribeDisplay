@@ -10,5 +10,7 @@
 #' @import ggplot2
 #' @importFrom grid pointsGrob circleGrob segmentsGrob textGrob rectGrob linesGrob frameGrob placeGrob packGrob
 #' @importFrom grid gpar gTree gList vpPath viewport grid.layout grid.newpage grid.draw pushViewport popViewport dataViewport
+#' @importFrom grDevices rgb
+#' @importFrom utils example str
 #' @name describedisplayreshape
 NA
