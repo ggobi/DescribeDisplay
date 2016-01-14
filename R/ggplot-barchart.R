@@ -11,12 +11,12 @@
 #' library(ggplot2)
 #' print(ggplot(dd_example("barchart")))
 #' print(ggplot(dd_example("histogram")))
-ggplot.histogram <- function(data, spine = FALSE,...) {
+ggplot.histogram <- function(data, spine = FALSE, ...) {
 #  cat("\nggplot.histogram\n")
 
   p <- ggplot(
       data$points,
-      aes_string(x = "x", fill = "col",...)
+      aes_string(x = "x", fill = "col", ...)
     ) +
     scale_x_continuous(data$params$label) +
     coord_flip() +
@@ -26,11 +26,11 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
     scale_fill_identity()
 
 
-#  if(spine){
+#  if (spine){
 #    ## not correct yet
   # p <- p + geom_bar(
   #   position = "fill",
-  #   binwidth = diff(data$params$breaks[1:2]) ,
+  #   binwidth = diff(data$params$breaks[1:2]),
   #   ...
   # )
 #    cat("\nspine\n")
@@ -41,7 +41,7 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
         diff(data$params$breaks[1:2])
     )
 
-    p <- p + geom_histogram(breaks = allBreaks,...)
+    p <- p + geom_histogram(breaks = allBreaks, ...)
 #  }
 
   p
@@ -62,12 +62,12 @@ ggplot.histogram <- function(data, spine = FALSE,...) {
 #' @examples
 #' library(ggplot2)
 #' print(ggplot(dd_example("barchart")))
-ggplot.barplot <- function(data,spine=FALSE,...){
+ggplot.barplot <- function(data, spine = FALSE, ...){
 #  cat("\nggplot.barplot\n")
   levelnames <- data$params$levelnames
   levelNameOrder <- data$params$levelvalues + 1
   xVals <- data$points$x
-  for(i in 1:length(levelnames)){
+  for (i in 1:length(levelnames)){
     xVals[xVals == i] <- levelnames[levelNameOrder[i]]
   }
 
@@ -78,7 +78,7 @@ ggplot.barplot <- function(data,spine=FALSE,...){
   p <- ggplot(data$points, aes_string(x = "splitBy", fill = "col", ...)) +
     geom_bar() +
     coord_flip() +
-    scale_x_discrete(data$params$label, limits=c(temp)) +
+    scale_x_discrete(data$params$label, limits = c(temp)) +
     scale_size_identity() +
     scale_shape_identity() +
     scale_linetype_identity() +

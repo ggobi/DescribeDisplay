@@ -58,18 +58,18 @@ dd_example <- function(name) {
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
 #' @importFrom scales expand_range
-dd_clean_plot <- function(dd, n=1) {
+dd_clean_plot <- function(dd, n = 1) {
   names(dd$plots[[n]]) <- gsub("plot", "", names(dd$plots[[n]]))
   plot <- c(
     list(
       points = dd_points(dd, n),
       edges = dd_edges(dd, n)
     ),
-    dd$plots[[n]][c("type","projection", "params")]
+    dd$plots[[n]][c("type", "projection", "params")]
   )
 
   if (!is.null(plot$projection)) {
-    plot$baseline <- if(plot$projection == "1D plot") {
+    plot$baseline <- if (plot$projection == "1D plot") {
        0
     } else {
       (min(plot$points$y) - 0.05 * abs(min(plot$points$y)))
@@ -128,18 +128,18 @@ dd_clean_plot <- function(dd, n=1) {
 #' @return data frame suitable for plotting
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
-dd_points <- function(dd, n=1) {
+dd_points <- function(dd, n = 1) {
   df <- as.data.frame(dd$plots[[n]]$points)
   df$hidden <- df$hidden != 0
   cmap <- dd$colormap$foreground
-  hiddencolour <- do.call(rgb,as.list(dd$colormap$hiddenColor))
+  hiddencolour <- do.call(rgb, as.list(dd$colormap$hiddenColor))
   # Remap point aesthetics to R appropriate values
   df$col <- factor(
     ifelse(df$hidden, hiddencolour, cmap[df$color + 1]),
     levels = c(rev(cmap), hiddencolour)
   )
 
-  if(is.null(df$glyphtype)) {
+  if (is.null(df$glyphtype)) {
     df$pch <- df$cex <- rep(1, nrow(df))
   } else {
     df$pch <- c(18, 3, 4, 1, 0, 16, 15)[df$glyphtype + 1]
@@ -148,7 +148,7 @@ dd_points <- function(dd, n=1) {
 
   rownames(df) <- df$index %||% seq_len(nrow(df))
 
-  dfNames <- intersect(names(df), c("x","y", "col","pch", "cex", "hidden"))
+  dfNames <- intersect(names(df), c("x", "y", "col", "pch", "cex", "hidden"))
   df[order(!df$hidden), dfNames]
 }
 
@@ -160,22 +160,22 @@ dd_points <- function(dd, n=1) {
 #' @return data frame suitable for plotting
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
-dd_edges <- function(dd, n=1) {
+dd_edges <- function(dd, n = 1) {
   if (is.null(dd$plots[[n]]$edges)) return()
   df <- do.call(rbind, lapply(dd$plots[[n]]$edges, as.data.frame))
 
   # Remap edge aesthetics to appropriate values
   df$col <- dd$colormap$foreground[df$color + 1]
   df$lwd <- (df$lwd + 1) / 2
-  df$lty <- rep(1,6)[df$ltype + 1]
+  df$lty <- rep(1, 6)[df$ltype + 1]
 
   # Return only visible edges
-  df <- df[!df$hidden, c("src","dest", "col","lwd", "lty")]
+  df <- df[!df$hidden, c("src", "dest", "col", "lwd", "lty")]
 
   points <- dd_points(dd, n)
-  src <- points[as.character(df$src), c("x","y")]
+  src <- points[as.character(df$src), c("x", "y")]
   names(src) <- c("src.x", "src.y")
-  dest <- points[as.character(df$dest), c("x","y")]
+  dest <- points[as.character(df$dest), c("x", "y")]
   names(dest) <- c("dest.x", "dest.y")
 
   cbind(src, dest, df)
@@ -198,7 +198,7 @@ dd_plot_class <- function(projection) {
 #' @param n plot number, defaults to first plot
 #' @author Hadley Wickham \email{h.wickham@@gmail.com}
 #' @keywords internal
-dd_defaults <- function(dd, n=1) {
+dd_defaults <- function(dd, n = 1) {
   list(
     main = dd$title,
     xlab = dd$plots[[n]]$plotparams$xlab %||% "",
@@ -218,17 +218,17 @@ dd_tour_axes <- function(plot) {
 
 
   if (plot$projection == "1D Tour") {
-    proj <- matrix(plot$params[["F"]], ncol=1)
+    proj <- matrix(plot$params[["F"]], ncol = 1)
     colnames(proj) <- "x"
   } else {
-    proj <- matrix(plot$params[["F"]], ncol=2, byrow=FALSE)
-    colnames(proj) <- c("x","y")
+    proj <- matrix(plot$params[["F"]], ncol = 2, byrow = FALSE)
+    colnames(proj) <- c("x", "y")
   }
 
   lbls <- plot$params$labels
 
   ranges <- do.call(rbind,  plot$params$ranges)
-  df <- data.frame(proj, label=lbls, range=ranges)
+  df <- data.frame(proj, label = lbls, range = ranges)
 
   if (plot$projection == "2D Tour") {
     df$r <- with(df, sqrt(x^2 + y^2)) # nolint

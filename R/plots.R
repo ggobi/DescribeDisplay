@@ -52,16 +52,16 @@ plot.dd <- function(
   }
 
   if (!is.null(x$title) && nchar(x$title) != 0) {
-    pg <- frameGrob(grid.layout(nrow=2, ncol=1))
+    pg <- frameGrob(grid.layout(nrow = 2, ncol = 1))
     pg <- packGrob(
       pg,
       textGrob(
         x$title,
-        gp = gpar(cex=1.3)
+        gp = gpar(cex = 1.3)
       ),
-      row = 1, height = unit(2,"lines")
+      row = 1, height = unit(2, "lines")
     )
-    pg <- packGrob(pg, panels, row=2)
+    pg <- packGrob(pg, panels, row = 2)
   } else {
     pg <- panels
   }
@@ -126,7 +126,7 @@ plot.ddplot <- function(
 ddpanelGrob <- function(
   panel,
   axislocation = c(0.1, 0.1),
-  axis.gp = gpar(col="black"),
+  axis.gp = gpar(col = "black"),
   background.color = "grey90"
 ) {
   points <- panel$points
@@ -135,7 +135,7 @@ ddpanelGrob <- function(
   axes <- dd_tour_axes(panel)
   axesVp <- axesViewport(axes, axislocation)
   grobs <- list(
-    rectGrob(gp=gpar(col="grey", fill=background.color))
+    rectGrob(gp = gpar(col = "grey", fill = background.color))
   )
 
   if (!is.null(edges)) {
@@ -188,9 +188,9 @@ ddpanelGrob <- function(
 
   grobs <- append(grobs,  list(
     textGrob(panel$params$xlab %||% "", 0.99, 0.01,
-      just = c("right","bottom")),
+      just = c("right", "bottom")),
     textGrob(panel$params$ylab %||% "", 0.01, 0.99, just = c("left", "top")),
-    axesGrob(axes, gp=axis.gp)
+    axesGrob(axes, gp = axis.gp)
   ))
 
   if (length(panel$params$label) == 1)

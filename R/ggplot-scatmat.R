@@ -8,7 +8,7 @@
 compact_scatmat <- function(data) {
 
   df <- do.call(rbind, lapply(data$plots, function(p){
-    if("1dplot" %in% class(p)){
+    if ("1dplot" %in% class(p)){
         aes <- p$points[, c("col", "pch", "cex")]
         data.frame(
           aes,
@@ -39,7 +39,7 @@ ggplot.scatmat <- function(data, ...){
   #cat("\nggplot.scatmat\n")
   df <- compact_scatmat(data)
 
-#  p <- plotmatrix( df[,setdiff(names(df), c("cex","pch","col", "id")) ] ) +
+#  p <- plotmatrix( df[, setdiff(names(df), c("cex", "pch", "col", "id")) ] ) +
 #      scale_colour_identity() +
 #      scale_size_identity() +
 #      scale_shape_identity() +

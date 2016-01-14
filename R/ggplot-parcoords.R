@@ -94,7 +94,7 @@ ggplot.parcoords <- function(
     scale_x_continuous("", breaks = seq_along(vars),
       labels = vars, minor_breaks = FALSE)
 
-  if(edges) {
+  if (edges) {
     p <- p + geom_line(aes_string(size = "cex * 2"))
   }
 

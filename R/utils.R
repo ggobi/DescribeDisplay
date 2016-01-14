@@ -20,11 +20,11 @@ addbrush <- function(
   fill = "transparent",
   col = "black"
 ) {
-  brush <- data.frame(x=x, y=y, width=width, height=height)
+  brush <- data.frame(x = x, y = y, width = width, height = height)
   geom_rect(
     aes_string("x", "y", width = "width", height = "height"),
     data = brush,
-    justification=just, fill=fill, colour=col
+    justification = just, fill = fill, colour = col
   )
 }
 
