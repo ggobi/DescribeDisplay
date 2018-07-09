@@ -22,6 +22,7 @@ Imports:
     GGally (>= 1.0.0)
 Suggests:
   roxygen2 (>= 5.0.1),
-  testthat
+  testthat,
+  lintr
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 5.0.1
