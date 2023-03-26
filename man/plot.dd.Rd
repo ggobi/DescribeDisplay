@@ -7,6 +7,7 @@ Draw a complete describe display.}
 \usage{
 \method{plot}{dd}(
   x,
+  y = NULL,
   ...,
   draw = TRUE,
   axislocation = c(0.1, 0.1),
@@ -17,6 +18,8 @@ Draw a complete describe display.}
 }
 \arguments{
 \item{x}{dd object to plot}
+
+\item{y}{NULL to satisfy generic functions and methods rules}
 
 \item{...}{(unused)}
 

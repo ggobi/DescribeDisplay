@@ -3,3 +3,5 @@
 ^\.travis\.yml$
 ^\.lintr$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
+README.md

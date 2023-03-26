@@ -1,7 +1,7 @@
-DescribeDisplay 0.2.8
+DescribeDisplay 0.2.8, 0.2.9
 ---------------------
 
-* Fixes for CRAN
+* Fix of help text for CRAN
 
 DescribeDisplay 0.2.5
 ---------------------
