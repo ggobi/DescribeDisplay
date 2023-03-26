@@ -5,8 +5,7 @@
 \title{Create a nice plot for parallel coordinates plot
 Create a nice looking plot complete with axes using ggplot.}
 \usage{
-\method{ggplot}{parcoords}(data, absoluteX = FALSE, absoluteY = FALSE,
-  edges = TRUE, ...)
+\method{ggplot}{parcoords}(data, absoluteX = FALSE, absoluteY = FALSE, edges = TRUE, ...)
 }
 \arguments{
 \item{data}{plot to display}

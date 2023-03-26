@@ -1,6 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2.7
-Date: 2018-09-23
+Version: 0.2.8
 Title: An Interface to the 'DescribeDisplay' 'GGobi' Plugin
 Description: Produce publication quality graphics from output of 'GGobi'
     describe display plugin.
@@ -15,13 +14,12 @@ URL: https://github.com/ggobi/DescribeDisplay
 BugReports: https://github.com/ggobi/DescribeDisplay/issues
 Imports:
     reshape2,
-    ggplot2 (>= 3.0.0),
+    ggplot2 (>= 3.4.1),
     plyr,
     scales,
     grid,
-    GGally (>= 1.4.0)
+    GGally (>= 2.1.2)
 Suggests:
-  roxygen2 (>= 6.0.1),
   testthat
-Roxygen: list(wrap = FALSE)
-RoxygenNote: 6.0.1
+RoxygenNote: 7.2.3
+Encoding: UTF-8

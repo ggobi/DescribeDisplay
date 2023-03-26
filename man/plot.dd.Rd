@@ -5,8 +5,15 @@
 \title{Draw dd plot
 Draw a complete describe display.}
 \usage{
-\method{plot}{dd}(x, ..., draw = TRUE, axislocation = c(0.1, 0.1),
-  size = 0.9, axisgp = gpar(col = "black"), background.color = "grey90")
+\method{plot}{dd}(
+  x,
+  ...,
+  draw = TRUE,
+  axislocation = c(0.1, 0.1),
+  size = 0.9,
+  axisgp = gpar(col = "black"),
+  background.color = "grey90"
+)
 }
 \arguments{
 \item{x}{dd object to plot}
