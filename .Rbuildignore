@@ -5,3 +5,7 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 README.md
+^\.Rhistory
+^\.gitignore
+^\..Rcheck
+^\.git
