@@ -1,5 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2.9
+Version: 0.2.10
 Title: An Interface to the 'DescribeDisplay' 'GGobi' Plugin
 Description: Produce publication quality graphics from output of 'GGobi'
     describe display plugin.
