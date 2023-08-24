@@ -1,5 +1,5 @@
 Package: DescribeDisplay
-Version: 0.2.10
+Version: 0.2.11
 Title: An Interface to the 'DescribeDisplay' 'GGobi' Plugin
 Description: Produce publication quality graphics from output of 'GGobi'
     describe display plugin.
@@ -9,11 +9,6 @@ Authors@R: c(
     person("Andreas", "Buja",     , "buja@wharton.upenn.edu", c("aut")),
     person("Barret", "Schloerke", , "schloerke@gmail.com"   , c("aut"))
   )
-Author: Dianne Cook ["aut", "cre"],
-  Hadley Wickham ["aut"],
-  Andreas Buja ["aut"],
-  Barret Schloerke ["aut"]
-Maintainer: Dianne Cook <dicook@monash.edu>
 License: MIT + file LICENSE
 URL: https://github.com/ggobi/DescribeDisplay
 BugReports: https://github.com/ggobi/DescribeDisplay/issues
